@@ -52,7 +52,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panelBotones.setBackground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
 
-        botonRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/botonRegistrar.jpg")));
+        botonRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("imagenes/botonRegistrar.jpg")));
         botonRegistrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonRegistrar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {

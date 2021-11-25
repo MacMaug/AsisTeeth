@@ -96,7 +96,7 @@
             <Component class="javax.swing.JButton" name="botonRegistrar">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;/imagenes/botonRegistrar.jpg&quot;))" type="code"/>
+                  <Connection code="new javax.swing.ImageIcon(getClass().getResource(&quot;imagenes/botonRegistrar.jpg&quot;))" type="code"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.BevelBorderInfo">

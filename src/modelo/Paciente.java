@@ -25,6 +25,15 @@ public class Paciente {
         sexo='M';
     }
 
+    public Paciente(String nombre, int cedula, String lugarNacimiento, int historiaClinica, char sexo) {
+        this.nombre = nombre;
+        this.cedula = cedula;
+        this.lugarNacimiento = lugarNacimiento;
+        this.historiaClinica = historiaClinica;
+        this.sexo = sexo;
+    }
+    
+
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }

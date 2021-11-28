@@ -21,6 +21,13 @@ public class Odontologo {
         cedula=0;
     }
 
+    public Odontologo(String nombre, int cedula, String usuario, String clave  ) {
+        this.nombre = nombre;
+        this.clave = clave;
+        this.usuario = usuario;
+        this.cedula = cedula;
+    }
+
     public String getNombre() {
         return nombre;
     }

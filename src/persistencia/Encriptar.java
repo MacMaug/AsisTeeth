@@ -13,6 +13,8 @@ import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.PBEKeySpec;
 import javax.crypto.spec.SecretKeySpec;
+import modelo.Datos;
+import modelo.Odontologo;
 
 /**
  *
@@ -88,5 +90,15 @@ public class Encriptar {
         return null;
     }
 
-}
+    public void encriptarClaves() {
+        for (Odontologo cadaOdontologo : Datos.getListaOdontologos()) {
+            cadaOdontologo.setClave(encriptar(cadaOdontologo.getClave()));
+        }
+    }
 
+    public void desencriptarClaves() {
+        for (Odontologo cadaOdontologo : Datos.getListaOdontologos()) {
+            cadaOdontologo.setClave(desencriptar(cadaOdontologo.getClave()));
+        }
+    }
+}

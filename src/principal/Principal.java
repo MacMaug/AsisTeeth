@@ -6,8 +6,12 @@
 package principal;
 import modelo.Datos;
 import gui.Inicio;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.*;
+import persistencia.Leer;
 /**
  *
  * @author macmaug <maug.lucas@gmail.com>
@@ -15,6 +19,11 @@ import modelo.*;
 public class Principal {
     public static void main(String[] args){
         Datos datos=new Datos();
+        try {
+            Leer.deJSON();
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Inicio ventanaInicio=new Inicio();
         ventanaInicio.setVisible(true);
     }

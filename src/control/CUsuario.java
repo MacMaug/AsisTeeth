@@ -19,13 +19,24 @@ public class CUsuario {
         Datos.getListaOdontologos().add(odontologo);
     }
     
-    public static boolean existe(ArrayList<Odontologo>listaOdontologos, Odontologo odontologo){
+    public static boolean existe(ArrayList<Odontologo>listaOdontologos, String nombreUsuario){
         for(Odontologo cadaOdontologo: listaOdontologos){
-            if(cadaOdontologo.getUsuario().equals(odontologo.getUsuario())){
+            if(cadaOdontologo.getUsuario().equals(nombreUsuario)){
                 return true;
             }
         }
         return false;
+    }
+    
+    public static Odontologo obtenerOdontologo(ArrayList<Odontologo>listaOdontologos, String nombreUsuario){
+        for(Odontologo cadaOdontologo: listaOdontologos){
+            if(cadaOdontologo.getUsuario().equals(nombreUsuario)){
+                Odontologo odontologo = new Odontologo();
+                odontologo=cadaOdontologo;
+                return odontologo;
+            }
+        }
+        return null;
     }
     
     public static String validarDatosUsuario(JTextField nombre, JTextField cedula, JTextField usuario, JTextField clave, JTextField confirmacionClave){

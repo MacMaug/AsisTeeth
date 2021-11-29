@@ -8,18 +8,25 @@ package gui;
 import javax.swing.BorderFactory;
 import javax.swing.border.Border;
 import java.awt.Color;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.border.Border;
+import modelo.Odontologo;
 
 /**
  *
  * @author jdfer
  */
 public class MenuPrincipal extends javax.swing.JFrame {
+    private Odontologo odontologo;
     /**
      * Creates new form MenuPrincipal
      */
-    public MenuPrincipal() {
+    public MenuPrincipal(Odontologo odontologo) {
+        this.odontologo=odontologo;
         initComponents();
+       
     }
 
     /**
@@ -39,10 +46,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonCerrarSesion = new javax.swing.JLabel();
         labelLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        nombreOdontologo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         labelInicio = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        fechaActual = new javax.swing.JLabel();
+        usuarioIngresado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -118,7 +128,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 0, 40)); // NOI18N
         jLabel1.setText("¡Bienvenid@!");
-        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+        panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
+
+        nombreOdontologo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        nombreOdontologo.setText("Dr/a. "+odontologo.getNombre());
+        panelFondo.add(nombreOdontologo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 450, 28));
 
         getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1000, 600));
 
@@ -137,6 +151,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Fecha");
 
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        fechaActual.setText(formatter.format(new Date()));
+
+        usuarioIngresado.setText(odontologo.getUsuario());
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -144,11 +163,15 @@ public class MenuPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(58, 58, 58)
                 .addComponent(labelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 446, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 370, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(169, 169, 169))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(usuarioIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -159,7 +182,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
                 .addGap(0, 9, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fechaActual, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(usuarioIngresado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -213,7 +240,8 @@ public class MenuPrincipal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MenuPrincipal().setVisible(true);
+                Odontologo odontologo=new Odontologo();
+                new MenuPrincipal(odontologo).setVisible(true);
             }
         });
     }
@@ -223,13 +251,16 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel botonCerrarSesion;
     private javax.swing.JButton botonRegistrar;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JLabel fechaActual;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelInicio;
     private javax.swing.JLabel labelLogo;
+    private javax.swing.JLabel nombreOdontologo;
     private javax.swing.JPanel panelBotones;
     private javax.swing.JPanel panelFondo;
+    private javax.swing.JLabel usuarioIngresado;
     // End of variables declaration//GEN-END:variables
 }

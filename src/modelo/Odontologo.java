@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author macmaug <maug.lucas@gmail.com>
@@ -14,18 +16,21 @@ public class Odontologo {
     private String clave;
     private String usuario;
     private int cedula;
+    ArrayList<Paciente> listaPacientes;
     public Odontologo(){
         nombre="";
         clave="";
         usuario="";
         cedula=0;
+        listaPacientes=new ArrayList<Paciente>();
     }
 
-    public Odontologo(String nombre, int cedula, String usuario, String clave  ) {
+    public Odontologo(String nombre, int cedula, String usuario, String clave, ArrayList<Paciente> listaPacientes) {
         this.nombre = nombre;
         this.clave = clave;
         this.usuario = usuario;
         this.cedula = cedula;
+        this.listaPacientes=listaPacientes;
     }
 
     public String getNombre() {

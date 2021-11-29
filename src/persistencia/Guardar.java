@@ -10,5 +10,10 @@ package persistencia;
  * @author macmaug <maug.lucas@gmail.com>
  */
 public class Guardar {
-    
+    //Gson gson = new Gson();
+    //Type listType = new TypeToken<ArrayList<Odontologo>>() {}.getType();
+    //String json = gson.toJson(lista, listType);
+    //FileWriter writer = new FileWriter("files\usuarios.json");
+    //writer.write(json);
+    //writer.close();
 }

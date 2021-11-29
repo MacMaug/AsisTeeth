@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import control.*;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import modelo.*;
 
 /**
  *
@@ -29,6 +30,11 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         controlVentana.esconderAsteriscosAntecedentes(labelFaltanteCardio,labelFaltanteAlergico,labelFaltanteHematologicas);
         controlVentana.esconderAsteriscosExC(labelECBFaltante,labelFaltanteMaxima,labelFaltanteMinima,labelFaltanteLocalizacion,labelFaltanteCaracteristicas);
         controlVentana.esconderAsteriscoDiagnostico(labelFaltantesDiagnostico);
+        radioNoAplicaFemenino.setSelected(true);
+        radioNoAplicaFemenino.setEnabled(false);
+        controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,radioPastillasAnticonceptivas,radioMenopausia);   
+
+        
     }
 
     /**
@@ -41,6 +47,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private void initComponents() {
 
         grupoRegularIrregular = new javax.swing.ButtonGroup();
+        grupoTensionArterial = new javax.swing.ButtonGroup();
         panelTitulo = new javax.swing.JPanel();
         labelTitulo = new javax.swing.JLabel();
         labelUsuario = new javax.swing.JLabel();
@@ -590,6 +597,11 @@ public class RegistrarConsulta extends javax.swing.JFrame {
 
         comboSexo.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         comboSexo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "M", "F" }));
+        comboSexo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboSexoActionPerformed(evt);
+            }
+        });
 
         txtDomicilio.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
 
@@ -1037,7 +1049,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
 
         radioAcidezEstomacal1.setBackground(new java.awt.Color(255, 255, 255));
         radioAcidezEstomacal1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
-        radioAcidezEstomacal1.setText("Sufre Ud. de acidez estomacal");
+        radioAcidezEstomacal1.setText("Sufre de acidez estomacal");
         radioAcidezEstomacal1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioAcidezEstomacal1ActionPerformed(evt);
@@ -1055,7 +1067,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
 
         radioDiarreasFrecuencia1.setBackground(new java.awt.Color(255, 255, 255));
         radioDiarreasFrecuencia1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
-        radioDiarreasFrecuencia1.setText("Sufre Ud. diarreas con frecuencia");
+        radioDiarreasFrecuencia1.setText("Sufre diarreas con frecuencia");
         radioDiarreasFrecuencia1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioDiarreasFrecuencia1ActionPerformed(evt);
@@ -1113,7 +1125,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addComponent(radioUlcerPeptica1)
                 .addGap(18, 18, 18)
                 .addComponent(radioDiarreasFrecuencia1)
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap(48, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Renales y gastrointestinales", panelRenalesGastrointestinales);
@@ -1241,7 +1253,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(panelFemeninoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioPastillasAnticonceptivas)
                     .addComponent(radioMenopausia))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Femenino", panelFemenino);
@@ -1331,6 +1343,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         });
 
         radioHipertenso.setBackground(new java.awt.Color(255, 255, 255));
+        grupoTensionArterial.add(radioHipertenso);
         radioHipertenso.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
         radioHipertenso.setText("Es Hipertenso");
         radioHipertenso.addActionListener(new java.awt.event.ActionListener() {
@@ -1340,6 +1353,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         });
 
         radioHipotenso.setBackground(new java.awt.Color(255, 255, 255));
+        grupoTensionArterial.add(radioHipotenso);
         radioHipotenso.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
         radioHipotenso.setText("Es Hipotenso");
         radioHipotenso.addActionListener(new java.awt.event.ActionListener() {
@@ -1579,7 +1593,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(panelAlergicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCrisisAsma3)
                     .addComponent(txtReaccionAnestesiaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Alérgicos", panelAlergicos);
@@ -1793,7 +1807,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(panelNutricionalesMetabolicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioInsomnio)
                     .addComponent(radioTiroides))
-                .addContainerGap(79, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Nutricionales y Metabólicos", panelNutricionalesMetabolicos);
@@ -1986,7 +2000,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
 
         radioEpilepsia.setBackground(new java.awt.Color(255, 255, 255));
         radioEpilepsia.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
-        radioEpilepsia.setText("Sufre Ud. de epilepsia");
+        radioEpilepsia.setText("Sufre de epilepsia");
         radioEpilepsia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioEpilepsiaActionPerformed(evt);
@@ -2035,7 +2049,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
 
         radioCefaleas.setBackground(new java.awt.Color(255, 255, 255));
         radioCefaleas.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
-        radioCefaleas.setText("Presenta Ud. cefaleas frecuentes");
+        radioCefaleas.setText("Presenta cefaleas frecuentes");
         radioCefaleas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioCefaleasActionPerformed(evt);
@@ -2228,7 +2242,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(radioSangranEncias))
                 .addGap(18, 18, 18)
                 .addComponent(radioSangraNariz)
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Hematológicas", panelHematologicas);
@@ -2410,7 +2424,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(txtTipoEnfHepaticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelOtros1)
                     .addComponent(txtOtros1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Familiares", panelFamiliares);
@@ -2575,7 +2589,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                                             .addComponent(labelECBFaltante)))
                                     .addComponent(labelMucosaPisoBoca, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1055, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 4, Short.MAX_VALUE)))
+                                .addGap(0, 20, Short.MAX_VALUE)))
                         .addGap(23, 23, 23))
                     .addGroup(tabExamenCavidadBucalLayout.createSequentialGroup()
                         .addGroup(tabExamenCavidadBucalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3683,6 +3697,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
 
     private void radioIncluirPalpacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioIncluirPalpacionActionPerformed
         radioPalpables.setEnabled(radioIncluirPalpacion.isSelected());
+        controlEntrada.habilitarTxt(radioIncluirPalpacion,txtLocalizacion,txtCaracteristicas);
     }//GEN-LAST:event_radioIncluirPalpacionActionPerformed
 
     private void txtMaximaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtMaximaFocusLost
@@ -3708,23 +3723,113 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtGlicemiaFocusLost
 
     private void radioPalpablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioPalpablesActionPerformed
-        controlEntrada.habilitarTxt(radioPalpables,txtLocalizacion,txtCaracteristicas);
-        if(!radioPalpables.isSelected()){
-            txtLocalizacion.setText(null);
-            txtCaracteristicas.setText(null);
-        }
+
     }//GEN-LAST:event_radioPalpablesActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
+        Consulta consulta;
+        ExamenSubjetivo exSub; ExamenClinico exCli; ExamenRadiografico exRad; ExamenLaboratorio exLab;
+        AntecedenteRenalGastroIntestinal antRG; AntecedenteFemenino antFem; AntecedenteCardiovascular antCardio;
+        AntecedenteAlergico antAlergico; AntecedenteNutricional antNM; AntecedenteInfeccioso antInf;
+        AntecedenteNeurologico antNeuro; AntecedenteHematologico antHem; AntecedenteFamiliar antFam;
+        
+        
         boolean fDP = controlEntrada.revisarFaltantesDP(txtCedula,txtNombre,txtTelf1,txtTelf2,txtEdad,labelFaltanteCedula,labelFaltanteNombre,labelFaltanteTelefono,labelFaltanteEdad);
         boolean fES = controlEntrada.revisarFaltantesES(txtMotivo,txtCualMed,comboMedicamentos,labelFaltanteMotivo,labelFaltanteMedicamento);
         boolean fAntecedentes = controlEntrada.revisarFaltantesAntecedentes(txtCuandoInfarto,txtAlergicoMedicamento,txtCausaHemorragia,labelFaltanteCardio,labelFaltanteAlergico,labelFaltanteHematologicas,radioNoAplicaCardiovasculares,radioNoAplicaAlergicos,radioNoAplicaHematologicas,radioInfarto,radioAlergicoMedicamento,radioHemorragiasImportantes);
         boolean fExC = controlEntrada.revisarFaltantesExC(txtLabios,txtFrenillosLabiales,txtVestibuloBucal,txtMucosaPalatina,txtMucosaPisoBoca,txtFrenilloLingual,txtCaraDorsal,txtCaraVentral,txtBordesLaterales,txtEncias,txtDientes,txtMaxima,txtMinima,txtLocalizacion,txtCaracteristicas,radioIncluirTensionArterial,radioIncluirPalpacion,radioPalpables,labelECBFaltante,labelFaltanteMaxima,labelFaltanteMinima,labelFaltanteCaracteristicas,labelFaltanteLocalizacion);
         boolean fDiagnostico = controlEntrada.revisarFaltantesDiagnostico(txtPresuntivo,txtHistopatologico,txtDefinitivo,labelFaltantesDiagnostico);
-        if(fDP || fES || fAntecedentes || fExC || fDiagnostico) 
+        if(fDP || fES || fExC || fDiagnostico) 
             JOptionPane.showMessageDialog(null,"Aún falta información esencial por llenar (*).","Error", JOptionPane.ERROR_MESSAGE);
-        else System.out.println("si");
+        else{
+            consulta = controlEntrada.crearConsulta(txtEdad, txtDomicilio, txtTelf1, txtTelf2, txtOcupacion, radioEstudiante, txtReferencia, 
+                                            txtPresuntivo, txtHistopatologico, txtDefinitivo, txtPlanTratamiento, txtObservaciones);
+            
+            exSub = controlEntrada.crearExamenSubjetivo(txtMotivo,txtCurso,comboMedicamentos,comboHospitalizado,comboIntervenidoQuirurgicamente, 
+                                                radioFuma,radioToma,txtCualMed,txtPorQueHospitalizado,txtCuantosCigarrillos,txtDesdeFuma,
+                                                txtCantidadToma);
+            consulta.getListaExamenes().add(exSub);
+            
+            exCli = controlEntrada.crearExamenClinico(txtLabios, txtFrenillosLabiales, txtVestibuloBucal, txtMucosaPalatina, txtMucosaPalatina, 
+                                                txtFrenilloLingual, txtCaraDorsal, txtCaraVentral, txtBordesLaterales, txtEncias, 
+                                                txtDientes, radioIncluirTensionArterial, txtMaxima, txtMinima, radioIncluirPalpacion, 
+                                                radioPalpables, txtLocalizacion, txtCaracteristicas);
+            consulta.getListaExamenes().add(exCli);
+            
+            if(radioAgregarExamenRadiografico.isSelected()){
+                exRad = controlEntrada.crearExamenRadiografico(txtRxPanoramica, txtRxPeriapical, txtRxOclusal);
+                consulta.getListaExamenes().add(exRad);
+            }
+            if(radioAgregarExamenLaboratorio.isSelected()){
+                exLab = controlEntrada.crearExamenLaboratorio(txtPerfilHematologico, txtPerfilCoagulacion, txtGlicemia, comboVDRL, comboVIH);
+                 consulta.getListaExamenes().add(exLab);
+            }
+            
+            antRG = controlEntrada.crearAntRN(radioEnfermedadRenal1, radioCalculosRenales1, radioAcidezEstomacal1, radioUlcerPeptica1, 
+                                        radioDiarreasFrecuencia1, txtOrinaDia, txtColorOrina1);
+            consulta.getListaAntecedentes().add(antRG);
+            
+            if(!radioNoAplicaFemenino.isSelected()){
+                antFem = controlEntrada.crearAntFem(radioRegular, radioIrregular, radioEmbarazada, comboMesesEmbarazo, radioPastillasAnticonceptivas, 
+                                            radioMenopausia);
+                consulta.getListaAntecedentes().add(antFem);
+            }
+            
+            if(!radioNoAplicaCardiovasculares.isSelected()){
+               antCardio = controlEntrada.crearAntCardio(radioSubirEscaleras, radioEdema, radioPalpitaciones, radioDoloresPecho, radioInfarto, 
+                                             txtCuandoInfarto, radioEndocarditisBacteriana, radioValvulopatia, radioHipertenso, radioHipotenso, 
+                                             radioTratamientoTension);
+               consulta.getListaAntecedentes().add(antCardio);
+            }
+            if(!radioNoAplicaAlergicos.isSelected()){
+                antAlergico = controlEntrada.crearAntAlergico(radioAlergicoMedicamento, txtAlergicoMedicamento, radioUrticaria, radioDificultadTragar, 
+                                                radioDificultadRespirar, radioSufreAsma, txtUltimaCrisisAsma, txtReaccionAnestesiaLocal);
+                consulta.getListaAntecedentes().add(antAlergico);
+            }
+            if(!radioNoAplicaNM.isSelected()){
+                antNM = controlEntrada.crearAntNutricional(radioAnemia, radioPerdidoPeso, radioDieta, radioSienteDecaimiento, radioMalestarGeneral, 
+                                                    radioFiebre, radioDiabetico, radioTratamientoDiabetico, radioOrinaNoche, txtOrinaNoche, 
+                                                    radioMuchaSed, radioInsomnio, radioTiroides);
+                consulta.getListaAntecedentes().add(antNM);
+            }
+            if(!radioNoAplicaInfecciosas.isSelected()){
+                antInf = controlEntrada.crearAntInfeccioso(radioEnfermedadesVenereas, txtHaceCuantoVenereas, radioTransfusion, radioHepatitis, 
+                                                    txtHaceCuantoHepatitis, comboTipoHepatitis, radioOtraEnfermedadHepatica, txtCualOtraHepatica, 
+                                                    radioTuberculosis);
+                consulta.getListaAntecedentes().add(antInf);
+            }
+            if(!radioNoAplicaNeurologicas.isSelected()){
+                antNeuro = controlEntrada.crearAntNeurologico(radioConvulsiones, txtCuantoTiempoConvulsiones, radioEpilepsia, fechaUltimaCrisis, 
+                                                    radioNeuralgiasNeuritis, radioParalisisFacial, radioParestesia, radioSeAltera, radioCefaleas);
+                consulta.getListaAntecedentes().add(antNeuro);
+            }
+            if(!radioNoAplicaHematologicas.isSelected()){
+                antHem = controlEntrada.crearAntHematologico(radioHemorragiasImportantes, txtCausaHemorragia, txtDuracionHemorragia, 
+                                                    radioHematomas, radioSangranEncias, radioSangraNariz);
+                consulta.getListaAntecedentes().add(antHem);
+            }
+            if(!radioFamiliares.isSelected()){
+                antFam = controlEntrada.crearAntFamiliar(txtTipoCancer,txtTipoEnfPulmonares,comboTipoDiabetes,txtTipoEnfCardiovasculares,
+                                                txtTipoEnfHepaticas, txtOtros1);
+                consulta.getListaAntecedentes().add(antFam);
+            }
+            VerConsulta ver = new VerConsulta(consulta);
+            ver.setVisible(true);
+        }
     }//GEN-LAST:event_botonGuardarActionPerformed
+
+    private void comboSexoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSexoActionPerformed
+        if(comboSexo.getSelectedItem().equals("M")){ 
+            radioNoAplicaFemenino.setSelected(true);
+            radioNoAplicaFemenino.setEnabled(false);
+        }
+        if(comboSexo.getSelectedItem().equals("F")){ 
+            radioNoAplicaFemenino.setSelected(false);
+            radioNoAplicaFemenino.setEnabled(true);
+        }
+        controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,radioPastillasAnticonceptivas,radioMenopausia);   
+
+    }//GEN-LAST:event_comboSexoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3781,6 +3886,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboVIH;
     private com.toedter.calendar.JDateChooser fechaUltimaCrisis;
     private javax.swing.ButtonGroup grupoRegularIrregular;
+    private javax.swing.ButtonGroup grupoTensionArterial;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;

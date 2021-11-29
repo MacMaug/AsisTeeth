@@ -4,6 +4,8 @@
   <NonVisualComponents>
     <Component class="javax.swing.ButtonGroup" name="grupoRegularIrregular">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="grupoTensionArterial">
+    </Component>
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="3"/>
@@ -635,6 +637,9 @@
                       </StringArray>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboSexoActionPerformed"/>
+                  </Events>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                   </AuxValues>
@@ -1280,7 +1285,7 @@
                                   <Component id="radioUlcerPeptica1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="radioDiarreasFrecuencia1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="36" max="32767" attributes="0"/>
+                                  <EmptySpace pref="48" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1362,7 +1367,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Nirmala UI Semilight" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Sufre Ud. de acidez estomacal"/>
+                            <Property name="text" type="java.lang.String" value="Sufre de acidez estomacal"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioAcidezEstomacal1ActionPerformed"/>
@@ -1390,7 +1395,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Nirmala UI Semilight" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Sufre Ud. diarreas con frecuencia"/>
+                            <Property name="text" type="java.lang.String" value="Sufre diarreas con frecuencia"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioDiarreasFrecuencia1ActionPerformed"/>
@@ -1482,7 +1487,7 @@
                                       <Component id="radioPastillasAnticonceptivas" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="radioMenopausia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="181" max="32767" attributes="0"/>
+                                  <EmptySpace pref="192" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1873,6 +1878,9 @@
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
                             </Property>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="grupoTensionArterial"/>
+                            </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Nirmala UI Semilight" size="18" style="0"/>
                             </Property>
@@ -1886,6 +1894,9 @@
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                            </Property>
+                            <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
+                              <ComponentRef name="grupoTensionArterial"/>
                             </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Nirmala UI Semilight" size="18" style="0"/>
@@ -2016,7 +2027,7 @@
                                       <Component id="labelCrisisAsma3" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtReaccionAnestesiaLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="134" max="32767" attributes="0"/>
+                                  <EmptySpace pref="143" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2289,7 +2300,7 @@
                                       <Component id="radioInsomnio" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="radioTiroides" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="79" max="32767" attributes="0"/>
+                                  <EmptySpace pref="90" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2949,7 +2960,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Nirmala UI Semilight" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Sufre Ud. de epilepsia"/>
+                            <Property name="text" type="java.lang.String" value="Sufre de epilepsia"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioEpilepsiaActionPerformed"/>
@@ -3032,7 +3043,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Nirmala UI Semilight" size="18" style="0"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Presenta Ud. cefaleas frecuentes"/>
+                            <Property name="text" type="java.lang.String" value="Presenta cefaleas frecuentes"/>
                           </Properties>
                           <Events>
                             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radioCefaleasActionPerformed"/>
@@ -3115,7 +3126,7 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="radioSangraNariz" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="181" max="32767" attributes="0"/>
+                                  <EmptySpace pref="192" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3358,7 +3369,7 @@
                                       <Component id="labelOtros1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtOtros1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="181" max="32767" attributes="0"/>
+                                  <EmptySpace pref="192" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

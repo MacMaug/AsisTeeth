@@ -11,19 +11,32 @@ package modelo;
  */
 public class ExamenLaboratorio extends Examen{
     private String perfilHematologico;
-    private String glicemia;
+    private String perfilCoagulacion;
+    private int glicemia;
     private String vdrl;
     private String vih;
     private String otraLaboratorio;
     
+    
     public ExamenLaboratorio(){
         super("Exámenes de Laboratorio");
         perfilHematologico="No Aplica";
-        glicemia="No Aplica";
+        glicemia=0;
         vdrl="No Aplica";
         vih="No Aplica";
         otraLaboratorio="No Aplica";
     }
+
+    public ExamenLaboratorio(String perfilHematologico, String perfilCoagulacion, int glicemia, String vdrl, String vih, String nombre) {
+        super(nombre);
+        this.perfilHematologico = perfilHematologico;
+        this.perfilCoagulacion = perfilCoagulacion;
+        this.glicemia = glicemia;
+        this.vdrl = vdrl;
+        this.vih = vih;
+        this.otraLaboratorio = otraLaboratorio;
+    }
+    
 
     public String getPerfilHematologico() {
         return perfilHematologico;
@@ -33,11 +46,11 @@ public class ExamenLaboratorio extends Examen{
         this.perfilHematologico = perfilHematologico;
     }
 
-    public String getGlicemia() {
+    public int getGlicemia() {
         return glicemia;
     }
 
-    public void setGlicemia(String glicemia) {
+    public void setGlicemia(int glicemia) {
         this.glicemia = glicemia;
     }
 
@@ -64,6 +77,11 @@ public class ExamenLaboratorio extends Examen{
     public void setOtraLaboratorio(String otraLaboratorio) {
         this.otraLaboratorio = otraLaboratorio;
     }
+
+    public String getPerfilCoagulacion() {
+        return perfilCoagulacion;
+    }
+    
     
     
 }

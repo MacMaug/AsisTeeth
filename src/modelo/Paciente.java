@@ -5,6 +5,8 @@
  */
 package modelo;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author macmaug <maug.lucas@gmail.com>
@@ -15,7 +17,7 @@ public class Paciente {
     private String lugarNacimiento;
     private int historiaClinica;
     private char sexo;
-    //private ArrayList<Consulta> listaConsultas;
+    private ArrayList<Consulta> listaConsultas;
     
     public Paciente(){
         nombre="";
@@ -25,12 +27,13 @@ public class Paciente {
         sexo='M';
     }
 
-    public Paciente(String nombre, int cedula, String lugarNacimiento, int historiaClinica, char sexo) {
+    public Paciente(String nombre, int cedula, String lugarNacimiento, int historiaClinica, char sexo, ArrayList<Consulta> listaConsultas) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.lugarNacimiento = lugarNacimiento;
         this.historiaClinica = historiaClinica;
         this.sexo = sexo;
+        this.listaConsultas=listaConsultas;
     }
     
 

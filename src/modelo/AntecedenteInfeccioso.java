@@ -32,6 +32,21 @@ public class AntecedenteInfeccioso extends Antecedente {
         tenidoTuberculosis=false;
     }
 
+    public AntecedenteInfeccioso(boolean tenidoEnfermedadesVenereas, String tiempoEnfermedadesVenereas, boolean tenidoTransfusionDeSangre, boolean tenidoHepatitis, String tiempoHepatitis, char tipoHepatitis, boolean tieneOtraEnfermedadHepatica, String enfermedadHepatica, boolean tenidoTuberculosis, String nombre) {
+        super(nombre);
+        this.tenidoEnfermedadesVenereas = tenidoEnfermedadesVenereas;
+        this.tiempoEnfermedadesVenereas = tiempoEnfermedadesVenereas;
+        this.tenidoTransfusionDeSangre = tenidoTransfusionDeSangre;
+        this.tenidoHepatitis = tenidoHepatitis;
+        this.tiempoHepatitis = tiempoHepatitis;
+        this.tipoHepatitis = tipoHepatitis;
+        this.tieneOtraEnfermedadHepatica = tieneOtraEnfermedadHepatica;
+        this.enfermedadHepatica = enfermedadHepatica;
+        this.tenidoTuberculosis = tenidoTuberculosis;
+    }
+    
+    
+
     public boolean isTenidoEnfermedadesVenereas() {
         return tenidoEnfermedadesVenereas;
     }

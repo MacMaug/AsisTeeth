@@ -17,7 +17,7 @@ public class AntecedenteAlergico extends Antecedente{
     private boolean dificultadParaRespirar;
     private boolean tenidoAsma;
     private String ultimaCrisisAsma;
-    private boolean reaccionAnestesia;
+    private String reaccionAnestesia;
     
     public AntecedenteAlergico(){
         super("Antecedentes Alérgicos");
@@ -28,9 +28,21 @@ public class AntecedenteAlergico extends Antecedente{
         dificultadParaRespirar=false;
         tenidoAsma=false;
         ultimaCrisisAsma="No Aplica";
-        reaccionAnestesia=false;
+        reaccionAnestesia="No Aplica";
     }
 
+    public AntecedenteAlergico(boolean alergicoAMedicamento, String medicamentosConAlergia, boolean tenidoUrticaria, boolean dificultadParaTragar, boolean dificultadParaRespirar, boolean tenidoAsma, String ultimaCrisisAsma, String reaccionAnestesia, String nombre) {
+        super(nombre);
+        this.alergicoAMedicamento = alergicoAMedicamento;
+        this.medicamentosConAlergia = medicamentosConAlergia;
+        this.tenidoUrticaria = tenidoUrticaria;
+        this.dificultadParaTragar = dificultadParaTragar;
+        this.dificultadParaRespirar = dificultadParaRespirar;
+        this.tenidoAsma = tenidoAsma;
+        this.ultimaCrisisAsma = ultimaCrisisAsma;
+        this.reaccionAnestesia = reaccionAnestesia;
+    }
+    
     public boolean isAlergicoAMedicamento() {
         return alergicoAMedicamento;
     }
@@ -87,11 +99,11 @@ public class AntecedenteAlergico extends Antecedente{
         this.ultimaCrisisAsma = ultimaCrisisAsma;
     }
 
-    public boolean isReaccionAnestesia() {
+    public String getReaccionAnestesia() {
         return reaccionAnestesia;
     }
 
-    public void setReaccionAnestesia(boolean reaccionAnestesia) {
+    public void setReaccionAnestesia(String reaccionAnestesia) {
         this.reaccionAnestesia = reaccionAnestesia;
     }
     

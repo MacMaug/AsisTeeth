@@ -23,6 +23,13 @@ public class ExamenRadiografico extends Examen{
         otraRadiografica="No Aplica";
     }
 
+    public ExamenRadiografico(String rxPanoramica, String rxPeriapical, String rxOclusal, String nombre) {
+        super(nombre);
+        this.rxPanoramica = rxPanoramica;
+        this.rxPeriapical = rxPeriapical;
+        this.rxOclusal = rxOclusal;
+    }
+    
     public String getRxPanoramica() {
         return rxPanoramica;
     }

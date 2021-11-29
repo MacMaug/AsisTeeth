@@ -5,25 +5,22 @@
  */
 package gui;
 
-import control.CEntrada;
+import control.CInicioSesion;
 import control.CUsuario;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import modelo.Odontologo;
 import modelo.Datos;
-import modelo.Paciente;
+import modelo.Odontologo;
 
 /**
  *
  * @author macmaug <maug.lucas@gmail.com>
  */
-public class RegistrarUsuario extends javax.swing.JFrame {
+public class IniciarSesion extends javax.swing.JFrame {
+
     /**
-     * Creates new form RegistrarUsuario
-     * @param lista
+     * Creates new form IniciarSesion
      */
-    public RegistrarUsuario() {
+    public IniciarSesion() {
         initComponents();
     }
 
@@ -40,66 +37,52 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         labelInicio = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        textoUsuario = new javax.swing.JLabel();
+        textoClave = new javax.swing.JLabel();
         botonRegresar = new javax.swing.JButton();
         botonContinuar = new javax.swing.JButton();
-        campoNombre = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        campoCedula = new javax.swing.JTextField();
         campoNombreUsuario = new javax.swing.JTextField();
         campoClave = new javax.swing.JTextField();
-        campoConfirmacionClave = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 204));
 
         labelInicio.setBackground(new java.awt.Color(255, 255, 255));
         labelInicio.setFont(new java.awt.Font("Nirmala UI", 0, 60)); // NOI18N
         labelInicio.setForeground(new java.awt.Color(255, 255, 255));
-        labelInicio.setText("Registrarse");
+        labelInicio.setText("Iniciar Sesión");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(84, 84, 84)
-                .addComponent(labelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 316, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83)
+                .addComponent(labelInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 378, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(labelInicio)
-                .addGap(0, 14, Short.MAX_VALUE))
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Por favor, ingrese sus datos a continuación");
+        jLabel1.setText("Por favor, ingrese sus datos de inicio de sesión");
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel2.setText("Nombre:");
+        textoUsuario.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        textoUsuario.setForeground(new java.awt.Color(0, 0, 0));
+        textoUsuario.setText("Nombre de usuario:");
 
-        jLabel3.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("Cédula:");
-
-        jLabel4.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Nombre de usuario:");
-
-        jLabel5.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Contraseña:");
+        textoClave.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
+        textoClave.setForeground(new java.awt.Color(0, 0, 0));
+        textoClave.setText("Contraseña:");
 
         botonRegresar.setText("Regresar");
         botonRegresar.setName("botonRegistrarUsuario"); // NOI18N
@@ -117,34 +100,9 @@ public class RegistrarUsuario extends javax.swing.JFrame {
             }
         });
 
-        campoNombre.setToolTipText("Ingrese su nombre.");
-        campoNombre.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoNombreKeyTyped(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Confirmar contraseña:");
-
-        campoCedula.setToolTipText("Ingrese su cédula sin separadores ni puntos. Ejemplo: 12345678");
-        campoCedula.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCedulaActionPerformed(evt);
-            }
-        });
-        campoCedula.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                campoCedulaKeyTyped(evt);
-            }
-        });
-
         campoNombreUsuario.setToolTipText("Con este nombre de usuario será recordado en el sistema. Será necesario para iniciar sesión.");
 
         campoClave.setToolTipText("Mínimo ocho (8) caracteres");
-
-        campoConfirmacionClave.setToolTipText("Repita su contraseña.");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -157,52 +115,35 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 .addComponent(botonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(54, 54, 54))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(65, 65, 65)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(202, 202, 202)
+                        .addComponent(jLabel1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(106, 106, 106)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel6))
+                            .addComponent(textoUsuario)
+                            .addComponent(textoClave))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(campoNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(campoConfirmacionClave, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jLabel1))
+                            .addComponent(campoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 408, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(37, 37, 37)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(25, 25, 25)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(campoNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(45, 45, 45)
-                        .addComponent(jLabel3))
-                    .addComponent(campoCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addComponent(jLabel1)
+                .addGap(86, 86, 86)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
+                    .addComponent(textoUsuario)
                     .addComponent(campoNombreUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
+                .addGap(108, 108, 108)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
+                    .addComponent(textoClave)
                     .addComponent(campoClave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(45, 45, 45)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(campoConfirmacionClave, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 147, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(botonRegresar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonContinuar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -213,15 +154,16 @@ public class RegistrarUsuario extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         pack();
@@ -234,33 +176,16 @@ public class RegistrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContinuarActionPerformed
-        if(CUsuario.validarDatosUsuario(campoNombre,campoCedula,campoNombreUsuario,campoClave,campoConfirmacionClave)!=""){
-            JOptionPane.showMessageDialog(null,CUsuario.validarDatosUsuario(campoNombre,campoCedula,campoNombreUsuario,campoClave,campoConfirmacionClave),"Error en los datos introducidos", JOptionPane.ERROR_MESSAGE);
+        if(CInicioSesion.validarInicio(campoNombreUsuario.getText(), campoClave.getText()).equals("")){
+            Odontologo odontologo=CUsuario.obtenerOdontologo(Datos.getListaOdontologos(), campoNombreUsuario.getText());
+            MenuPrincipal menuPrincipal=new MenuPrincipal(odontologo);
+            menuPrincipal.setVisible(true);
+            dispose();
         }else{
-            Odontologo odontologo = new Odontologo(campoNombre.getText(), CUsuario.convertirAEntero(campoCedula.getText()), campoNombreUsuario.getText(), campoClave.getText(), new ArrayList<Paciente>());
-            if(CUsuario.existe(Datos.getListaOdontologos(), odontologo.getNombre())){
-                JOptionPane.showMessageDialog(null,"El nombre de usuario ya está siendo utilizado. Intente con otro nombre.","Error con el nombre de usuario", JOptionPane.ERROR_MESSAGE);
-            }else{
-                CUsuario.registrar(odontologo);
-                JOptionPane.showMessageDialog(null,"Por favor, inicie sesión.","Usuario Registrado Exitosamente", JOptionPane.INFORMATION_MESSAGE);
-                Inicio ventanaInicio = new Inicio();
-                ventanaInicio.setVisible(true);
-                dispose();
-            }
+            JOptionPane.showMessageDialog(null,CInicioSesion.validarInicio(campoNombreUsuario.getText(), campoClave.getText()),"Error en autenticación", JOptionPane.ERROR_MESSAGE);
         }
+        
     }//GEN-LAST:event_botonContinuarActionPerformed
-
-    private void campoCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCedulaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoCedulaActionPerformed
-
-    private void campoNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoNombreKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNombreKeyTyped
-
-    private void campoCedulaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_campoCedulaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoCedulaKeyTyped
 
     /**
      * @param args the command line arguments
@@ -279,38 +204,34 @@ public class RegistrarUsuario extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(RegistrarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(IniciarSesion.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new RegistrarUsuario().setVisible(true);
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new IniciarSesion().setVisible(true);
+            }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonContinuar;
     private javax.swing.JButton botonRegresar;
-    private javax.swing.JTextField campoCedula;
     private javax.swing.JTextField campoClave;
-    private javax.swing.JTextField campoConfirmacionClave;
-    private javax.swing.JTextField campoNombre;
     private javax.swing.JTextField campoNombreUsuario;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel labelInicio;
+    private javax.swing.JLabel textoClave;
+    private javax.swing.JLabel textoUsuario;
     // End of variables declaration//GEN-END:variables
 }

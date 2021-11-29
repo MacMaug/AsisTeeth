@@ -27,6 +27,15 @@ public class AntecedenteFemenino extends Antecedente {
         tieneMenopausia=false;
     }
 
+    public AntecedenteFemenino(String regularidadMenstrual, boolean estaEmbarazada, int mesesDeEmbarazo, boolean tomaPastillasAnticonceptivas, boolean tieneMenopausia, String nombre) {
+        super(nombre);
+        this.regularidadMenstrual = regularidadMenstrual;
+        this.estaEmbarazada = estaEmbarazada;
+        this.mesesDeEmbarazo = mesesDeEmbarazo;
+        this.tomaPastillasAnticonceptivas = tomaPastillasAnticonceptivas;
+        this.tieneMenopausia = tieneMenopausia;
+    }
+
     public String getRegularidadMenstrual() {
         return regularidadMenstrual;
     }

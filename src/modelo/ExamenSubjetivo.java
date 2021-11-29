@@ -41,6 +41,42 @@ public class ExamenSubjetivo extends Examen{
         cantidadTomando="No Aplica";
     }
 
+    public ExamenSubjetivo(String motivoConsulta, String cursoEnfermedad, boolean tomandoMedicamento, String medicamentoQueToma, boolean sidoHospitalizado, String motivoHospitalizado, boolean sidoIntervenidoQuirurgicamente, boolean fuma, int cantidadCigarrillos, String tiempoFumando, boolean toma, String cantidadTomando, String nombre) {
+        super(nombre);
+        this.motivoConsulta = motivoConsulta;
+        
+        if(cursoEnfermedad.equals(null))
+            this.cursoEnfermedad = "No Aplica";
+        else this.cursoEnfermedad = cursoEnfermedad;
+        
+        this.tomandoMedicamento = tomandoMedicamento;
+        if(!tomandoMedicamento)
+            this.medicamentoQueToma = "No Aplica";
+        else this.medicamentoQueToma = medicamentoQueToma;
+        
+        this.sidoHospitalizado = sidoHospitalizado;
+        if(!sidoHospitalizado)
+            this.motivoHospitalizado = "No Aplica";
+        else this.motivoHospitalizado = motivoHospitalizado;
+        
+        this.sidoIntervenidoQuirurgicamente = sidoIntervenidoQuirurgicamente;
+        
+        this.fuma = fuma;
+        if(!fuma){
+            this.cantidadCigarrillos=0;
+            this.tiempoFumando = "No Aplica";
+        }
+        else{
+            this.cantidadCigarrillos = cantidadCigarrillos;
+            this.tiempoFumando = tiempoFumando;
+        }
+        
+        this.toma = toma;
+        if(!toma)
+            this.cantidadTomando = "No Aplica";
+        else this.cantidadTomando = cantidadTomando;
+    }
+    
     public String getMotivoConsulta() {
         return motivoConsulta;
     }

@@ -16,6 +16,7 @@ public class AntecedenteNutricional extends Antecedente{
     private boolean enDecaimiento;
     private boolean conMalestarGeneral;
     private boolean conFiebre;
+    private boolean diabetico;
     private boolean estaEnTratamiento;
     private boolean orinaDeNoche;
     private int vecesOrinaDeNoche;
@@ -38,6 +39,25 @@ public class AntecedenteNutricional extends Antecedente{
         tieneInsomnio=false;
         padeceDeTiroides=false;
     }
+
+    public AntecedenteNutricional(boolean tenidoAnemia, boolean perdidoPeso, boolean enDieta, boolean enDecaimiento, boolean conMalestarGeneral, boolean conFiebre, boolean diabetico, boolean estaEnTratamiento, boolean orinaDeNoche, int vecesOrinaDeNoche, boolean sienteMuchaSed, boolean tieneInsomnio, boolean padeceDeTiroides, String nombre) {
+        super(nombre);
+        this.tenidoAnemia = tenidoAnemia;
+        this.perdidoPeso = perdidoPeso;
+        this.enDieta = enDieta;
+        this.enDecaimiento = enDecaimiento;
+        this.conMalestarGeneral = conMalestarGeneral;
+        this.conFiebre = conFiebre;
+        this.diabetico = diabetico;
+        this.estaEnTratamiento = estaEnTratamiento;
+        this.orinaDeNoche = orinaDeNoche;
+        this.vecesOrinaDeNoche = vecesOrinaDeNoche;
+        this.sienteMuchaSed = sienteMuchaSed;
+        this.tieneInsomnio = tieneInsomnio;
+        this.padeceDeTiroides = padeceDeTiroides;
+    }
+    
+    
 
     public boolean isTenidoAnemia() {
         return tenidoAnemia;
@@ -134,5 +154,10 @@ public class AntecedenteNutricional extends Antecedente{
     public void setPadeceDeTiroides(boolean padeceDeTiroides) {
         this.padeceDeTiroides = padeceDeTiroides;
     }
+
+    public boolean isDiabetico() {
+        return diabetico;
+    }
+    
     
 }

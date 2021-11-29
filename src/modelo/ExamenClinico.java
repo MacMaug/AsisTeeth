@@ -10,10 +10,13 @@ package modelo;
  * @author macmaug <maug.lucas@gmail.com>
  */
 public class ExamenClinico extends Examen{
+    private boolean incluirTensionArterial;
     private int tensionArterialMinima;
     private int tensionArterialMaxima;
+    private boolean incluirPalpacion;
     private boolean gangliosPalpables;
     private String ubicacionGanglios;
+    private String caracteristicasPalpacion;
     private String labios;
     private String frenillosLabiales;
     private String vestibuloBocal;
@@ -41,6 +44,30 @@ public class ExamenClinico extends Examen{
         dientes="No Aplica";
     }
 
+    public ExamenClinico(boolean inlcuirTensionArterial,int tensionArterialMinima, int tensionArterialMaxima, boolean incluirPalpacion, boolean gangliosPalpables, String ubicacionGanglios, String caracteristicasPalpacion, String labios, String frenillosLabiales, String vestibuloBocal, String mucosaPalatina, String mucosaPisoDeBoca, String frenilloLingual, String caraDorsalLengua, String caraVentralLengua, String bordesLateralesLengua, String encia, String dientes, String nombre) {
+        super(nombre);
+        this.incluirTensionArterial = inlcuirTensionArterial;
+        this.tensionArterialMinima = tensionArterialMinima;
+        this.tensionArterialMaxima = tensionArterialMaxima;
+        this.incluirPalpacion = incluirPalpacion;
+        this.gangliosPalpables = gangliosPalpables;
+        this.ubicacionGanglios = ubicacionGanglios;
+        this.caracteristicasPalpacion = caracteristicasPalpacion;
+        this.labios = labios;
+        this.frenillosLabiales = frenillosLabiales;
+        this.vestibuloBocal = vestibuloBocal;
+        this.mucosaPalatina = mucosaPalatina;
+        this.mucosaPisoDeBoca = mucosaPisoDeBoca;
+        this.frenilloLingual = frenilloLingual;
+        this.caraDorsalLengua = caraDorsalLengua;
+        this.caraVentralLengua = caraVentralLengua;
+        this.bordesLateralesLengua = bordesLateralesLengua;
+        this.encia = encia;
+        this.dientes = dientes;
+    }
+
+    
+    
     public int getTensionArterialMinima() {
         return tensionArterialMinima;
     }
@@ -160,5 +187,19 @@ public class ExamenClinico extends Examen{
     public void setDientes(String dientes) {
         this.dientes = dientes;
     }
+
+    public boolean isIncluirTensionArterial() {
+        return incluirTensionArterial;
+    }
+
+    public boolean isIncluirPalpacion() {
+        return incluirPalpacion;
+    }
+
+    public String getCaracteristicasPalpacion() {
+        return caracteristicasPalpacion;
+    }
+    
+    
     
 }

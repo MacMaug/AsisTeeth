@@ -154,9 +154,9 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_botonRegistrarseActionPerformed
 
     private void botonIniciarSesionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonIniciarSesionActionPerformed
-        //IniciarSesion iniciarSesion = new IniciarSesion();
-        //iniciarSesion.setVisible(true);
-        //dispose();
+        IniciarSesion iniciarSesion = new IniciarSesion();
+        iniciarSesion.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonIniciarSesionActionPerformed
 
     /**

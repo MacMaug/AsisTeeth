@@ -27,6 +27,18 @@ public class AntecedenteFamiliar extends Antecedente{
         otros="No Aplica";
     }
 
+    public AntecedenteFamiliar(String cancer, String diabetes, String pulmonares, String cardiovasculares, String hepaticas, String otros, String nombre) {
+        super(nombre);
+        this.cancer = cancer;
+        this.diabetes = diabetes;
+        this.pulmonares = pulmonares;
+        this.cardiovasculares = cardiovasculares;
+        this.hepaticas = hepaticas;
+        this.otros = otros;
+    }
+    
+    
+
     public String getCancer() {
         return cancer;
     }

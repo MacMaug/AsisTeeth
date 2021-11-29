@@ -29,6 +29,17 @@ public class AntecedenteRenalGastroIntestinal extends Antecedente{
         sufridoCalculosRenales=false;
     }
 
+    public AntecedenteRenalGastroIntestinal(boolean tenidoEnfermedadRenal, int cantidadOrinaAlDia, String colorOrina, boolean tenidoAcidezEstomacal, boolean tenidoUlceraPeptica, boolean tenidoDiarreaFrecuente, boolean sufridoCalculosRenales, String nombre) {
+        super(nombre);
+        this.tenidoEnfermedadRenal = tenidoEnfermedadRenal;
+        this.cantidadOrinaAlDia = cantidadOrinaAlDia;
+        this.colorOrina = colorOrina;
+        this.tenidoAcidezEstomacal = tenidoAcidezEstomacal;
+        this.tenidoUlceraPeptica = tenidoUlceraPeptica;
+        this.tenidoDiarreaFrecuente = tenidoDiarreaFrecuente;
+        this.sufridoCalculosRenales = sufridoCalculosRenales;
+    }
+
     public boolean isTenidoEnfermedadRenal() {
         return tenidoEnfermedadRenal;
     }

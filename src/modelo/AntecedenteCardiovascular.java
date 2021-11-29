@@ -37,6 +37,21 @@ public class AntecedenteCardiovascular extends Antecedente{
         estaEnTratamiento=false;
     }
 
+    public AntecedenteCardiovascular(boolean cansaSubirEscaleras, boolean edemaMiembrosInferiores, boolean palpitaciones, boolean doloresEnPecho, boolean tenidoInfarto, String cuandoInfarto, boolean sufreEndocarnitisBacteriana, boolean presentaVulvopatia, boolean esHipertenso, boolean esHipotenso, boolean estaEnTratamiento, String nombre) {
+        super(nombre);
+        this.cansaSubirEscaleras = cansaSubirEscaleras;
+        this.edemaMiembrosInferiores = edemaMiembrosInferiores;
+        this.palpitaciones = palpitaciones;
+        this.doloresEnPecho = doloresEnPecho;
+        this.tenidoInfarto = tenidoInfarto;
+        this.cuandoInfarto = cuandoInfarto;
+        this.sufreEndocarnitisBacteriana = sufreEndocarnitisBacteriana;
+        this.presentaVulvopatia = presentaVulvopatia;
+        this.esHipertenso = esHipertenso;
+        this.esHipotenso = esHipotenso;
+        this.estaEnTratamiento = estaEnTratamiento;
+    }
+
     public boolean isCansaSubirEscaleras() {
         return cansaSubirEscaleras;
     }

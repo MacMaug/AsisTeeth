@@ -17,6 +17,8 @@ public class AntecedenteNeurologico extends Antecedente {
     private boolean tenidoNeuritisEnCara;
     private boolean alteraConFacilidad;
     private boolean cefaleasFrecuentes;
+    private boolean paralisisFacial;
+    private boolean parestesia;
     
     public AntecedenteNeurologico (){
         super("Antecedentes Neurológicos");
@@ -29,6 +31,21 @@ public class AntecedenteNeurologico extends Antecedente {
         cefaleasFrecuentes=false;  
     }
 
+    public AntecedenteNeurologico(boolean tenidoConvulsiones, String tiempoConvulsiones, boolean tenidoEpilepsia, String ultimaCrisisEpileptica, boolean tenidoNeuritisEnCara, boolean paralisisFacial, boolean parestesia, boolean alteraConFacilidad, boolean cefaleasFrecuentes, String nombre) {
+        super(nombre);
+        this.tenidoConvulsiones = tenidoConvulsiones;
+        this.tiempoConvulsiones = tiempoConvulsiones;
+        this.tenidoEpilepsia = tenidoEpilepsia;
+        this.ultimaCrisisEpileptica = ultimaCrisisEpileptica;
+        this.tenidoNeuritisEnCara = tenidoNeuritisEnCara;
+        this.alteraConFacilidad = alteraConFacilidad;
+        this.cefaleasFrecuentes = cefaleasFrecuentes;
+        this.paralisisFacial = paralisisFacial;
+        this.parestesia = parestesia;
+    }
+
+    
+    
     public boolean isTenidoConvulsiones() {
         return tenidoConvulsiones;
     }
@@ -84,5 +101,15 @@ public class AntecedenteNeurologico extends Antecedente {
     public void setCefaleasFrecuentes(boolean cefaleasFrecuentes) {
         this.cefaleasFrecuentes = cefaleasFrecuentes;
     }
+
+    public boolean isParalisisFacial() {
+        return paralisisFacial;
+    }
+
+    public boolean isParestesia() {
+        return parestesia;
+    }
+    
+    
     
 }

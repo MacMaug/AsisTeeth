@@ -2,6 +2,8 @@ package control;
 
 import com.toedter.calendar.JDateChooser;
 import static java.lang.Integer.parseInt;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -9,6 +11,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import modelo.*;
 
 public class CEntrada {
     
@@ -273,14 +276,14 @@ public class CEntrada {
         labelExamenCBFaltante.setVisible(txtLabios.getText().isEmpty() || txtFrenillosLabiales.getText().isEmpty() || txtVestibuloBucal.getText().isEmpty() || txtMucosaPalatina.getText().isEmpty() || txtMucosaPisoBoca.getText().isEmpty() || txtFrenilloLingual.getText().isEmpty() || txtCaraDorsal.getText().isEmpty() || txtCaraVentral.getText().isEmpty() || txtBordesLaterales.getText().isEmpty() || txtEncias.getText().isEmpty() || txtDientes.getText().isEmpty());
         labelMaximaFaltante.setVisible(radioIncluirTensionArterial.isSelected() && txtMaxima.getText().isEmpty());
         labelMinimaFaltante.setVisible(radioIncluirTensionArterial.isSelected() && txtMinima.getText().isEmpty());
-        labelLocalizacionFaltante.setVisible(radioPalpables.isSelected() && radioIncluirPalpacion.isSelected() && txtLocalizacion.getText().isEmpty());
-        labelCaracteristicasFaltante.setVisible(radioPalpables.isSelected() && radioIncluirPalpacion.isSelected() && txtCaracteristicas.getText().isEmpty());
+        labelLocalizacionFaltante.setVisible(radioIncluirPalpacion.isSelected() && txtLocalizacion.getText().isEmpty());
+        labelCaracteristicasFaltante.setVisible(radioIncluirPalpacion.isSelected() && txtCaracteristicas.getText().isEmpty());
         
         if((txtLabios.getText().isEmpty() || txtFrenillosLabiales.getText().isEmpty() || txtVestibuloBucal.getText().isEmpty() || txtMucosaPalatina.getText().isEmpty() || txtMucosaPisoBoca.getText().isEmpty() || txtFrenilloLingual.getText().isEmpty() || txtCaraDorsal.getText().isEmpty() || txtCaraVentral.getText().isEmpty() || txtBordesLaterales.getText().isEmpty() || txtEncias.getText().isEmpty() || txtDientes.getText().isEmpty())
                     || (radioIncluirTensionArterial.isSelected() && txtMaxima.getText().isEmpty())
                     || (radioIncluirTensionArterial.isSelected() && txtMinima.getText().isEmpty())
-                    || (radioPalpables.isSelected() && radioIncluirPalpacion.isSelected() && txtLocalizacion.getText().isEmpty())
-                    || (radioPalpables.isSelected() && radioIncluirPalpacion.isSelected() && txtCaracteristicas.getText().isEmpty()))
+                    || (radioIncluirPalpacion.isSelected() && txtLocalizacion.getText().isEmpty())
+                    || (radioIncluirPalpacion.isSelected() && txtCaracteristicas.getText().isEmpty()))
             return true;
         return false;
     }
@@ -292,5 +295,308 @@ public class CEntrada {
             return true;
         return false;
     }
+    
+    
+    //CREAR OBJETO CONSULTA
+    
+    public Consulta crearConsulta(JTextField txtEdad, JTextField txtDomicilio, JTextField txtTelf1, JTextField txtTelf2, JTextField txtOcupacion,
+                                    JRadioButton radioEstudiante, JTextField txtReferencia, JTextArea txtPresuntivo, JTextArea txtHispatologico,
+                                    JTextArea txtDefinitivo, JTextArea txtPlanTratamiento, JTextArea txtObservaciones){
+        int edad = Integer.parseInt(txtEdad.getText());
+        String telefono = txtTelf1.getText()+"-"+txtTelf2.getText();
+        Consulta consulta = new Consulta(new Date(),edad,txtDomicilio.getText(),telefono,txtOcupacion.getText(),radioEstudiante.isSelected(),
+                                            txtReferencia.getText(),txtPresuntivo.getText(),txtHispatologico.getText(),txtDefinitivo.getText(),
+                                               txtPlanTratamiento.getText(),txtObservaciones.getText());
+//        prueba(consulta);
+        return consulta;
+    }
+    
+    public ExamenSubjetivo crearExamenSubjetivo(JTextField txtMotivo, JTextField txtCurso, JComboBox comboMedicamento, JComboBox comboHospitalizado, 
+                                                JComboBox comboIntervenidoQuirurgicamente, JRadioButton radioFuma, JRadioButton radioToma,
+                                                JTextField txtCualMed, JTextField txtPorQueHospitalizado, JTextField txtCuantosCigarrillos, 
+                                                JTextField txtDesdeFuma, JTextField txtCantidadToma){
+        boolean tomandoMed = comboMedicamento.getSelectedItem().equals("Sí");
+        boolean sidoHospitalizado = comboHospitalizado.getSelectedItem().equals("Sí");
+        boolean sidoIntervenidoQuirurgicamente = comboIntervenidoQuirurgicamente.getSelectedItem().equals("Sí");
+        boolean fuma = radioFuma.isSelected();
+        boolean toma = radioToma.isSelected();
+        
+        int cuantosCigarrillos;
+        try{
+            cuantosCigarrillos = Integer.parseInt(txtCuantosCigarrillos.getText());
+        }
+        catch(Exception e){
+            cuantosCigarrillos=0;
+        }
+        ExamenSubjetivo exSub = new ExamenSubjetivo(txtMotivo.getText(),txtCurso.getText(),tomandoMed,txtCualMed.getText(),sidoHospitalizado,
+                                                      txtPorQueHospitalizado.getText(),sidoIntervenidoQuirurgicamente,fuma,cuantosCigarrillos,
+                                                        txtDesdeFuma.getText(),toma,txtCantidadToma.getText(),"Subjetivo");
+//        prueba(exSub);
+        return exSub;
+    }
+    
+    public ExamenClinico crearExamenClinico(JTextArea txtLabios, JTextField txtFrenillosLabiales, JTextField txtVestibuloBucal,
+                                            JTextField txtMucosaPalatina, JTextField txtMucosaPisoBoca, JTextField txtFrenilloLingual,
+                                            JTextField txtCaraDorsal, JTextField txtCaraVentral, JTextField txtBordesLaterales,
+                                            JTextField txtEncias, JTextArea txtDientes, JRadioButton radioIncluirTensionArterial,
+                                            JTextField txtMaxima, JTextField txtMinima, JRadioButton radioIncluirPalpacion,
+                                            JRadioButton radioPalpables, JTextField txtLocalizacion, JTextField txtCaracteristicas){
+        int tensionMaxima, tensionMinima;
+        try{
+            tensionMaxima = Integer.parseInt(txtMaxima.getText());
+            tensionMinima = Integer.parseInt(txtMinima.getText());
+        }
+        catch(Exception e){
+            tensionMaxima = 0;
+            tensionMinima = 0;
+        }
+
+        
+        boolean gangliosPalpables = radioPalpables.isSelected();
+        
+        ExamenClinico exCli = new ExamenClinico(radioIncluirTensionArterial.isSelected(),tensionMinima,tensionMaxima,
+                                                radioIncluirPalpacion.isSelected(),gangliosPalpables,txtLocalizacion.getText(),
+                                                txtCaracteristicas.getText(),txtLabios.getText(),
+                                                txtFrenillosLabiales.getText(),txtVestibuloBucal.getText(),
+                                                txtMucosaPalatina.getText(),txtMucosaPisoBoca.getText(),txtFrenilloLingual.getText(),
+                                                txtCaraDorsal.getText(),txtCaraVentral.getText(),txtBordesLaterales.getText(),
+                                                txtEncias.getText(),txtDientes.getText(),"Clinico");
+//        prueba(exCli);
+        return exCli;
+    }
+    
+    public ExamenRadiografico crearExamenRadiografico(JTextArea txtRxPanoramica, JTextArea txtRxPeriapical, JTextArea txtRxOclusal){
+        ExamenRadiografico exRad = new ExamenRadiografico(txtRxPanoramica.getText(),txtRxPeriapical.getText(),txtRxOclusal.getText(),"Radiografico");
+        return exRad;
+    }
+    
+    public ExamenLaboratorio crearExamenLaboratorio(JTextField txtPerfilHematologico, JTextField txtPerfilCoagulacion, JTextField txtGlicemia,
+                                                    JComboBox comboVDRL, JComboBox comboVIH){
+        int glicemia;
+        try{
+            glicemia = Integer.parseInt(txtGlicemia.getText());
+        }
+        catch(Exception e){
+            glicemia = 0;
+        }
+        ExamenLaboratorio exLab = new ExamenLaboratorio(txtPerfilHematologico.getText(),txtPerfilCoagulacion.getText(),glicemia,
+                                                        comboVDRL.getSelectedItem().toString(),comboVIH.getSelectedItem().toString(),"Laboratorio");
+        return exLab;
+    }
+    
+   
+    public AntecedenteRenalGastroIntestinal crearAntRN(JRadioButton radioEnfermedadRenal, JRadioButton radioCalculosRenales,
+                                                        JRadioButton radioAcidezEstomacal, JRadioButton radioUlceraPeptica,
+                                                        JRadioButton radioDiarreasFrecuencia, JTextField txtOrinaDia, JTextField txtColorOrinaDia){
+        int cantidadOrina;
+        try{
+            cantidadOrina = Integer.parseInt(txtOrinaDia.getText());
+        }
+        catch(Exception e){
+            cantidadOrina = 0;
+        }
+        AntecedenteRenalGastroIntestinal antRN = new AntecedenteRenalGastroIntestinal(radioEnfermedadRenal.isSelected(),cantidadOrina, 
+                                                                                        txtColorOrinaDia.getText(),radioAcidezEstomacal.isSelected(),
+                                                                                        radioUlceraPeptica.isSelected(),radioDiarreasFrecuencia.isSelected(), 
+                                                                                        radioCalculosRenales.isSelected(),"RN");
+        return antRN;
+    }
+    
+    public AntecedenteFemenino crearAntFem(JRadioButton radioRegular, JRadioButton radioIrregular, JRadioButton radioEmbarazada,
+                                            JComboBox comboMesesEmbarazo, JRadioButton radioPastillasAnticonceptivas,
+                                            JRadioButton radioMenopausia){
+        String regularidad;
+        
+        if(radioRegular.isSelected())
+            regularidad = radioRegular.getText();
+        else    regularidad = radioIrregular.getText();
+        
+        int meses;
+        if(radioEmbarazada.isSelected()){
+            try{
+                meses = Integer.parseInt(comboMesesEmbarazo.getSelectedItem().toString());
+            } catch(Exception e){
+                meses=0;
+            }
+        }
+        else meses = 0;
+        
+        AntecedenteFemenino antFem = new AntecedenteFemenino(regularidad,radioEmbarazada.isSelected(),meses,
+                                                                radioPastillasAnticonceptivas.isSelected(),radioMenopausia.isSelected(),"Femenino");
+        return antFem;
+    }
+    
+    public AntecedenteCardiovascular crearAntCardio(JRadioButton radioSubirEscaleras, JRadioButton radioEdema, JRadioButton radioPalpitaciones,
+                                                        JRadioButton radioDoloresPecho, JRadioButton radioInfarto, JTextField txtCuandoInfarto,
+                                                        JRadioButton radioEndocarditisBacteriana, JRadioButton radioValvulopatia, JRadioButton radioHipertenso,
+                                                        JRadioButton radioHipotenso, JRadioButton radioTratamientoTension){
+        
+        AntecedenteCardiovascular antCardio = new AntecedenteCardiovascular(radioSubirEscaleras.isSelected(),radioEdema.isSelected(),
+                                                                            radioPalpitaciones.isSelected(),radioDoloresPecho.isSelected(), 
+                                                                            radioInfarto.isSelected(),txtCuandoInfarto.getText(),
+                                                                            radioEndocarditisBacteriana.isSelected(), radioValvulopatia.isSelected(), 
+                                                                            radioHipertenso.isSelected(),radioHipotenso.isSelected(),
+                                                                            radioTratamientoTension.isSelected(),"Cardiovascular");
+        return antCardio;
+    }
+    
+    public AntecedenteAlergico crearAntAlergico(JRadioButton radioAlergicoMedicamento, JTextField txtAlergicoMedicamento, JRadioButton radioUrticaria,
+                                                    JRadioButton radioDificultadTragar, JRadioButton radioDificultadRespirar,
+                                                    JRadioButton radioSufreAsma, JTextField txtUltimaCrisisAsma, JTextField txtReaccionAnestesiaLocal){
+        
+        AntecedenteAlergico antAlergico = new AntecedenteAlergico(radioAlergicoMedicamento.isSelected(),txtAlergicoMedicamento.getText(), 
+                                                                    radioUrticaria.isSelected(),radioDificultadTragar.isSelected(), 
+                                                                    radioDificultadRespirar.isSelected(),radioSufreAsma.isSelected(), 
+                                                                    txtUltimaCrisisAsma.getText(),txtReaccionAnestesiaLocal.getText(),"Alergico");
+        return antAlergico;
+    }
+    
+    public AntecedenteNutricional crearAntNutricional(JRadioButton radioAnemia, JRadioButton radioPerdidoPeso, JRadioButton radioDieta,
+                                                        JRadioButton radioSienteDecaimiento, JRadioButton radioMalestarGeneral,
+                                                        JRadioButton radioFiebre, JRadioButton radioDiabetico, JRadioButton radioTratamientoDiabetico,
+                                                        JRadioButton radioOrinaNoche, JTextField txtOrinaNoche, JRadioButton radioMuchaSed, 
+                                                        JRadioButton radioInsomnio, JRadioButton radioTiroides){
+        int vecesOrinaDeNoche;
+        if(radioOrinaNoche.isSelected()){
+            try{
+                vecesOrinaDeNoche = Integer.parseInt(txtOrinaNoche.getText());
+            } catch(Exception e){
+                vecesOrinaDeNoche = 0;
+            }
+        }
+        else vecesOrinaDeNoche = 0;
+        AntecedenteNutricional antNutri = new AntecedenteNutricional(radioAnemia.isSelected(),radioPerdidoPeso.isSelected(), 
+                                                                        radioDieta.isSelected(),radioSienteDecaimiento.isSelected(),
+                                                                        radioMalestarGeneral.isSelected(),radioFiebre.isSelected(), radioDiabetico.isSelected(),
+                                                                        radioTratamientoDiabetico.isSelected(), radioOrinaNoche.isSelected(), 
+                                                                        vecesOrinaDeNoche,radioMuchaSed.isSelected(),radioInsomnio.isSelected(), 
+                                                                        radioTiroides.isSelected(),"Nutricional");
+        return antNutri;
+    }
+    
+    public AntecedenteInfeccioso crearAntInfeccioso(JRadioButton radioEnfermedadesVenereas, JTextField txtHaceCuantoVenereas, JRadioButton radioTransfusion,
+                                                        JRadioButton radioHepatitis, JTextField txtHaceCuantoHepatitis, JComboBox comboTipoHepatitis,
+                                                        JRadioButton radioOtraEnfermedadHepatica, JTextField txtCualOtraHepatica, 
+                                                        JRadioButton radioTuberculosis){
+        
+        char tipoHepatitis = (comboTipoHepatitis.getSelectedItem().toString()).charAt(0);
+        AntecedenteInfeccioso antInfec = new AntecedenteInfeccioso(radioEnfermedadesVenereas.isSelected(),txtHaceCuantoVenereas.getText(),
+                                                                    radioTransfusion.isSelected(),radioHepatitis.isSelected(), 
+                                                                    txtHaceCuantoHepatitis.getText(),tipoHepatitis, 
+                                                                    radioOtraEnfermedadHepatica.isSelected(),txtCualOtraHepatica.getText(), 
+                                                                    radioTuberculosis.isSelected(),"Infeccioso");
+        return antInfec;
+    }
+    
+    public AntecedenteNeurologico crearAntNeurologico(JRadioButton radioConvulsiones, JTextField txtCuantoTiempoConvulsiones, JRadioButton radioEpilepsia,
+                                                        JDateChooser fechaUltimaCrisis, JRadioButton radioNeuralgiasNeuritis, JRadioButton radioParalisisFacial, 
+                                                        JRadioButton radioParestesia, JRadioButton radioSeAltera, JRadioButton radioCefaleas){
+        
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String ultimaCrisis;
+        try{
+            ultimaCrisis = formatter.format(fechaUltimaCrisis.getDate());
+        }
+        catch(Exception e){
+            ultimaCrisis = " ";
+        }
+        AntecedenteNeurologico antNeuro = new AntecedenteNeurologico(radioConvulsiones.isSelected(),txtCuantoTiempoConvulsiones.getText(), 
+                                                                        radioEpilepsia.isSelected(),ultimaCrisis,radioNeuralgiasNeuritis.isSelected(),
+                                                                        radioParalisisFacial.isSelected(),radioParestesia.isSelected(),
+                                                                        radioSeAltera.isSelected(),radioCefaleas.isSelected(),"Neurologico");
+        return antNeuro;
+    }
+    
+    public AntecedenteHematologico crearAntHematologico(JRadioButton radioHemorragiasImportantes, JTextField txtCausaHemorragia,
+                                                            JTextField txtDuracionHemorragia, JRadioButton radioHematomas, 
+                                                            JRadioButton radioSangranEncias, JRadioButton radioSangraNariz){
+        
+        AntecedenteHematologico antHema = new AntecedenteHematologico(radioHemorragiasImportantes.isSelected(),txtCausaHemorragia.getText(), 
+                                                                        txtDuracionHemorragia.getText(),radioSangranEncias.isSelected(), 
+                                                                        radioSangraNariz.isSelected(),radioHematomas.isSelected(),"Hematologico");
+        return antHema;
+    }
+    
+    public AntecedenteFamiliar crearAntFamiliar(JTextField txtTipoCancer, JTextField txtTipoEnfPulmonares, 
+                                                    JComboBox comboTipoDiabetes, JTextField txtTipoEnfCardiovasculares,
+                                                    JTextField txtTipoEnfHepaticas, JTextField txtOtros1){
+        
+        String diabetes = "Tipo "+comboTipoDiabetes.getSelectedItem().toString();
+        AntecedenteFamiliar antFam = new AntecedenteFamiliar(txtTipoCancer.getText(),diabetes,txtTipoEnfPulmonares.getText(),
+                                                                txtTipoEnfCardiovasculares.getText(),txtTipoEnfHepaticas.getText(),
+                                                                txtOtros1.getText(),"Familiar");
+        return antFam;
+    }
+    
+    
+//    public void prueba(Consulta consulta){
+//        System.out.println("Fecha de registro: "+consulta.getFecha());
+//        System.out.println("Edad: "+consulta.getEdadPaciente());
+//        System.out.println("Domicilio: "+consulta.getDomicilioPaciente());
+//        System.out.println("Telefono: "+consulta.getTelefonoPaciente());
+//        System.out.println("Ocupacion: "+consulta.getOcupacionPaciente());
+//        System.out.println("Estudiante: ");
+//            if(consulta.isEsEstudiante()) System.out.println("Si");
+//            else System.out.println("No");
+//        System.out.println("Referencia: "+consulta.getReferencia());
+//    }
+//    
+//    public void prueba(ExamenSubjetivo exSub){
+//        System.out.println("Motivo: "+exSub.getMotivoConsulta());
+//        
+//        System.out.println("Curso de la enfermedad actual: "+exSub.getCursoEnfermedad());
+//        
+//        System.out.println("¿Está tomando algún medicamento: ");
+//        if(exSub.isTomandoMedicamento()) System.out.println("Sí");
+//        else System.out.println("No");
+//        
+//        System.out.println("¿Cuál?: "+exSub.getMedicamentoQueToma());
+//        
+//        System.out.println("¿Ha sido hospitalizado alguna vez?: "+exSub.isSidoHospitalizado());
+//        System.out.println("¿Por qué?:"+exSub.getMotivoHospitalizado());
+//        
+//        System.out.println("¿Ha sido intervenido quirurgicamente?: ");
+//        if(exSub.isSidoIntervenidoQuirurgicamente())
+//            System.out.println("Sí");
+//        else System.out.println("No");
+//        
+//        System.out.println("Fuma: ");
+//        if(exSub.isFuma()) System.out.println("Sí");
+//        else System.out.println("No");
+//        System.out.println("¿Cuántos cigarrillos?: "+exSub.getCantidadCigarrillos());
+//        System.out.println("¿Desde cuándo?: "+exSub.getTiempoFumando());
+//       
+//        System.out.println("Toma: ");
+//        if(exSub.isToma()) System.out.println("Sí");
+//        else System.out.println("No");
+//        System.out.println("¿Qué cantidad?: "+exSub.getCantidadTomando());
+//    }
+//    
+//    public void prueba(ExamenClinico exCli){
+//        System.out.println("Labios: "+exCli.getLabios());
+//        
+//        System.out.println("Frenillos labiales: "+exCli.getFrenillosLabiales());
+//        
+//        System.out.println("Vesitibulo bucal: "+exCli.getVestibuloBocal());
+//        System.out.println("Mucosa palatina: "+exCli.getMucosaPalatina());
+//        System.out.println("Mucosa del piso de la boca: "+exCli.getMucosaPisoDeBoca());
+//        
+//        
+//        System.out.println("Frenillo lingual: "+exCli.getFrenilloLingual());
+//        
+//        System.out.println("Lengua\nCara dorsal: "+exCli.getCaraDorsalLengua());
+//        System.out.println("Cara ventral: "+exCli.getCaraVentralLengua());
+//        System.out.println("BordesLaterales: "+exCli.getBordesLateralesLengua());
+//        
+//        System.out.println("Encias: "+exCli.getEncia());
+//        System.out.println("Dientes: "+exCli.getDientes());
+//        
+//        System.out.println("Tension incluida "+exCli.isIncluirTensionArterial());
+//        System.out.println("Tension maxima: "+exCli.getTensionArterialMaxima()+"    Tension minima "+exCli.getTensionArterialMinima());
+//        System.out.println("Palpacion incluida "+exCli.isIncluirPalpacion());
+//        System.out.println("Palpables: "+exCli.isGangliosPalpables());
+//        System.out.println("Localizacion: "+exCli.getUbicacionGanglios());
+//        System.out.println("Caracteristicas: "+exCli.getCaracteristicasPalpacion());
+//    }
     
 }

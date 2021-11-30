@@ -5,8 +5,11 @@
  */
 package gui;
 
+import control.CVentana;
 import control.CVerConsulta;
 import modelo.Consulta;
+import modelo.Odontologo;
+import modelo.Paciente;
 
 /**
  *
@@ -14,6 +17,7 @@ import modelo.Consulta;
  */
 public class VerConsulta extends javax.swing.JFrame {
         CVerConsulta controlVer = new CVerConsulta();
+        CVentana controlVentana = new CVentana();
     /**
      * Creates new form VerConsulta
      */
@@ -21,9 +25,13 @@ public class VerConsulta extends javax.swing.JFrame {
         initComponents();
     }
     
-    public VerConsulta(Consulta consulta) {
+    public VerConsulta(Paciente paciente, Consulta consulta, Odontologo odontologo) {
         initComponents();
+        controlVentana.colocarFechaUsuario(labelFecha, labelUsuario, odontologo);
+        controlVentana.iniciarVentana(this);
         controlVer.llenarDiagnostico(consulta, txtPresuntivo, txtHistopatologico, txtDefinitivo, txtPlanTratamiento, txtObservaciones);
+        
+        controlVer.llenarDatosPersonalPaciente(paciente, labelCedulaPaciente, labelNombrePaciente, labelHMPaciente, labelSexoPaciente, labelLNPaciente);
         
         controlVer.llenarDatosPersonalesConsulta(consulta, labelTelfPaciente, labelOcupacionPaciente, labelEdadPaciente, labelEstudiantePaciente, labelReferenciaPaciente, labelDomicilioPaciente);
         
@@ -395,6 +403,11 @@ public class VerConsulta extends javax.swing.JFrame {
         botonSalir.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
         panelTitulo.setLayout(panelTituloLayout);
@@ -3419,6 +3432,10 @@ public class VerConsulta extends javax.swing.JFrame {
     private void radioCancerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCancerActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radioCancerActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
 
     /**
      * @param args the command line arguments

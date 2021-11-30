@@ -27,14 +27,16 @@ public class Paciente {
         sexo='M';
     }
 
-    public Paciente(String nombre, int cedula, String lugarNacimiento, int historiaClinica, char sexo, ArrayList<Consulta> listaConsultas) {
+    public Paciente(String nombre, int cedula, String lugarNacimiento, int historiaClinica, char sexo) {
         this.nombre = nombre;
         this.cedula = cedula;
         this.lugarNacimiento = lugarNacimiento;
         this.historiaClinica = historiaClinica;
         this.sexo = sexo;
-        this.listaConsultas=listaConsultas;
+        this.listaConsultas= new ArrayList<Consulta>();
     }
+    
+    
     
 
     public void setNombre(String nombre) {
@@ -75,5 +77,25 @@ public class Paciente {
 
     public char getSexo() {
         return sexo;
+    }
+    
+    public void agregarConsulta(Consulta consulta){
+        listaConsultas.add(consulta);
+    }
+
+    public ArrayList<Consulta> getListaConsultas() {
+        return listaConsultas;
+    }
+
+    public void setListaConsultas(ArrayList<Consulta> listaConsultas) {
+        this.listaConsultas = listaConsultas;
+    }
+    
+    public Consulta buscarConsultaPorCodigo(int codigo){
+        for(Consulta con : listaConsultas){
+            if(con.getCodigo()==codigo)
+                return con;
+        }
+        return null;
     }
 }

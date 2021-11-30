@@ -5,17 +5,34 @@
  */
 package gui;
 
+import control.CBuscar;
+import control.CEntrada;
+import control.CVentana;
+import javax.swing.JOptionPane;
+import modelo.*;
+
 /**
  *
  * @author jdfer
  */
 public class BuscarConsulta extends javax.swing.JFrame {
-
+    Odontologo odontologo;
+    CEntrada controlEntrada = new CEntrada();
+    CVentana controlVentana = new CVentana();
+    CBuscar controlBuscar = new CBuscar();
     /**
      * Creates new form BuscarConsulta
      */
     public BuscarConsulta() {
         initComponents();
+    }
+    
+    public BuscarConsulta(Odontologo odontologo) {
+        initComponents();
+        controlVentana.colocarFechaUsuario(labelFecha, labelUsuario, odontologo);
+        controlVentana.iniciarVentana(this);
+        this.odontologo = odontologo;
+        controlVentana.iniciarVentana(this);
     }
 
     /**
@@ -35,7 +52,6 @@ public class BuscarConsulta extends javax.swing.JFrame {
         labelCedulaPaciente = new javax.swing.JLabel();
         txtCedulaPaciente = new javax.swing.JTextField();
         botonBuscar = new javax.swing.JButton();
-        botonDeshacer = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaConsultas = new javax.swing.JTable();
         botonAbrir = new javax.swing.JButton();
@@ -64,21 +80,26 @@ public class BuscarConsulta extends javax.swing.JFrame {
         labelCedulaPaciente.setText("Cédula del paciente:");
 
         txtCedulaPaciente.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
+        txtCedulaPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtCedulaPacienteFocusLost(evt);
+            }
+        });
         txtCedulaPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtCedulaPacienteActionPerformed(evt);
             }
         });
 
-        botonBuscar.setBackground(new java.awt.Color(102, 153, 255));
+        botonBuscar.setBackground(new java.awt.Color(204, 204, 204));
         botonBuscar.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
-        botonBuscar.setForeground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setForeground(new java.awt.Color(0, 0, 0));
         botonBuscar.setText("Buscar");
-
-        botonDeshacer.setBackground(new java.awt.Color(255, 51, 51));
-        botonDeshacer.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
-        botonDeshacer.setForeground(new java.awt.Color(255, 255, 255));
-        botonDeshacer.setText("Deshacer");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
 
         tablaConsultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -91,12 +112,22 @@ public class BuscarConsulta extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tablaConsultas.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                tablaConsultasFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(tablaConsultas);
 
         botonAbrir.setBackground(new java.awt.Color(102, 153, 255));
         botonAbrir.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
         botonAbrir.setForeground(new java.awt.Color(255, 255, 255));
         botonAbrir.setText("Abrir");
+        botonAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonAbrirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBusquedaLayout = new javax.swing.GroupLayout(panelBusqueda);
         panelBusqueda.setLayout(panelBusquedaLayout);
@@ -106,14 +137,12 @@ public class BuscarConsulta extends javax.swing.JFrame {
                 .addGap(70, 70, 70)
                 .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(botonAbrir)
-                    .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1)
+                    .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(panelBusquedaLayout.createSequentialGroup()
                             .addComponent(labelCedulaPaciente)
                             .addGap(18, 18, 18)
                             .addComponent(txtCedulaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(109, 109, 109)
-                            .addComponent(botonDeshacer)
                             .addGap(18, 18, 18)
                             .addComponent(botonBuscar))))
                 .addContainerGap(70, Short.MAX_VALUE))
@@ -125,8 +154,7 @@ public class BuscarConsulta extends javax.swing.JFrame {
                 .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCedulaPaciente)
                     .addComponent(txtCedulaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar)
-                    .addComponent(botonDeshacer))
+                    .addComponent(botonBuscar))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
@@ -138,6 +166,11 @@ public class BuscarConsulta extends javax.swing.JFrame {
         botonSalir.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
         botonSalir.setForeground(new java.awt.Color(255, 255, 255));
         botonSalir.setText("Salir");
+        botonSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonSalirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelTituloLayout = new javax.swing.GroupLayout(panelTitulo);
         panelTitulo.setLayout(panelTituloLayout);
@@ -192,6 +225,36 @@ public class BuscarConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaPacienteActionPerformed
 
+    private void txtCedulaPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaPacienteFocusLost
+
+    }//GEN-LAST:event_txtCedulaPacienteFocusLost
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        if(!controlEntrada.datoEsNumerico(txtCedulaPaciente)) txtCedulaPaciente.setText(null);
+        else if (!odontologo.buscarPaciente(Integer.parseInt(txtCedulaPaciente.getText())))
+            JOptionPane.showMessageDialog(null,"Paciente no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
+        else
+            controlBuscar.llenarTabla(tablaConsultas, odontologo, txtCedulaPaciente);
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        dispose();
+    }//GEN-LAST:event_botonSalirActionPerformed
+
+    private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
+       if(tablaConsultas.getSelectedRow()!=-1){
+            Paciente paciente = controlBuscar.obtenerPacienteSeleccionado(tablaConsultas, odontologo);
+            Consulta consulta = controlBuscar.obtenerConsultaSeleccionada(tablaConsultas, odontologo, paciente);
+            VerConsulta verConsulta = new VerConsulta(paciente,consulta,odontologo);
+            verConsulta.setVisible(true);
+       }
+    }//GEN-LAST:event_botonAbrirActionPerformed
+
+    private void tablaConsultasFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tablaConsultasFocusGained
+        if(!tablaConsultas.getSelectionModel().isSelectionEmpty())
+            botonAbrir.setEnabled(true);
+    }//GEN-LAST:event_tablaConsultasFocusGained
+
     /**
      * @param args the command line arguments
      */
@@ -230,7 +293,6 @@ public class BuscarConsulta extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botonAbrir;
     private javax.swing.JButton botonBuscar;
-    private javax.swing.JButton botonDeshacer;
     private javax.swing.JButton botonSalir;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel labelCedulaPaciente;

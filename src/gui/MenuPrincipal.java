@@ -13,6 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.border.Border;
 import modelo.Odontologo;
+import persistencia.Guardar;
 
 /**
  *
@@ -202,6 +203,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         RegistrarConsulta registrar = new RegistrarConsulta();
         registrar.setVisible(true);
+        Guardar.enJSON();
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseEntered

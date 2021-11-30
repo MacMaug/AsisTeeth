@@ -27,6 +27,7 @@ public class Consulta {
     private String diagnosticoDefinitivo;
     private String planDeTratamiento;
     private String observaciones;
+    private int codigo;
 
     public Consulta(){
         //fecha=hoy
@@ -331,5 +332,13 @@ public class Consulta {
                 return (AntecedenteFamiliar) ant;
         }
         return null;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
     }
 }

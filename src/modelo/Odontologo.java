@@ -65,4 +65,26 @@ public class Odontologo {
         this.cedula = cedula;
     }
     
+    public boolean buscarPaciente(int cedula){
+        for(Paciente pac : listaPacientes){
+            if(cedula == pac.getCedula())
+                return true;
+        }
+        return false;
+    }
+    
+    public Paciente buscarObjetoPaciente(int cedula){
+        for(Paciente pac : listaPacientes){
+            if(cedula == pac.getCedula())
+                return pac;
+        }
+        return null;
+    }
+
+    public ArrayList<Paciente> getListaPacientes() {
+        return listaPacientes;
+    }
+    
+    
+    
 }

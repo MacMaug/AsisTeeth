@@ -5,6 +5,7 @@ import static java.lang.Integer.parseInt;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -22,7 +23,6 @@ public class CEntrada {
         if(txtNumero.getText().isEmpty())return true;
         try{
             cant = Integer.parseInt(numero);
-            System.out.println(cant);
             if(cant<1){
                 JOptionPane.showMessageDialog(null, "Número fuera del rango aceptado.", "Error", JOptionPane.ERROR_MESSAGE);
                 return false;
@@ -35,6 +35,22 @@ public class CEntrada {
         return true;
     }
  
+    
+    public boolean datoEsNumericoSinMensaje(JTextField txtNumero){
+        String numero = txtNumero.getText();
+        int cant;
+        if(txtNumero.getText().isEmpty())return true;
+        try{
+            cant = Integer.parseInt(numero);
+            System.out.println(cant);
+            if(cant<1)
+                return false;
+        }catch(NumberFormatException ex){
+            txtNumero.setText(null);
+            return false;
+        }
+        return true;
+    }
     
     //VALIDACIÓN NOMBRE
     public boolean validarNombreApellido(JTextField txtNombre){
@@ -236,6 +252,44 @@ public class CEntrada {
     }
     
     
+    public void pacienteRegistrado(Paciente paciente, JTextField txtCedula, JTextField txtNombre, JComboBox comboSexo, JLabel labelHistoriaMedica, JTextField txtLugarNacimiento, JButton botonDeshacerBusqueda){
+        
+        txtCedula.setEnabled(false);
+        txtNombre.setText(paciente.getNombre());
+        txtNombre.setEnabled(false);
+        
+        if(paciente.getSexo()=='M')
+            comboSexo.setSelectedIndex(0);
+        else 
+            comboSexo.setSelectedIndex(1);
+        comboSexo.setEnabled(false);
+        
+        labelHistoriaMedica.setText("Historia médica: "+paciente.getHistoriaClinica());
+        labelHistoriaMedica.setVisible(true);
+        
+        txtLugarNacimiento.setText(paciente.getLugarNacimiento());
+        txtLugarNacimiento.setEnabled(false);
+        
+        botonDeshacerBusqueda.setVisible(true);
+    }
+    
+    public void deshacerBusqueda(JTextField txtCedula, JTextField txtNombre, JComboBox comboSexo, JLabel labelHistoriaMedica, JTextField txtLugarNacimiento, JButton botonDeshacerBusqueda){
+        
+        txtCedula.setEnabled(true);
+        txtCedula.setText(null);
+        
+        txtNombre.setEnabled(true);
+        txtNombre.setText(null);
+        
+        txtLugarNacimiento.setText(null);
+        txtLugarNacimiento.setEnabled(true);
+        
+        comboSexo.setEnabled(true);
+        labelHistoriaMedica.setVisible(false);
+        botonDeshacerBusqueda.setVisible(false);
+    }
+    
+    
     //VERIFICACION DE CAMPOS OBLIGATORIOS
     
     public boolean revisarFaltantesDP(JTextField txtCedula, JTextField txtNombre, JTextField txtTelf1, JTextField txtTelf2, JTextField txtEdad, JLabel labelFaltanteCedula, JLabel labelFaltanteNombre, JLabel labelFaltanteTelf, JLabel labelFaltanteEdad){
@@ -307,7 +361,6 @@ public class CEntrada {
         Consulta consulta = new Consulta(new Date(),edad,txtDomicilio.getText(),telefono,txtOcupacion.getText(),radioEstudiante.isSelected(),
                                             txtReferencia.getText(),txtPresuntivo.getText(),txtHispatologico.getText(),txtDefinitivo.getText(),
                                                txtPlanTratamiento.getText(),txtObservaciones.getText());
-//        prueba(consulta);
         return consulta;
     }
     
@@ -526,6 +579,28 @@ public class CEntrada {
                                                                 txtTipoEnfCardiovasculares.getText(),txtTipoEnfHepaticas.getText(),
                                                                 txtOtros1.getText(),"Familiar");
         return antFam;
+    }
+    
+    
+    //CREAR PACIENTE
+    public Paciente crearPaciente(Odontologo odontologo, JTextField txtCedula, JTextField txtNombre, JTextField txtLugarNacimiento, JComboBox comboSexo){
+        int cedula, hm;
+        
+        try{
+            cedula = Integer.parseInt(txtCedula.getText());
+        }
+        catch(Exception e){
+            cedula = 0;
+        }
+        
+        char sexo = (comboSexo.getSelectedItem().toString()).charAt(0);
+        
+        hm = odontologo.getListaPacientes().size()+1;
+        
+        
+        Paciente pac = new Paciente(txtNombre.getText(),cedula,txtLugarNacimiento.getText(),hm,sexo);
+        
+        return pac;
     }
     
     

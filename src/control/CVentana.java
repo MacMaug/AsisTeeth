@@ -1,9 +1,13 @@
 package control;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import static javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE;
+import modelo.Odontologo;
 
 public class CVentana {
     
@@ -12,6 +16,12 @@ public class CVentana {
        //ventana.setIconImage(new ImageIcon(ruta).getImage()); 
        //ventana.setResizable(false); 
        ventana.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+    }
+    
+    public void colocarFechaUsuario(JLabel labelFecha, JLabel labelUsuario, Odontologo odontologo){
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        labelFecha.setText("Fecha: "+formatter.format(new Date())); 
+        labelUsuario.setText("Usuario: "+odontologo.getUsuario());
     }
     
     public void esconderAsteriscosDP(JLabel asteriscoCedula, JLabel asteriscoNombre, JLabel asteriscoTelf, JLabel asteriscoEdad){

@@ -56,6 +56,18 @@ public class CVerConsulta {
         pasarALabel(consulta.getDomicilioPaciente(),labelDomicilioPaciente);
     }
     
+    public void llenarDatosPersonalPaciente(Paciente paciente, JLabel labelCedulaPaciente, JLabel labelNombrePaciente, JLabel labelHMPaciente, JLabel labelSexoPaciente, 
+                                            JLabel labelLNPaciente){
+        
+        pasarALabel(Integer.toString(paciente.getCedula()),labelCedulaPaciente);
+        pasarALabel(paciente.getNombre(),labelNombrePaciente);
+        pasarALabel(Integer.toString(paciente.getHistoriaClinica()),labelHMPaciente);
+        pasarALabel(Character.toString(paciente.getSexo()),labelSexoPaciente);
+        pasarALabel(paciente.getLugarNacimiento(),labelLNPaciente);
+        
+    }
+    
+    
     public void llenarDatosExamenSubjetivo(Consulta consulta, JLabel labelMotivoPaciente, JLabel labelCursoEnfermedadPaciente,
                                             JLabel labelMedicamentoPaciente, JLabel labelCualMedicamentoPaciente, JLabel labelHospitalizadoPaciente,
                                             JLabel labelPorQuePaciente, JLabel labelQuirurgicamentePaciente, JRadioButton radioFuma,

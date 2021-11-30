@@ -62,12 +62,19 @@ public class CUsuario {
     public static boolean esNombre(String texto){ //Devuelve true si solo tiene letras y espacios en blanco
         if(texto.length()==0){
             return false;
-        }
+        }  
         for(char letra: texto.toCharArray()){
             int codigo=letra;
-            if(!((codigo>=65 && codigo<=90) || (codigo>=97 && codigo<=122)) && !(codigo==32)){
+            //      letras mayúsculas                letras minúsculas 
+            if(!((codigo>=65 && codigo<=90) || (codigo>=97 && codigo<=122)
+            //         á                é                 í              ó
+              || (codigo==225) || (codigo==233) || (codigo==237)|| (codigo==243)
+            //         ú                Á                 É              Í        
+              || (codigo==250) || (codigo==193) || (codigo==201) || (codigo==205) 
+            //         Ó                Ú             espacio
+              || (codigo==211) || (codigo==218) || (codigo==32))){
                 return false;
-            }
+            }  
         }
         return true;
     }

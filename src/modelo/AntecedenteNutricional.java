@@ -25,7 +25,7 @@ public class AntecedenteNutricional extends Antecedente{
     private boolean padeceDeTiroides;
     
     public AntecedenteNutricional(){
-        super("Antecedentes Nutricionales");
+        nombre="Nutricional";
         tenidoAnemia=false;
         perdidoPeso=false;
         enDieta=false;
@@ -41,7 +41,7 @@ public class AntecedenteNutricional extends Antecedente{
     }
 
     public AntecedenteNutricional(boolean tenidoAnemia, boolean perdidoPeso, boolean enDieta, boolean enDecaimiento, boolean conMalestarGeneral, boolean conFiebre, boolean diabetico, boolean estaEnTratamiento, boolean orinaDeNoche, int vecesOrinaDeNoche, boolean sienteMuchaSed, boolean tieneInsomnio, boolean padeceDeTiroides, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.tenidoAnemia = tenidoAnemia;
         this.perdidoPeso = perdidoPeso;
         this.enDieta = enDieta;

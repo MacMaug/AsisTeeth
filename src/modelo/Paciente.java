@@ -25,6 +25,7 @@ public class Paciente {
         lugarNacimiento="";
         historiaClinica=0;
         sexo='M';
+        listaConsultas=new ArrayList<Consulta>();
     }
 
     public Paciente(String nombre, int cedula, String lugarNacimiento, int historiaClinica, char sexo) {

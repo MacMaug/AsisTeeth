@@ -19,7 +19,7 @@ public class AntecedenteRenalGastroIntestinal extends Antecedente{
     private boolean sufridoCalculosRenales;
     
     public AntecedenteRenalGastroIntestinal(){
-        super("Antecedentes Renales y Gastrointestinales");
+        nombre="RN";
         tenidoEnfermedadRenal=false;
         cantidadOrinaAlDia=0;
         colorOrina="No Aplica";
@@ -30,7 +30,7 @@ public class AntecedenteRenalGastroIntestinal extends Antecedente{
     }
 
     public AntecedenteRenalGastroIntestinal(boolean tenidoEnfermedadRenal, int cantidadOrinaAlDia, String colorOrina, boolean tenidoAcidezEstomacal, boolean tenidoUlceraPeptica, boolean tenidoDiarreaFrecuente, boolean sufridoCalculosRenales, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.tenidoEnfermedadRenal = tenidoEnfermedadRenal;
         this.cantidadOrinaAlDia = cantidadOrinaAlDia;
         this.colorOrina = colorOrina;

@@ -28,7 +28,7 @@
     <Container class="javax.swing.JPanel" name="panelTitulo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="d7" green="78" id="Tree.selectionBackground" palette="3" red="0" type="palette"/>
+          <Color blue="cc" green="66" red="0" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -320,6 +320,17 @@
                           <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelDomicilio" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="labelDomicilioPaciente" min="-2" pref="783" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="labelSexo" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="labelSexoPaciente" min="-2" pref="66" max="-2" attributes="0"/>
+                              </Group>
+                              <Component id="labelDatosPersonales" alignment="0" min="-2" pref="265" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="labelEdad" min="-2" max="-2" attributes="0"/>
@@ -336,9 +347,24 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="labelLNPaciente" min="-2" pref="281" max="-2" attributes="0"/>
                                       </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelCedula" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="labelCedulaPaciente" min="-2" pref="279" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="labelNombrePaciente" min="-2" pref="319" max="-2" attributes="0"/>
+                                      </Group>
                                   </Group>
-                                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="labelHistoriaMedica" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+                                          <Component id="labelHMPaciente" min="-2" pref="314" max="-2" attributes="0"/>
+                                      </Group>
                                       <Group type="102" attributes="0">
                                           <Component id="labelEstudiante" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
@@ -356,31 +382,6 @@
                                       </Group>
                                   </Group>
                               </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelDomicilio" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="labelDomicilioPaciente" min="-2" pref="783" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelSexo" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="labelSexoPaciente" min="-2" pref="66" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="labelNombrePaciente" min="-2" pref="380" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="labelHistoriaMedica" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                                  <Component id="labelHMPaciente" min="-2" pref="314" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="labelCedula" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Component id="labelCedulaPaciente" min="-2" pref="279" max="-2" attributes="0"/>
-                              </Group>
-                              <Component id="labelDatosPersonales" alignment="0" min="-2" pref="265" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace pref="175" max="32767" attributes="0"/>
                       </Group>
@@ -406,9 +407,9 @@
                                       <Component id="labelCedulaPaciente" alignment="3" min="-2" pref="23" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="labelNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelHistoriaMedica" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="labelHistoriaMedica" alignment="1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="labelNombre" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="labelNombrePaciente" min="-2" pref="23" max="-2" attributes="0"/>
@@ -749,9 +750,9 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="labelDatosPersonales1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="labelMotivo" min="-2" max="-2" attributes="0"/>
-                              <Component id="labelMotivoPaciente" min="-2" pref="23" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="labelMotivo" max="32767" attributes="0"/>
+                              <Component id="labelMotivoPaciente" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -785,22 +786,22 @@
                               <Group type="102" attributes="0">
                                   <Component id="labelQuirurgicamente" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="labelDesdeCuando" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelCuantosCigarrillos" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="radioFuma" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="labelDesdeCuandoPaciente" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="labelCuantosCigarrillosPaciente" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="labelCuantosCigarrillosPaciente" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="labelDesdeCuandoPaciente" alignment="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+                                  <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Group type="103" groupAlignment="3" attributes="0">
                                           <Component id="radioToma" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelQueCantidad" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="labelQueCantidadPaciente" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="labelQueCantidadPaciente" alignment="1" min="-2" pref="34" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <Component id="labelQuirurgicamentePaciente" min="-2" pref="23" max="-2" attributes="0"/>
@@ -3897,15 +3898,15 @@
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="labelTensionArterial" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                                       <Component id="labelMaximaR" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="labelMinimaR" min="-2" pref="23" max="-2" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                           <Component id="labelMaxima" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelMMHG" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelMinima" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelMMHG1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
+                                      <Component id="labelMinimaR" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="381" max="32767" attributes="0"/>
                               </Group>
@@ -3996,20 +3997,18 @@
                               <Group type="102" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="radioPalpables" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="labelLocalizacion" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="labelLocalizacionR1" min="-2" pref="675" max="-2" attributes="0"/>
-                                          </Group>
-                                          <Component id="labelPalpacionGanglios" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="labelCaracteristicas" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="labelCaracteristicasR" max="32767" attributes="0"/>
-                                          </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="radioPalpables" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="labelLocalizacion" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                          <Component id="labelLocalizacionR1" min="-2" pref="675" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Component id="labelPalpacionGanglios" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="labelCaracteristicas" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="labelCaracteristicasR" min="-2" pref="783" max="-2" attributes="0"/>
                                       </Group>
                                       <Component id="labelPresentaPalpacion" alignment="0" min="-2" pref="711" max="-2" attributes="0"/>
                                   </Group>
@@ -4025,19 +4024,17 @@
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="labelPalpacionGanglios" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" alignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="3" attributes="0">
-                                              <Component id="radioPalpables" alignment="3" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelLocalizacion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          </Group>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" attributes="0">
-                                              <Component id="labelCaracteristicas" min="-2" max="-2" attributes="0"/>
-                                              <Component id="labelCaracteristicasR" min="-2" pref="23" max="-2" attributes="0"/>
-                                          </Group>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="103" groupAlignment="3" attributes="0">
+                                          <Component id="radioPalpables" alignment="3" min="-2" max="-2" attributes="0"/>
+                                          <Component id="labelLocalizacion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="labelLocalizacionR1" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="labelLocalizacionR1" max="32767" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="labelCaracteristicas" max="32767" attributes="0"/>
+                                      <Component id="labelCaracteristicasR" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="320" max="32767" attributes="0"/>
                               </Group>
@@ -4255,7 +4252,6 @@
                                   <Font name="Century Gothic" size="16" style="0"/>
                                 </Property>
                                 <Property name="rows" type="int" value="5"/>
-                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -4282,7 +4278,6 @@
                                   <Font name="Century Gothic" size="16" style="0"/>
                                 </Property>
                                 <Property name="rows" type="int" value="5"/>
-                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -4309,7 +4304,6 @@
                                   <Font name="Century Gothic" size="16" style="0"/>
                                 </Property>
                                 <Property name="rows" type="int" value="5"/>
-                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -4350,9 +4344,9 @@
                                       </Group>
                                       <Group type="102" alignment="0" attributes="0">
                                           <Component id="labelGlicemia" min="-2" max="-2" attributes="0"/>
-                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="labelGlicemiaR" min="-2" pref="187" max="-2" attributes="0"/>
-                                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
+                                          <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
                                           <Component id="labelVDRL" min="-2" max="-2" attributes="0"/>
                                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                           <Component id="labelVDRLR" min="-2" pref="200" max="-2" attributes="0"/>
@@ -4382,25 +4376,25 @@
                                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
                                   <Component id="labelPresentaExamenLab" min="-2" pref="23" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelPerfilHematologico" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelPHR1" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="labelPerfilHematologico" max="32767" attributes="0"/>
+                                      <Component id="labelPHR1" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelPerfilCoagulacion" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      <Component id="labelPCR" alignment="0" min="-2" pref="23" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="labelPerfilCoagulacion" max="32767" attributes="0"/>
+                                      <Component id="labelPCR" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="labelVIH" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="labelVIH" alignment="0" max="32767" attributes="0"/>
                                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
                                           <Component id="labelGlicemia" alignment="3" min="-2" max="-2" attributes="0"/>
                                           <Component id="labelVDRL" alignment="3" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="labelGlicemiaR" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="labelVDRLR" min="-2" pref="23" max="-2" attributes="0"/>
-                                      <Component id="labelVIHR" min="-2" pref="23" max="-2" attributes="0"/>
+                                      <Component id="labelGlicemiaR" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="labelVDRLR" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="labelVIHR" alignment="0" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="402" max="32767" attributes="0"/>
                               </Group>
@@ -4654,7 +4648,6 @@
                                       <Font name="Century Gothic" size="16" style="0"/>
                                     </Property>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
@@ -4681,7 +4674,6 @@
                                       <Font name="Century Gothic" size="16" style="0"/>
                                     </Property>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
@@ -4700,7 +4692,6 @@
                                       <Font name="Century Gothic" size="16" style="0"/>
                                     </Property>
                                     <Property name="rows" type="int" value="5"/>
-                                    <Property name="enabled" type="boolean" value="false"/>
                                   </Properties>
                                 </Component>
                               </SubComponents>
@@ -4787,7 +4778,6 @@
                                   <Font name="Century Gothic" size="16" style="0"/>
                                 </Property>
                                 <Property name="rows" type="int" value="5"/>
-                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -4856,7 +4846,6 @@
                                   <Font name="Century Gothic" size="16" style="0"/>
                                 </Property>
                                 <Property name="rows" type="int" value="5"/>
-                                <Property name="enabled" type="boolean" value="false"/>
                               </Properties>
                             </Component>
                           </SubComponents>

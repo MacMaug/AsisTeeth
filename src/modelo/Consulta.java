@@ -30,7 +30,7 @@ public class Consulta {
     private int codigo;
 
     public Consulta(){
-        //fecha=hoy
+        //fecha=new
         edadPaciente=0;
         domicilioPaciente="No Aplica";
         //telefonoPaciente=0;
@@ -79,7 +79,7 @@ public class Consulta {
     }
 
     public void setTelefonoPaciente(String telefonoPaciente) {
-        this.telefonoPaciente.equals(telefonoPaciente);
+        this.telefonoPaciente=telefonoPaciente;
     }
 
     public String getOcupacionPaciente() {
@@ -341,4 +341,5 @@ public class Consulta {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
+
 }

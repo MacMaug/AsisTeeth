@@ -59,7 +59,7 @@ public class BuscarConsulta extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        panelTitulo.setBackground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        panelTitulo.setBackground(new java.awt.Color(0, 102, 204));
 
         labelTitulo.setBackground(new java.awt.Color(255, 255, 255));
         labelTitulo.setFont(new java.awt.Font("Nirmala UI", 0, 60)); // NOI18N
@@ -91,10 +91,11 @@ public class BuscarConsulta extends javax.swing.JFrame {
             }
         });
 
-        botonBuscar.setBackground(new java.awt.Color(204, 204, 204));
+        botonBuscar.setBackground(new java.awt.Color(255, 255, 255));
         botonBuscar.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
         botonBuscar.setForeground(new java.awt.Color(0, 0, 0));
         botonBuscar.setText("Buscar");
+        botonBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonBuscarActionPerformed(evt);
@@ -213,9 +214,7 @@ public class BuscarConsulta extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(panelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();

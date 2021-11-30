@@ -37,7 +37,7 @@
     <Container class="javax.swing.JPanel" name="panelTitulo">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="d7" green="78" id="Tree.selectionBackground" palette="3" red="0" type="palette"/>
+          <Color blue="cc" green="66" red="0" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -1207,7 +1207,7 @@
                               <Component id="tabsAntecedentes" alignment="0" min="-2" pref="1154" max="-2" attributes="0"/>
                               <Component id="labelAntecedentes" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="62" max="32767" attributes="0"/>
+                          <EmptySpace pref="65" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1217,8 +1217,8 @@
                           <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                           <Component id="labelAntecedentes" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="tabsAntecedentes" min="-2" pref="413" max="-2" attributes="0"/>
-                          <EmptySpace pref="152" max="32767" attributes="0"/>
+                          <Component id="tabsAntecedentes" min="-2" pref="448" max="-2" attributes="0"/>
+                          <EmptySpace pref="117" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -1306,7 +1306,7 @@
                                   <Component id="radioUlcerPeptica1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="radioDiarreasFrecuencia1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="48" max="32767" attributes="0"/>
+                                  <EmptySpace pref="83" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -1508,7 +1508,7 @@
                                       <Component id="radioPastillasAnticonceptivas" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="radioMenopausia" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="192" max="32767" attributes="0"/>
+                                  <EmptySpace pref="227" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2048,7 +2048,7 @@
                                       <Component id="labelCrisisAsma3" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtReaccionAnestesiaLocal" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="143" max="32767" attributes="0"/>
+                                  <EmptySpace pref="178" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -2321,7 +2321,7 @@
                                       <Component id="radioInsomnio" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="radioTiroides" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="90" max="32767" attributes="0"/>
+                                  <EmptySpace pref="125" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3147,7 +3147,7 @@
                                   </Group>
                                   <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="radioSangraNariz" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace pref="192" max="32767" attributes="0"/>
+                                  <EmptySpace pref="227" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>
@@ -3390,7 +3390,7 @@
                                       <Component id="labelOtros1" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="txtOtros1" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <EmptySpace pref="192" max="32767" attributes="0"/>
+                                  <EmptySpace pref="227" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

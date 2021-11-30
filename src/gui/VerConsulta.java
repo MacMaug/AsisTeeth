@@ -27,6 +27,7 @@ public class VerConsulta extends javax.swing.JFrame {
     
     public VerConsulta(Paciente paciente, Consulta consulta, Odontologo odontologo) {
         initComponents();
+        
         controlVentana.colocarFechaUsuario(labelFecha, labelUsuario, odontologo);
         controlVentana.iniciarVentana(this);
         controlVer.llenarDiagnostico(consulta, txtPresuntivo, txtHistopatologico, txtDefinitivo, txtPlanTratamiento, txtObservaciones);
@@ -40,8 +41,8 @@ public class VerConsulta extends javax.swing.JFrame {
                                                 labelQuirurgicamentePaciente, radioFuma, labelCuantosCigarrillosPaciente, 
                                                 labelDesdeCuandoPaciente, radioToma, labelQueCantidadPaciente);
         
-        controlVer.llenarDatosExamenClinico(consulta, txtLabios, labelFrenillosLabialesR, labelVestibuloBucal, labelMucosaPalatinaR, txtMucosaPisoBoca, labelFrenilloLingualR, 
-                                                labelCaraDorsalR, labelCaraVentral, labelBordesLateralesR, labelEnciasR, txtDientes, labelPresentaTension, labelMaximaR, labelMinimaR, 
+        controlVer.llenarDatosExamenClinico(consulta, txtLabios, labelFrenillosLabialesR, labelVestibuloBucalR, labelMucosaPalatinaR, txtMucosaPisoBoca, labelFrenilloLingualR, 
+                                                labelCaraDorsalR, labelCaraVentralR1, labelBordesLateralesR, labelEnciasR, txtDientes, labelPresentaTension, labelMaximaR, labelMinimaR, 
                                                 labelPresentaPalpacion, radioPalpables, labelLocalizacionR1, labelCaracteristicasR);
         
         controlVer.llenarDatosExamenRadiografico(consulta, labelPresentaExamenRad, txtRxPanoramica, txtRxPeriapical, txtRxOclusal);
@@ -384,7 +385,7 @@ public class VerConsulta extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        panelTitulo.setBackground(javax.swing.UIManager.getDefaults().getColor("Tree.selectionBackground"));
+        panelTitulo.setBackground(new java.awt.Color(0, 102, 204));
 
         labelTitulo.setBackground(new java.awt.Color(255, 255, 255));
         labelTitulo.setFont(new java.awt.Font("Nirmala UI", 0, 60)); // NOI18N
@@ -608,6 +609,15 @@ public class VerConsulta extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(labelDomicilio)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(labelDomicilioPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
+                        .addComponent(labelSexo)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelSexoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelDatosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
                         .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
                                 .addComponent(labelEdad)
@@ -620,9 +630,21 @@ public class VerConsulta extends javax.swing.JFrame {
                             .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
                                 .addComponent(labelLugarNacimiento)
                                 .addGap(18, 18, 18)
-                                .addComponent(labelLNPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(29, 29, 29)
+                                .addComponent(labelLNPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(labelCedula)
+                                .addGap(18, 18, 18)
+                                .addComponent(labelCedulaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(labelNombre)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
+                                .addComponent(labelHistoriaMedica)
+                                .addGap(73, 73, 73)
+                                .addComponent(labelHMPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
                                 .addComponent(labelEstudiante)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -634,28 +656,7 @@ public class VerConsulta extends javax.swing.JFrame {
                             .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
                                 .addComponent(labelReferencia)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(labelReferenciaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
-                        .addComponent(labelDomicilio)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelDomicilioPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
-                        .addComponent(labelSexo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelSexoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
-                        .addComponent(labelNombre)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelHistoriaMedica)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(labelHMPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 314, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pestDatosPersonalesLayout.createSequentialGroup()
-                        .addComponent(labelCedula)
-                        .addGap(18, 18, 18)
-                        .addComponent(labelCedulaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 279, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(labelDatosPersonales, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(labelReferenciaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 244, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(175, Short.MAX_VALUE))
             .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestDatosPersonalesLayout.createSequentialGroup()
@@ -675,9 +676,9 @@ public class VerConsulta extends javax.swing.JFrame {
                             .addComponent(labelCedula)
                             .addComponent(labelCedulaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(50, 50, 50)
-                        .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(labelNombre)
-                            .addComponent(labelHistoriaMedica)))
+                        .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(labelHistoriaMedica, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(labelNombre)))
                     .addComponent(labelNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelHMPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
@@ -864,9 +865,9 @@ public class VerConsulta extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addComponent(labelDatosPersonales1)
                 .addGap(50, 50, 50)
-                .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelMotivo)
-                    .addComponent(labelMotivoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelMotivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelMotivoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(30, 30, 30)
                 .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(labelCursoEnfermedad)
@@ -892,19 +893,19 @@ public class VerConsulta extends javax.swing.JFrame {
                     .addGroup(pestExamenSubLayout.createSequentialGroup()
                         .addComponent(labelQuirurgicamente)
                         .addGap(32, 32, 32)
-                        .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(labelDesdeCuando)
                                 .addComponent(labelCuantosCigarrillos)
                                 .addComponent(radioFuma))
-                            .addComponent(labelDesdeCuandoPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(labelCuantosCigarrillosPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(labelCuantosCigarrillosPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(labelDesdeCuandoPaciente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(30, 30, 30)
                         .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(radioToma)
                                 .addComponent(labelQueCantidad))
-                            .addComponent(labelQueCantidadPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labelQueCantidadPaciente, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(labelQuirurgicamentePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(281, Short.MAX_VALUE))
         );
@@ -2644,14 +2645,14 @@ public class VerConsulta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelTensionArterial)
                 .addGap(18, 18, 18)
-                .addGroup(tabTensionArterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(tabTensionArterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(labelMaximaR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelMinimaR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(tabTensionArterialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelMaxima)
                         .addComponent(labelMMHG)
                         .addComponent(labelMinima)
-                        .addComponent(labelMMHG1)))
+                        .addComponent(labelMMHG1))
+                    .addComponent(labelMinimaR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(381, Short.MAX_VALUE))
         );
 
@@ -2690,18 +2691,17 @@ public class VerConsulta extends javax.swing.JFrame {
             .addGroup(tabPalpacionLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(tabPalpacionLayout.createSequentialGroup()
-                            .addComponent(radioPalpables)
-                            .addGap(18, 18, 18)
-                            .addComponent(labelLocalizacion)
-                            .addGap(18, 18, 18)
-                            .addComponent(labelLocalizacionR1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(labelPalpacionGanglios)
-                        .addGroup(tabPalpacionLayout.createSequentialGroup()
-                            .addComponent(labelCaracteristicas)
-                            .addGap(18, 18, 18)
-                            .addComponent(labelCaracteristicasR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(tabPalpacionLayout.createSequentialGroup()
+                        .addComponent(radioPalpables)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelLocalizacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(labelLocalizacionR1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelPalpacionGanglios)
+                    .addGroup(tabPalpacionLayout.createSequentialGroup()
+                        .addComponent(labelCaracteristicas)
+                        .addGap(18, 18, 18)
+                        .addComponent(labelCaracteristicasR, javax.swing.GroupLayout.PREFERRED_SIZE, 783, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(labelPresentaPalpacion, javax.swing.GroupLayout.PREFERRED_SIZE, 711, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(171, Short.MAX_VALUE))
         );
@@ -2713,16 +2713,15 @@ public class VerConsulta extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(labelPalpacionGanglios)
                 .addGap(18, 18, 18)
-                .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tabPalpacionLayout.createSequentialGroup()
-                        .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(radioPalpables)
-                            .addComponent(labelLocalizacion))
-                        .addGap(18, 18, 18)
-                        .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelCaracteristicas)
-                            .addComponent(labelCaracteristicasR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(labelLocalizacionR1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(radioPalpables)
+                        .addComponent(labelLocalizacion))
+                    .addComponent(labelLocalizacionR1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(tabPalpacionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelCaracteristicas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelCaracteristicasR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(320, Short.MAX_VALUE))
         );
 
@@ -2770,7 +2769,6 @@ public class VerConsulta extends javax.swing.JFrame {
         txtRxPanoramica.setColumns(20);
         txtRxPanoramica.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtRxPanoramica.setRows(5);
-        txtRxPanoramica.setEnabled(false);
         jScrollPane9.setViewportView(txtRxPanoramica);
 
         labelRxPeriapical.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -2779,7 +2777,6 @@ public class VerConsulta extends javax.swing.JFrame {
         txtRxPeriapical.setColumns(20);
         txtRxPeriapical.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtRxPeriapical.setRows(5);
-        txtRxPeriapical.setEnabled(false);
         jScrollPane10.setViewportView(txtRxPeriapical);
 
         labelRxOclusal.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -2788,7 +2785,6 @@ public class VerConsulta extends javax.swing.JFrame {
         txtRxOclusal.setColumns(20);
         txtRxOclusal.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtRxOclusal.setRows(5);
-        txtRxOclusal.setEnabled(false);
         jScrollPane11.setViewportView(txtRxOclusal);
 
         labelPresentaExamenRad.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
@@ -2874,9 +2870,9 @@ public class VerConsulta extends javax.swing.JFrame {
                         .addComponent(labelPCR, javax.swing.GroupLayout.PREFERRED_SIZE, 800, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(tabExamenLabLayout.createSequentialGroup()
                         .addComponent(labelGlicemia)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelGlicemiaR, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(69, 69, 69)
+                        .addGap(75, 75, 75)
                         .addComponent(labelVDRL)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(labelVDRLR, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -2900,22 +2896,22 @@ public class VerConsulta extends javax.swing.JFrame {
                 .addGap(14, 14, 14)
                 .addComponent(labelPresentaExamenLab, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(tabExamenLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelPerfilHematologico)
-                    .addComponent(labelPHR1, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tabExamenLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelPerfilHematologico, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelPHR1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(33, 33, 33)
-                .addGroup(tabExamenLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelPerfilCoagulacion)
-                    .addComponent(labelPCR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(tabExamenLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelPerfilCoagulacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelPCR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(32, 32, 32)
-                .addGroup(tabExamenLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelVIH)
+                .addGroup(tabExamenLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(labelVIH, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(tabExamenLabLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(labelGlicemia)
                         .addComponent(labelVDRL))
-                    .addComponent(labelGlicemiaR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelVDRLR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelVIHR, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(labelGlicemiaR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelVDRLR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(labelVIHR, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(402, Short.MAX_VALUE))
         );
 
@@ -2959,7 +2955,6 @@ public class VerConsulta extends javax.swing.JFrame {
         txtPresuntivo.setColumns(20);
         txtPresuntivo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtPresuntivo.setRows(5);
-        txtPresuntivo.setEnabled(false);
         jScrollPane12.setViewportView(txtPresuntivo);
 
         labelHistopatologico.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -2968,13 +2963,11 @@ public class VerConsulta extends javax.swing.JFrame {
         txtHistopatologico.setColumns(20);
         txtHistopatologico.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtHistopatologico.setRows(5);
-        txtHistopatologico.setEnabled(false);
         jScrollPane13.setViewportView(txtHistopatologico);
 
         txtDefinitivo.setColumns(20);
         txtDefinitivo.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtDefinitivo.setRows(5);
-        txtDefinitivo.setEnabled(false);
         jScrollPane14.setViewportView(txtDefinitivo);
 
         labelDefinitivo.setFont(new java.awt.Font("Century Gothic", 0, 20)); // NOI18N
@@ -3040,7 +3033,6 @@ public class VerConsulta extends javax.swing.JFrame {
         txtPlanTratamiento.setColumns(20);
         txtPlanTratamiento.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtPlanTratamiento.setRows(5);
-        txtPlanTratamiento.setEnabled(false);
         jScrollPane15.setViewportView(txtPlanTratamiento);
 
         javax.swing.GroupLayout tabPlanTratamientoLayout = new javax.swing.GroupLayout(tabPlanTratamiento);
@@ -3074,7 +3066,6 @@ public class VerConsulta extends javax.swing.JFrame {
         txtObservaciones.setColumns(20);
         txtObservaciones.setFont(new java.awt.Font("Century Gothic", 0, 16)); // NOI18N
         txtObservaciones.setRows(5);
-        txtObservaciones.setEnabled(false);
         jScrollPane16.setViewportView(txtObservaciones);
 
         javax.swing.GroupLayout tabObservacionesLayout = new javax.swing.GroupLayout(tabObservaciones);

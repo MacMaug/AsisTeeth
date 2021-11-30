@@ -23,7 +23,7 @@ public class AntecedenteCardiovascular extends Antecedente{
     private boolean estaEnTratamiento;
     
     public AntecedenteCardiovascular(){
-        super("Antecedentes Cardiovasculares");
+        nombre="Cardiovascular";
         cansaSubirEscaleras=false;
         edemaMiembrosInferiores=false;
         palpitaciones=false;
@@ -38,7 +38,7 @@ public class AntecedenteCardiovascular extends Antecedente{
     }
 
     public AntecedenteCardiovascular(boolean cansaSubirEscaleras, boolean edemaMiembrosInferiores, boolean palpitaciones, boolean doloresEnPecho, boolean tenidoInfarto, String cuandoInfarto, boolean sufreEndocarnitisBacteriana, boolean presentaVulvopatia, boolean esHipertenso, boolean esHipotenso, boolean estaEnTratamiento, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.cansaSubirEscaleras = cansaSubirEscaleras;
         this.edemaMiembrosInferiores = edemaMiembrosInferiores;
         this.palpitaciones = palpitaciones;

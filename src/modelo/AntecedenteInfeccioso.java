@@ -21,7 +21,7 @@ public class AntecedenteInfeccioso extends Antecedente {
     private boolean tenidoTuberculosis;
     
     public AntecedenteInfeccioso(){
-        super("Antecedentes Infecciosos");
+        nombre="Infeccioso";
         tenidoEnfermedadesVenereas=false;
         tiempoEnfermedadesVenereas="No Aplica";
         tenidoTransfusionDeSangre=false;
@@ -33,7 +33,7 @@ public class AntecedenteInfeccioso extends Antecedente {
     }
 
     public AntecedenteInfeccioso(boolean tenidoEnfermedadesVenereas, String tiempoEnfermedadesVenereas, boolean tenidoTransfusionDeSangre, boolean tenidoHepatitis, String tiempoHepatitis, char tipoHepatitis, boolean tieneOtraEnfermedadHepatica, String enfermedadHepatica, boolean tenidoTuberculosis, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.tenidoEnfermedadesVenereas = tenidoEnfermedadesVenereas;
         this.tiempoEnfermedadesVenereas = tiempoEnfermedadesVenereas;
         this.tenidoTransfusionDeSangre = tenidoTransfusionDeSangre;

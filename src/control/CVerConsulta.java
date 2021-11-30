@@ -8,14 +8,16 @@ import modelo.*;
 public class CVerConsulta {
     
     public void pasarATxtArea(String dato, JTextArea txtArea){
-        if(dato.equals(null))
+        if(dato.equals(""))
             txtArea.setText(null);
         else
             txtArea.setText(dato);
+        txtArea.setEnabled(true);
+        txtArea.setEditable(false);
     }
     
     public void pasarALabel(String dato, JLabel label){
-        if(dato.equals(null))
+        if(dato.equals(""))
             label.setText(null);
         else 
             label.setText(dato);

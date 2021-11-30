@@ -20,7 +20,7 @@ public class AntecedenteAlergico extends Antecedente{
     private String reaccionAnestesia;
     
     public AntecedenteAlergico(){
-        super("Antecedentes Alérgicos");
+        nombre="Alergico";
         alergicoAMedicamento=false;
         medicamentosConAlergia="No Aplica";
         tenidoUrticaria=false;
@@ -32,7 +32,7 @@ public class AntecedenteAlergico extends Antecedente{
     }
 
     public AntecedenteAlergico(boolean alergicoAMedicamento, String medicamentosConAlergia, boolean tenidoUrticaria, boolean dificultadParaTragar, boolean dificultadParaRespirar, boolean tenidoAsma, String ultimaCrisisAsma, String reaccionAnestesia, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.alergicoAMedicamento = alergicoAMedicamento;
         this.medicamentosConAlergia = medicamentosConAlergia;
         this.tenidoUrticaria = tenidoUrticaria;

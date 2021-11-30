@@ -16,7 +16,8 @@ public class Odontologo {
     private String clave;
     private String usuario;
     private int cedula;
-    ArrayList<Paciente> listaPacientes;
+    private ArrayList<Paciente> listaPacientes;
+    
     public Odontologo(){
         nombre="";
         clave="";
@@ -83,6 +84,10 @@ public class Odontologo {
 
     public ArrayList<Paciente> getListaPacientes() {
         return listaPacientes;
+    }
+    
+    public void setListaPacientes(ArrayList<Paciente> listaPacientes){
+        this.listaPacientes=listaPacientes;
     }
     
     

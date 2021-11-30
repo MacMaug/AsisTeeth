@@ -19,7 +19,7 @@ public class AntecedenteHematologico extends Antecedente{
     private boolean hematomas;
     
     public AntecedenteHematologico(){
-        super("Antecedentes Hematológicos");
+        nombre="Hematologico";
         tenidoHemorragiasImportantes=false;
         causaHemorragia="No Aplica";
         duracionHemorragia="No Aplica";
@@ -28,7 +28,7 @@ public class AntecedenteHematologico extends Antecedente{
     }
 
     public AntecedenteHematologico(boolean tenidoHemorragiasImportantes, String causaHemorragia, String duracionHemorragia, boolean sangranEncias, boolean sangraPorNariz, boolean hematomas, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.tenidoHemorragiasImportantes = tenidoHemorragiasImportantes;
         this.causaHemorragia = causaHemorragia;
         this.duracionHemorragia = duracionHemorragia;

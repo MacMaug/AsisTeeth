@@ -21,7 +21,7 @@ public class AntecedenteNeurologico extends Antecedente {
     private boolean parestesia;
     
     public AntecedenteNeurologico (){
-        super("Antecedentes Neurológicos");
+        nombre="Neurologico";
         tenidoConvulsiones=false;
         tiempoConvulsiones="No Aplica";
         tenidoEpilepsia=false;
@@ -32,7 +32,7 @@ public class AntecedenteNeurologico extends Antecedente {
     }
 
     public AntecedenteNeurologico(boolean tenidoConvulsiones, String tiempoConvulsiones, boolean tenidoEpilepsia, String ultimaCrisisEpileptica, boolean tenidoNeuritisEnCara, boolean paralisisFacial, boolean parestesia, boolean alteraConFacilidad, boolean cefaleasFrecuentes, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.tenidoConvulsiones = tenidoConvulsiones;
         this.tiempoConvulsiones = tiempoConvulsiones;
         this.tenidoEpilepsia = tenidoEpilepsia;

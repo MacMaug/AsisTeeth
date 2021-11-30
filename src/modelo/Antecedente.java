@@ -10,7 +10,11 @@ package modelo;
  * @author macmaug <maug.lucas@gmail.com>
  */
 public abstract class Antecedente {
-    private String nombre;
+    protected String nombre;
+
+    public Antecedente(){
+        nombre="Antecedente";
+    }
     
     public Antecedente(String nombre){
         this.nombre=nombre;
@@ -23,6 +27,4 @@ public abstract class Antecedente {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
 }

@@ -18,7 +18,7 @@ public class AntecedenteFemenino extends Antecedente {
     private boolean tieneMenopausia;
     
     public AntecedenteFemenino(){
-        super("Antecedentes Femeninos");
+        nombre="Femenino";
         regularidadMenstrual="No Aplica";
         duracionMenstrual="No Aplica";
         estaEmbarazada=false;
@@ -28,7 +28,7 @@ public class AntecedenteFemenino extends Antecedente {
     }
 
     public AntecedenteFemenino(String regularidadMenstrual, boolean estaEmbarazada, int mesesDeEmbarazo, boolean tomaPastillasAnticonceptivas, boolean tieneMenopausia, String nombre) {
-        super(nombre);
+        this.nombre=nombre;
         this.regularidadMenstrual = regularidadMenstrual;
         this.estaEmbarazada = estaEmbarazada;
         this.mesesDeEmbarazo = mesesDeEmbarazo;

@@ -81,7 +81,11 @@ public class ExamenLaboratorio extends Examen{
     public String getPerfilCoagulacion() {
         return perfilCoagulacion;
     }
-    
-    
+
+    public void setPerfilCoagulacion(String perfilCoagulacion) {
+        this.perfilCoagulacion = perfilCoagulacion;
+    }
+
+
     
 }

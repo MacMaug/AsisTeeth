@@ -56,9 +56,13 @@ public class AntecedenteNutricional extends Antecedente{
         this.tieneInsomnio = tieneInsomnio;
         this.padeceDeTiroides = padeceDeTiroides;
     }
-    
-    
 
+    public void setDiabetico(boolean diabetico) {
+        this.diabetico = diabetico;
+    }
+    
+    
+    
     public boolean isTenidoAnemia() {
         return tenidoAnemia;
     }

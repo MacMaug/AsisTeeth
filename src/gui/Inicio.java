@@ -8,6 +8,7 @@ package gui;
 import control.CVentana;
 import java.util.ArrayList;
 import modelo.Odontologo;
+import persistencia.Guardar;
 
 /**
  *
@@ -164,10 +165,10 @@ public class Inicio extends javax.swing.JFrame {
     private void botonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarseActionPerformed
         RegistrarUsuario registrar = new RegistrarUsuario();
         registrar.setVisible(true);
-        dispose();
     }//GEN-LAST:event_botonRegistrarseActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        Guardar.enJSON();
         System.exit(0);
     }//GEN-LAST:event_botonSalirActionPerformed
 

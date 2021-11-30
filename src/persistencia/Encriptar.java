@@ -27,7 +27,7 @@ public class Encriptar {
      * cuales son los principales encargados de realizar la encriptación y la
      * desencriptación
      */
-    private static final String key = "1NGjlfas@*?0a1_@rq!SoFTa?*+vc3a5b4";
+    private static final String key =  "1NGjlfas@*?0a1_@rq!SoFTa?*+vc3a5b4";
     private static final String salt = "ao9(=S>kD3L-{sq@z<=%#*793W4RE:mck;";
     private SecretKey secretKeyTemp;
 
@@ -89,6 +89,7 @@ public class Encriptar {
         }
         return null;
     }
+    
 
     public void encriptarClaves() {
         for (Odontologo cadaOdontologo : Datos.getListaOdontologos()) {

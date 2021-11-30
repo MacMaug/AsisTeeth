@@ -167,16 +167,16 @@ public class IniciarSesion extends javax.swing.JFrame {
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
         Inicio inicio = new Inicio();
         inicio.setVisible(true);
-        dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContinuarActionPerformed
         if(CInicioSesion.validarInicio(campoNombreUsuario.getText(), campoClave.getText()).equals("")){
-            Odontologo odontologo=CUsuario.obtenerOdontologo(Datos.getListaOdontologos(), campoNombreUsuario.getText());
+            Odontologo odontologo=CUsuario.obtenerOdontologo(Datos.getListaOdontologos(), campoNombreUsuario.getText());          
             MenuPrincipal menuPrincipal=new MenuPrincipal(odontologo);
             menuPrincipal.setVisible(true);
             dispose();
         }else{
+            System.out.println();
             JOptionPane.showMessageDialog(null,CInicioSesion.validarInicio(campoNombreUsuario.getText(), campoClave.getText()),"Error en autenticación", JOptionPane.ERROR_MESSAGE);
         }
         

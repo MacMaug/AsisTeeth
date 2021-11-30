@@ -28,6 +28,7 @@ public class Guardar {
         encriptacion.encriptarClaves();
         java.lang.reflect.Type listType = new TypeToken<ArrayList<Odontologo>>() {}.getType();
         String json = gson.toJson(Datos.getListaOdontologos(), listType);
+        encriptacion.desencriptarClaves();
         try {
             FileWriter writer = new FileWriter("src/files/usuarios.json");
             writer.write(json);

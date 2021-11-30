@@ -96,6 +96,11 @@ public class MenuPrincipal extends javax.swing.JFrame {
         botonCerrarSesion.setText("       ");
         botonCerrarSesion.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         botonCerrarSesion.setOpaque(true);
+        botonCerrarSesion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                botonCerrarSesionMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelBotonesLayout = new javax.swing.GroupLayout(panelBotones);
         panelBotones.setLayout(panelBotonesLayout);
@@ -191,14 +196,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         BuscarConsulta buscarConsulta = new BuscarConsulta(odontologo);
         buscarConsulta.setVisible(true);
-        dispose();
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         RegistrarConsulta registrar = new RegistrarConsulta(odontologo);
         registrar.setVisible(true);
         Guardar.enJSON();
-        dispose();
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseEntered
@@ -206,6 +209,12 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
     private void botonRegistrarMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseExited
     }//GEN-LAST:event_botonRegistrarMouseExited
+
+    private void botonCerrarSesionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonCerrarSesionMouseClicked
+        Inicio ventanaInicio = new Inicio();
+        ventanaInicio.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_botonCerrarSesionMouseClicked
 
     /**
      * @param args the command line arguments

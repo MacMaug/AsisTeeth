@@ -36,8 +36,11 @@ public class AntecedenteHematologico extends Antecedente{
         this.sangraPorNariz = sangraPorNariz;
         this.hematomas = hematomas;
     }
-    
 
+    public void setHematomas(boolean hematomas) {
+        this.hematomas = hematomas;
+    }
+    
     public boolean isTenidoHemorragiasImportantes() {
         return tenidoHemorragiasImportantes;
     }

@@ -44,6 +44,14 @@ public class AntecedenteNeurologico extends Antecedente {
         this.parestesia = parestesia;
     }
 
+    public void setParalisisFacial(boolean paralisisFacial) {
+        this.paralisisFacial = paralisisFacial;
+    }
+
+    public void setParestesia(boolean parestesia) {
+        this.parestesia = parestesia;
+    }
+
     
     
     public boolean isTenidoConvulsiones() {

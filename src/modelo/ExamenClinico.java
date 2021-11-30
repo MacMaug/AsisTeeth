@@ -66,6 +66,18 @@ public class ExamenClinico extends Examen{
         this.dientes = dientes;
     }
 
+    public void setIncluirTensionArterial(boolean incluirTensionArterial) {
+        this.incluirTensionArterial = incluirTensionArterial;
+    }
+
+    public void setIncluirPalpacion(boolean incluirPalpacion) {
+        this.incluirPalpacion = incluirPalpacion;
+    }
+
+    public void setCaracteristicasPalpacion(String caracteristicasPalpacion) {
+        this.caracteristicasPalpacion = caracteristicasPalpacion;
+    }
+
     
     
     public int getTensionArterialMinima() {

@@ -145,6 +145,32 @@ public class Consulta {
     public String getObservaciones() {
         return observaciones;
     }
+
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
+
+    public void setDiagnosticoPresuntivo(String diagnosticoPresuntivo) {
+        this.diagnosticoPresuntivo = diagnosticoPresuntivo;
+    }
+
+    public void setEstudioHispatologico(String estudioHispatologico) {
+        this.estudioHispatologico = estudioHispatologico;
+    }
+
+    public void setDiagnosticoDefinitivo(String diagnosticoDefinitivo) {
+        this.diagnosticoDefinitivo = diagnosticoDefinitivo;
+    }
+
+    public void setPlanDeTratamiento(String planDeTratamiento) {
+        this.planDeTratamiento = planDeTratamiento;
+    }
+
+    public void setObservaciones(String observaciones) {
+        this.observaciones = observaciones;
+    }
+    
+    
     
     //METODOS DE BUSQUEDA
     

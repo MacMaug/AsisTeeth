@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import modelo.*;
@@ -42,7 +44,7 @@ public class Leer {
                 //Agregar
                 odontologo.setNombre((String) odontologoJSON.get("nombre"));
                 odontologo.setCedula(Math.toIntExact((long) odontologoJSON.get("cedula")));
-                odontologo.setClave(encriptacion.desencriptar((String) odontologoJSON.get("clave")));
+                odontologo.setClave((String) odontologoJSON.get("clave"));
                 odontologo.setUsuario((String) odontologoJSON.get("usuario"));
                 JSONArray pacientesJSON = new JSONArray();
                 pacientesJSON = (JSONArray) odontologoJSON.get("listaPacientes");
@@ -64,12 +66,20 @@ public class Leer {
                         JSONObject consultaJSON = new JSONObject();
                         consultaJSON = (JSONObject) consultasJSON.get(cadaConsulta);
                         consulta.setCodigo(Math.toIntExact((long) consultaJSON.get("codigo")));
+                        consulta.setDiagnosticoDefinitivo((String) consultaJSON.get("diagnosticoDefinitivo"));
                         consulta.setDomicilioPaciente((String) consultaJSON.get("domicilioPaciente"));
                         consulta.setEdadPaciente(Math.toIntExact((long) consultaJSON.get("edadPaciente")));
                         consulta.setEsEstudiante((boolean) consultaJSON.get("esEstudiante"));
                         consulta.setOcupacionPaciente((String) consultaJSON.get("ocupacionPaciente"));
                         consulta.setReferencia((String) consultaJSON.get("referencia"));
                         consulta.setTelefonoPaciente((String) consultaJSON.get("telefonoPaciente"));
+                        consulta.setDiagnosticoPresuntivo((String) consultaJSON.get("diagnosticoPresuntivo"));
+                        consulta.setEstudioHispatologico((String) consultaJSON.get("estudioHispatologico"));
+                        String sDate1=(String)consultaJSON.get("fecha");
+                        Date date1=new Date();
+                        consulta.setFecha(date1);
+                        consulta.setObservaciones((String) consultaJSON.get("observaciones"));
+                        consulta.setPlanDeTratamiento((String) consultaJSON.get("planDeTratamiento"));
                         JSONArray examenesJSON = new JSONArray();
                         examenesJSON = (JSONArray) consultaJSON.get("listaExamenes");
                         JSONArray antecedentesJSON = new JSONArray();
@@ -90,6 +100,7 @@ public class Leer {
                                 subjetivo.setSidoIntervenidoQuirurgicamente((boolean) examenJSON.get("sidoIntervenidoQuirurgicamente"));
                                 subjetivo.setTiempoFumando((String) examenJSON.get("tiempoFumando"));
                                 subjetivo.setToma((boolean) examenJSON.get("toma"));
+                                subjetivo.setSidoHospitalizado((boolean) examenJSON.get("sidoHospitalizado"));
                                 subjetivo.setTomandoMedicamento((boolean) examenJSON.get("tomandoMedicamento"));
                                 consulta.getListaExamenes().add(subjetivo);
                             }
@@ -128,6 +139,9 @@ public class Leer {
                                 clinico.setTensionArterialMinima(Math.toIntExact((long) examenJSON.get("tensionArterialMinima")));
                                 clinico.setUbicacionGanglios((String) examenJSON.get("ubicacionGanglios"));
                                 clinico.setVestibuloBocal((String) examenJSON.get("vestibuloBocal"));
+                                clinico.setIncluirTensionArterial((boolean) examenJSON.get("incluirTensionArterial"));
+                                clinico.setIncluirPalpacion((boolean) examenJSON.get("incluirPalpacion"));
+                                clinico.setCaracteristicasPalpacion((String) examenJSON.get("caracteristicasPalpacion"));                        
                                 consulta.getListaExamenes().add(clinico);
                             }
                         }//-----------------------Antecedentes------------------------------------
@@ -176,6 +190,9 @@ public class Leer {
                                 femenino.setDuracionMenstrual((String) antecedenteJSON.get("duracionMenstrual"));
                                 femenino.setMesesDeEmbarazo((Math.toIntExact((long)antecedenteJSON.get("mesesDeEmbarazo"))));
                                 femenino.setRegularidadMenstrual((String) antecedenteJSON.get("regularidadMenstrual"));
+                                femenino.setEstaEmbarazada((boolean) antecedenteJSON.get("estaEmbarazada"));
+                                femenino.setTomaPastillasAnticonceptivas((boolean) antecedenteJSON.get("tomaPastillasAnticonceptivas"));
+                                femenino.setTieneMenopausia((boolean) antecedenteJSON.get("tieneMenopausia"));                                
                                 consulta.getListaAntecedentes().add(femenino);
                             }
                             if ("Hematologico".equals((String) antecedenteJSON.get("nombre"))) {
@@ -185,6 +202,7 @@ public class Leer {
                                 hematologico.setSangraPorNariz((boolean) antecedenteJSON.get("sangraPorNariz"));
                                 hematologico.setSangranEncias((boolean) antecedenteJSON.get("sangranEncias"));
                                 hematologico.setTenidoHemorragiasImportantes((boolean) antecedenteJSON.get("tenidoHemorragiasImportantes"));
+                                hematologico.setHematomas((boolean) antecedenteJSON.get("hematomas"));
                                 consulta.getListaAntecedentes().add(hematologico);
                             }
                             if ("Infeccioso".equals((String) antecedenteJSON.get("nombre"))) {
@@ -209,6 +227,8 @@ public class Leer {
                                 neurologico.setTenidoNeuritisEnCara((boolean) antecedenteJSON.get("tenidoNeuritisEnCara"));
                                 neurologico.setTiempoConvulsiones((String) antecedenteJSON.get("tiempoConvulsiones"));
                                 neurologico.setUltimaCrisisEpileptica((String) antecedenteJSON.get("ultimaCrisisEpileptica"));
+                                neurologico.setParestesia((boolean) antecedenteJSON.get("parestesia"));
+                                neurologico.setParalisisFacial((boolean) antecedenteJSON.get("paralisisFacial"));
                                 consulta.getListaAntecedentes().add(neurologico);
                             }
                             if ("Nutricional".equals((String) antecedenteJSON.get("nombre"))) {
@@ -225,6 +245,7 @@ public class Leer {
                                 nutricional.setTenidoAnemia((boolean) antecedenteJSON.get("tenidoAnemia"));
                                 nutricional.setTieneInsomnio((boolean) antecedenteJSON.get("tieneInsomnio"));
                                 nutricional.setVecesOrinaDeNoche(Math.toIntExact((long) antecedenteJSON.get("vecesOrinaDeNoche")));
+                                nutricional.setDiabetico((boolean) antecedenteJSON.get("diabetico"));
                                 consulta.getListaAntecedentes().add(nutricional);
                             }
                             if ("RN".equals((String) antecedenteJSON.get("nombre"))) {
@@ -246,6 +267,8 @@ public class Leer {
                 Datos.getListaOdontologos().add(odontologo);
             }
             reader.close();
+            Encriptar encriptacion = new Encriptar();
+            encriptacion.desencriptarClaves();
         } catch (FileNotFoundException e) {
         } catch (IOException e) {
         } catch (org.json.simple.parser.ParseException ex) {

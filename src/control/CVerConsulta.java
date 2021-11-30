@@ -8,7 +8,7 @@ import modelo.*;
 public class CVerConsulta {
     
     public void pasarATxtArea(String dato, JTextArea txtArea){
-        if(dato.equals(""))
+        if(dato.equals(null))
             txtArea.setText(null);
         else
             txtArea.setText(dato);
@@ -17,7 +17,7 @@ public class CVerConsulta {
     }
     
     public void pasarALabel(String dato, JLabel label){
-        if(dato.equals(""))
+        if(dato.equals(null))
             label.setText(null);
         else 
             label.setText(dato);

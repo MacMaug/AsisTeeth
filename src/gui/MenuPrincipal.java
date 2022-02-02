@@ -53,6 +53,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
         labelLogo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         nombreOdontologo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         labelInicio = new javax.swing.JLabel();
         labelNombreUsuario = new javax.swing.JLabel();
@@ -132,16 +133,23 @@ public class MenuPrincipal extends javax.swing.JFrame {
 
         panelFondo.add(panelBotones, new org.netbeans.lib.awtextra.AbsoluteConstraints(504, 120, 440, -1));
 
-        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Logo.png"))); // NOI18N
+        labelLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/logoBlanco.png"))); // NOI18N
         panelFondo.add(labelLogo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, 410, 410));
 
         jLabel1.setFont(new java.awt.Font("Nirmala UI", 0, 40)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("¡Bienvenid@!");
         panelFondo.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 10, -1, -1));
 
+        nombreOdontologo.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        nombreOdontologo.setForeground(new java.awt.Color(255, 255, 255));
         nombreOdontologo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nombreOdontologo.setText("Dr/a. "+odontologo.getNombre());
         panelFondo.add(nombreOdontologo, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 70, 450, 28));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondo.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        panelFondo.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 980, 600));
 
         getContentPane().add(panelFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 90, 1000, 600));
 
@@ -196,12 +204,13 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
         BuscarConsulta buscarConsulta = new BuscarConsulta(odontologo);
         buscarConsulta.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonBuscarActionPerformed
 
     private void botonRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarActionPerformed
         RegistrarConsulta registrar = new RegistrarConsulta(odontologo);
         registrar.setVisible(true);
-        Guardar.enJSON();
+        dispose();
     }//GEN-LAST:event_botonRegistrarActionPerformed
 
     private void botonRegistrarMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_botonRegistrarMouseEntered
@@ -258,6 +267,7 @@ public class MenuPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton botonRegistrar;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelInicio;

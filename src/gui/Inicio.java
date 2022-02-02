@@ -7,6 +7,7 @@ package gui;
 
 import control.CVentana;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import modelo.Odontologo;
 import persistencia.Guardar;
 
@@ -21,6 +22,8 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        setIconImage(new ImageIcon("src/imagenes/Logo.png").getImage()); 
+        setTitle("AsisTeeth");
     }
 
     /**
@@ -165,6 +168,7 @@ public class Inicio extends javax.swing.JFrame {
     private void botonRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegistrarseActionPerformed
         RegistrarUsuario registrar = new RegistrarUsuario();
         registrar.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonRegistrarseActionPerformed
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed

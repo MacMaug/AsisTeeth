@@ -8,6 +8,7 @@ package gui;
 import control.CBuscar;
 import control.CEntrada;
 import control.CVentana;
+import java.util.Date;
 import javax.swing.JOptionPane;
 import modelo.*;
 
@@ -33,6 +34,8 @@ public class BuscarConsulta extends javax.swing.JFrame {
         controlVentana.iniciarVentana(this);
         this.odontologo = odontologo;
         controlVentana.iniciarVentana(this);
+        fechaConsulta.setVisible(false);
+        controlEntrada.fechaMaxima(new Date(),fechaConsulta);
     }
 
     /**
@@ -49,12 +52,14 @@ public class BuscarConsulta extends javax.swing.JFrame {
         labelUsuario = new javax.swing.JLabel();
         labelFecha = new javax.swing.JLabel();
         panelBusqueda = new javax.swing.JPanel();
-        labelCedulaPaciente = new javax.swing.JLabel();
-        txtCedulaPaciente = new javax.swing.JTextField();
-        botonBuscar = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        scrollTabla = new javax.swing.JScrollPane();
         tablaConsultas = new javax.swing.JTable();
         botonAbrir = new javax.swing.JButton();
+        botonBuscar = new javax.swing.JButton();
+        comboInfo = new javax.swing.JComboBox<>();
+        comboAccion = new javax.swing.JComboBox<>();
+        fechaConsulta = new com.toedter.calendar.JDateChooser();
+        txtInfo = new javax.swing.JTextField();
         botonSalir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,32 +81,7 @@ public class BuscarConsulta extends javax.swing.JFrame {
 
         panelBusqueda.setBackground(new java.awt.Color(255, 255, 255));
 
-        labelCedulaPaciente.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
-        labelCedulaPaciente.setText("Cédula del paciente:");
-
-        txtCedulaPaciente.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
-        txtCedulaPaciente.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                txtCedulaPacienteFocusLost(evt);
-            }
-        });
-        txtCedulaPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtCedulaPacienteActionPerformed(evt);
-            }
-        });
-
-        botonBuscar.setBackground(new java.awt.Color(255, 255, 255));
-        botonBuscar.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
-        botonBuscar.setForeground(new java.awt.Color(0, 0, 0));
-        botonBuscar.setText("Buscar");
-        botonBuscar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                botonBuscarActionPerformed(evt);
-            }
-        });
-
+        tablaConsultas.setFont(new java.awt.Font("Nirmala UI", 0, 18)); // NOI18N
         tablaConsultas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -110,7 +90,7 @@ public class BuscarConsulta extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Fecha", "Nombre", "Cédula", "N° Historia Médica"
             }
         ));
         tablaConsultas.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -118,7 +98,7 @@ public class BuscarConsulta extends javax.swing.JFrame {
                 tablaConsultasFocusGained(evt);
             }
         });
-        jScrollPane1.setViewportView(tablaConsultas);
+        scrollTabla.setViewportView(tablaConsultas);
 
         botonAbrir.setBackground(new java.awt.Color(102, 153, 255));
         botonAbrir.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
@@ -130,37 +110,93 @@ public class BuscarConsulta extends javax.swing.JFrame {
             }
         });
 
+        botonBuscar.setBackground(new java.awt.Color(255, 255, 255));
+        botonBuscar.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
+        botonBuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/icono buscar 16.png"))); // NOI18N
+        botonBuscar.setText("Buscar");
+        botonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonBuscarActionPerformed(evt);
+            }
+        });
+
+        comboInfo.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
+        comboInfo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cédula del paciente", "Fecha", "N° Historia Clínica" }));
+        comboInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboInfoMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                comboInfoMousePressed(evt);
+            }
+        });
+        comboInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboInfoActionPerformed(evt);
+            }
+        });
+
+        comboAccion.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
+        comboAccion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ver", "Modificar" }));
+
+        fechaConsulta.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
+
+        txtInfo.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
+        txtInfo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtInfoFocusLost(evt);
+            }
+        });
+        txtInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtInfoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelBusquedaLayout = new javax.swing.GroupLayout(panelBusqueda);
         panelBusqueda.setLayout(panelBusquedaLayout);
         panelBusquedaLayout.setHorizontalGroup(
             panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBusquedaLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
-                .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(botonAbrir)
-                    .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(panelBusquedaLayout.createSequentialGroup()
-                            .addComponent(labelCedulaPaciente)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtCedulaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(botonBuscar))))
-                .addContainerGap(70, Short.MAX_VALUE))
+                .addComponent(comboInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(12, 12, 12)
+                .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(fechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBusquedaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(9, 9, 9)
+                .addComponent(botonBuscar))
+            .addGroup(panelBusquedaLayout.createSequentialGroup()
+                .addGap(70, 70, 70)
+                .addComponent(scrollTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 715, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelBusquedaLayout.createSequentialGroup()
+                .addGap(577, 577, 577)
+                .addComponent(comboAccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(botonAbrir))
         );
         panelBusquedaLayout.setVerticalGroup(
             panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBusquedaLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(labelCedulaPaciente)
-                    .addComponent(txtCedulaPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botonBuscar))
-                .addGap(50, 50, 50)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(botonAbrir)
-                .addGap(48, 48, 48))
+                .addGap(49, 49, 49)
+                .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(panelBusquedaLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(fechaConsulta, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtInfo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
+                .addComponent(scrollTabla, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(panelBusquedaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelBusquedaLayout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(comboAccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botonAbrir))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         botonSalir.setBackground(new java.awt.Color(255, 51, 51));
@@ -220,32 +256,36 @@ public class BuscarConsulta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtCedulaPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaPacienteActionPerformed
+    private void txtInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtInfoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtCedulaPacienteActionPerformed
+    }//GEN-LAST:event_txtInfoActionPerformed
 
-    private void txtCedulaPacienteFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtCedulaPacienteFocusLost
+    private void txtInfoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtInfoFocusLost
 
-    }//GEN-LAST:event_txtCedulaPacienteFocusLost
-
-    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
-        if(!controlEntrada.datoEsNumerico(txtCedulaPaciente)) txtCedulaPaciente.setText(null);
-        else if (!odontologo.buscarPaciente(Integer.parseInt(txtCedulaPaciente.getText())))
-            JOptionPane.showMessageDialog(null,"Paciente no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
-        else
-            controlBuscar.llenarTabla(tablaConsultas, odontologo, txtCedulaPaciente);
-    }//GEN-LAST:event_botonBuscarActionPerformed
+    }//GEN-LAST:event_txtInfoFocusLost
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        MenuPrincipal menu = new MenuPrincipal(odontologo);
+        menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
     private void botonAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonAbrirActionPerformed
-       if(tablaConsultas.getSelectedRow()!=-1){
-            Paciente paciente = controlBuscar.obtenerPacienteSeleccionado(tablaConsultas, odontologo);
+        Paciente paciente;
+        if(tablaConsultas.getSelectedRow()!=-1){
+            paciente = controlBuscar.obtenerPacienteSeleccionadoCed(tablaConsultas, odontologo);
             Consulta consulta = controlBuscar.obtenerConsultaSeleccionada(tablaConsultas, odontologo, paciente);
-            VerConsulta verConsulta = new VerConsulta(paciente,consulta,odontologo);
-            verConsulta.setVisible(true);
+            VerConsulta verConsulta;
+            RegistrarConsulta modConsulta;
+            if(comboAccion.getSelectedIndex()==0){
+                verConsulta = new VerConsulta(paciente,consulta,odontologo);
+                verConsulta.setVisible(true);
+            }
+            else{
+                modConsulta = new RegistrarConsulta(paciente,consulta,odontologo);
+                modConsulta.setVisible(true);
+            }
+            dispose();
        }
     }//GEN-LAST:event_botonAbrirActionPerformed
 
@@ -253,6 +293,34 @@ public class BuscarConsulta extends javax.swing.JFrame {
         if(!tablaConsultas.getSelectionModel().isSelectionEmpty())
             botonAbrir.setEnabled(true);
     }//GEN-LAST:event_tablaConsultasFocusGained
+
+    private void botonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarActionPerformed
+        if(comboInfo.getSelectedIndex()!=1){
+            if(!controlEntrada.datoEsNumerico(txtInfo)) txtInfo.setText(null);
+            if((comboInfo.getSelectedIndex()==0 && !odontologo.buscarPaciente(Integer.parseInt(txtInfo.getText()))) ||
+                    (comboInfo.getSelectedIndex()==2 && !odontologo.buscarPacienteHM(Integer.parseInt(txtInfo.getText())))){
+                JOptionPane.showMessageDialog(null,"Paciente no encontrado.","Error",JOptionPane.ERROR_MESSAGE);
+            }
+            else
+                controlBuscar.llenarTabla(tablaConsultas, odontologo, txtInfo, comboInfo.getSelectedIndex());
+        }
+        else{
+            if(odontologo.numeroConsultasPorFecha(fechaConsulta.getDate())==0)
+                JOptionPane.showMessageDialog(null,"No se han encontrado consultas registradas en esta fecha.","Error",JOptionPane.ERROR_MESSAGE);
+            else
+                controlBuscar.llenarTabla(tablaConsultas, odontologo, fechaConsulta.getDate());
+        }
+    }//GEN-LAST:event_botonBuscarActionPerformed
+
+    private void comboInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboInfoActionPerformed
+        controlBuscar.cambiarCampo(comboInfo, txtInfo, fechaConsulta);
+    }//GEN-LAST:event_comboInfoActionPerformed
+
+    private void comboInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboInfoMouseClicked
+    }//GEN-LAST:event_comboInfoMouseClicked
+
+    private void comboInfoMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboInfoMousePressed
+    }//GEN-LAST:event_comboInfoMousePressed
 
     /**
      * @param args the command line arguments
@@ -293,14 +361,16 @@ public class BuscarConsulta extends javax.swing.JFrame {
     private javax.swing.JButton botonAbrir;
     private javax.swing.JButton botonBuscar;
     private javax.swing.JButton botonSalir;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel labelCedulaPaciente;
+    private javax.swing.JComboBox<String> comboAccion;
+    private javax.swing.JComboBox<String> comboInfo;
+    private com.toedter.calendar.JDateChooser fechaConsulta;
     private javax.swing.JLabel labelFecha;
     private javax.swing.JLabel labelTitulo;
     private javax.swing.JLabel labelUsuario;
     private javax.swing.JPanel panelBusqueda;
     private javax.swing.JPanel panelTitulo;
+    private javax.swing.JScrollPane scrollTabla;
     private javax.swing.JTable tablaConsultas;
-    private javax.swing.JTextField txtCedulaPaciente;
+    private javax.swing.JTextField txtInfo;
     // End of variables declaration//GEN-END:variables
 }

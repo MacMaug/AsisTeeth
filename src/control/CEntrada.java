@@ -252,11 +252,12 @@ public class CEntrada {
     }
     
     
-    public void pacienteRegistrado(Paciente paciente, JTextField txtCedula, JTextField txtNombre, JComboBox comboSexo, JLabel labelHistoriaMedica, JTextField txtLugarNacimiento, JButton botonDeshacerBusqueda){
+    public void pacienteRegistrado(Paciente paciente, JTextField txtCedula, JTextField txtNombre, JComboBox comboSexo, JLabel labelHM,
+                                    JTextField txtHM, JTextField txtLugarNacimiento, JButton botonDeshacerBusqueda, boolean verBoton){
         
-        txtCedula.setEnabled(false);
+        txtCedula.setEditable(false);
         txtNombre.setText(paciente.getNombre());
-        txtNombre.setEnabled(false);
+        txtNombre.setEditable(false);
         
         if(paciente.getSexo()=='M')
             comboSexo.setSelectedIndex(0);
@@ -264,13 +265,15 @@ public class CEntrada {
             comboSexo.setSelectedIndex(1);
         comboSexo.setEnabled(false);
         
-        labelHistoriaMedica.setText("Historia médica: "+paciente.getHistoriaClinica());
-        labelHistoriaMedica.setVisible(true);
+        txtHM.setText(Integer.toString(paciente.getHistoriaClinica()));
+        txtHM.setEditable(false);
+        txtHM.setVisible(true);
+        labelHM.setVisible(true);
         
         txtLugarNacimiento.setText(paciente.getLugarNacimiento());
-        txtLugarNacimiento.setEnabled(false);
+        txtLugarNacimiento.setEditable(false);
         
-        botonDeshacerBusqueda.setVisible(true);
+        botonDeshacerBusqueda.setVisible(verBoton);
     }
     
     public void deshacerBusqueda(JTextField txtCedula, JTextField txtNombre, JComboBox comboSexo, JLabel labelHistoriaMedica, JTextField txtLugarNacimiento, JButton botonDeshacerBusqueda){
@@ -414,7 +417,6 @@ public class CEntrada {
                                                 txtMucosaPalatina.getText(),txtMucosaPisoBoca.getText(),txtFrenilloLingual.getText(),
                                                 txtCaraDorsal.getText(),txtCaraVentral.getText(),txtBordesLaterales.getText(),
                                                 txtEncias.getText(),txtDientes.getText(),"Clinico");
-//        prueba(exCli);
         return exCli;
     }
     
@@ -603,75 +605,6 @@ public class CEntrada {
         return pac;
     }
     
-    
-//    public void prueba(Consulta consulta){
-//        System.out.println("Fecha de registro: "+consulta.getFecha());
-//        System.out.println("Edad: "+consulta.getEdadPaciente());
-//        System.out.println("Domicilio: "+consulta.getDomicilioPaciente());
-//        System.out.println("Telefono: "+consulta.getTelefonoPaciente());
-//        System.out.println("Ocupacion: "+consulta.getOcupacionPaciente());
-//        System.out.println("Estudiante: ");
-//            if(consulta.isEsEstudiante()) System.out.println("Si");
-//            else System.out.println("No");
-//        System.out.println("Referencia: "+consulta.getReferencia());
-//    }
-//    
-//    public void prueba(ExamenSubjetivo exSub){
-//        System.out.println("Motivo: "+exSub.getMotivoConsulta());
-//        
-//        System.out.println("Curso de la enfermedad actual: "+exSub.getCursoEnfermedad());
-//        
-//        System.out.println("¿Está tomando algún medicamento: ");
-//        if(exSub.isTomandoMedicamento()) System.out.println("Sí");
-//        else System.out.println("No");
-//        
-//        System.out.println("¿Cuál?: "+exSub.getMedicamentoQueToma());
-//        
-//        System.out.println("¿Ha sido hospitalizado alguna vez?: "+exSub.isSidoHospitalizado());
-//        System.out.println("¿Por qué?:"+exSub.getMotivoHospitalizado());
-//        
-//        System.out.println("¿Ha sido intervenido quirurgicamente?: ");
-//        if(exSub.isSidoIntervenidoQuirurgicamente())
-//            System.out.println("Sí");
-//        else System.out.println("No");
-//        
-//        System.out.println("Fuma: ");
-//        if(exSub.isFuma()) System.out.println("Sí");
-//        else System.out.println("No");
-//        System.out.println("¿Cuántos cigarrillos?: "+exSub.getCantidadCigarrillos());
-//        System.out.println("¿Desde cuándo?: "+exSub.getTiempoFumando());
-//       
-//        System.out.println("Toma: ");
-//        if(exSub.isToma()) System.out.println("Sí");
-//        else System.out.println("No");
-//        System.out.println("¿Qué cantidad?: "+exSub.getCantidadTomando());
-//    }
-//    
-//    public void prueba(ExamenClinico exCli){
-//        System.out.println("Labios: "+exCli.getLabios());
-//        
-//        System.out.println("Frenillos labiales: "+exCli.getFrenillosLabiales());
-//        
-//        System.out.println("Vesitibulo bucal: "+exCli.getVestibuloBocal());
-//        System.out.println("Mucosa palatina: "+exCli.getMucosaPalatina());
-//        System.out.println("Mucosa del piso de la boca: "+exCli.getMucosaPisoDeBoca());
-//        
-//        
-//        System.out.println("Frenillo lingual: "+exCli.getFrenilloLingual());
-//        
-//        System.out.println("Lengua\nCara dorsal: "+exCli.getCaraDorsalLengua());
-//        System.out.println("Cara ventral: "+exCli.getCaraVentralLengua());
-//        System.out.println("BordesLaterales: "+exCli.getBordesLateralesLengua());
-//        
-//        System.out.println("Encias: "+exCli.getEncia());
-//        System.out.println("Dientes: "+exCli.getDientes());
-//        
-//        System.out.println("Tension incluida "+exCli.isIncluirTensionArterial());
-//        System.out.println("Tension maxima: "+exCli.getTensionArterialMaxima()+"    Tension minima "+exCli.getTensionArterialMinima());
-//        System.out.println("Palpacion incluida "+exCli.isIncluirPalpacion());
-//        System.out.println("Palpables: "+exCli.isGangliosPalpables());
-//        System.out.println("Localizacion: "+exCli.getUbicacionGanglios());
-//        System.out.println("Caracteristicas: "+exCli.getCaracteristicasPalpacion());
-//    }
+
     
 }

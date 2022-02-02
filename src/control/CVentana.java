@@ -13,7 +13,8 @@ public class CVentana {
     
     public void iniciarVentana(JFrame ventana/*, String ruta*/){
        ventana.setLocationRelativeTo(null);
-       //ventana.setIconImage(new ImageIcon(ruta).getImage()); 
+       ventana.setIconImage(new ImageIcon("src/imagenes/Logo.png").getImage()); 
+       ventana.setTitle("AsisTeeth");
        //ventana.setResizable(false); 
        ventana.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
@@ -22,6 +23,10 @@ public class CVentana {
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         labelFecha.setText("Fecha: "+formatter.format(new Date())); 
         labelUsuario.setText("Usuario: "+odontologo.getUsuario());
+    }
+    
+    public void colocarTitulo(JLabel labelTitulo, String titulo){
+        labelTitulo.setText(titulo);
     }
     
     public void esconderAsteriscosDP(JLabel asteriscoCedula, JLabel asteriscoNombre, JLabel asteriscoTelf, JLabel asteriscoEdad){

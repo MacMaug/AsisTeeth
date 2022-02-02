@@ -24,11 +24,19 @@ public class Guardar {
 
     public static void enJSON() {
         Gson gson = new Gson();
+        
+        /* Deshabilitado Temporalmente
         Encriptar encriptacion = new Encriptar();
         encriptacion.encriptarClaves();
+        */
+        
         java.lang.reflect.Type listType = new TypeToken<ArrayList<Odontologo>>() {}.getType();
         String json = gson.toJson(Datos.getListaOdontologos(), listType);
+        
+        /* Deshabilitado temporalmente
         encriptacion.desencriptarClaves();
+        */
+        
         try {
             FileWriter writer = new FileWriter("src/files/usuarios.json");
             writer.write(json);

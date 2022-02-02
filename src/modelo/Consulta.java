@@ -367,5 +367,5 @@ public class Consulta {
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
-
+    
 }

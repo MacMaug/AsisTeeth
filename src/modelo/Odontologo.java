@@ -5,7 +5,10 @@
  */
 package modelo;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -74,9 +77,25 @@ public class Odontologo {
         return false;
     }
     
+    public boolean buscarPacienteHM(int HM){
+        for(Paciente pac : listaPacientes){
+            if(HM == pac.getHistoriaClinica())
+                return true;
+        }
+        return false;
+    }
+    
     public Paciente buscarObjetoPaciente(int cedula){
         for(Paciente pac : listaPacientes){
             if(cedula == pac.getCedula())
+                return pac;
+        }
+        return null;
+    }
+    
+    public Paciente buscarObjetoPacienteHM(int HM){
+        for(Paciente pac : listaPacientes){
+            if(HM == pac.getHistoriaClinica())
                 return pac;
         }
         return null;
@@ -89,6 +108,21 @@ public class Odontologo {
     public void setListaPacientes(ArrayList<Paciente> listaPacientes){
         this.listaPacientes=listaPacientes;
     }
+    
+    public int numeroConsultasPorFecha(Date fecha){
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        int i=0;
+        for(Paciente pac : listaPacientes){
+            for(Consulta con : pac.getListaConsultas()){
+                if((formatter.format(fecha)).equals(formatter.format(con.getFecha())))
+                    i++;
+            }       
+        }
+        System.out.println(i);
+        return i;
+    }
+    
+
     
     
     

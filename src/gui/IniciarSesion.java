@@ -8,6 +8,7 @@ package gui;
 import control.CInicioSesion;
 import control.CUsuario;
 import control.CVentana;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import modelo.Datos;
 import modelo.Odontologo;
@@ -23,6 +24,9 @@ public class IniciarSesion extends javax.swing.JFrame {
      */
     public IniciarSesion() {
         initComponents();
+        setIconImage(new ImageIcon("src/imagenes/Logo.png").getImage()); 
+        setTitle("AsisTeeth");
+        
     }
 
     /**
@@ -167,6 +171,7 @@ public class IniciarSesion extends javax.swing.JFrame {
     private void botonRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonRegresarActionPerformed
         Inicio inicio = new Inicio();
         inicio.setVisible(true);
+        dispose();
     }//GEN-LAST:event_botonRegresarActionPerformed
 
     private void botonContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonContinuarActionPerformed

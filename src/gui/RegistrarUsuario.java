@@ -9,6 +9,7 @@ import control.CEntrada;
 import control.CUsuario;
 import control.CVentana;
 import java.util.ArrayList;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.Odontologo;
@@ -26,6 +27,8 @@ public class RegistrarUsuario extends javax.swing.JFrame {
      */
     public RegistrarUsuario() {
         initComponents();
+        setIconImage(new ImageIcon("src/imagenes/Logo.png").getImage()); 
+        setTitle("AsisTeeth");
     }
 
     /**

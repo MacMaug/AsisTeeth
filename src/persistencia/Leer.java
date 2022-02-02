@@ -267,8 +267,10 @@ public class Leer {
                 Datos.getListaOdontologos().add(odontologo);
             }
             reader.close();
+            /* Deshabilitado Temporalmente
             Encriptar encriptacion = new Encriptar();
             encriptacion.desencriptarClaves();
+            */
         } catch (FileNotFoundException e) {
         } catch (IOException e) {
         } catch (org.json.simple.parser.ParseException ex) {

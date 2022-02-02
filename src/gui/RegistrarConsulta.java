@@ -19,25 +19,20 @@ import persistencia.Guardar;
 public class RegistrarConsulta extends javax.swing.JFrame {
     CVentana controlVentana = new CVentana();
     CEntrada controlEntrada = new CEntrada();
+    CVerConsulta controlVer = new CVerConsulta();
+    CModificarConsulta controlModificar;
     Odontologo odontologo;
     Paciente paciente;
+    Consulta con;
+    char accion = 'R';
     /**
      * Creates new form RegistrarConsulta
      */
     public RegistrarConsulta() {
-        initComponents();
-        controlVentana.iniciarVentana(this);
-        controlEntrada.fechaMaxima(new Date(), fechaUltimaCrisis);
-        controlVentana.esconderAsteriscosDP(labelFaltanteCedula,labelFaltanteNombre,labelFaltanteTelefono,labelFaltanteEdad);
-        controlVentana.esconderAsteriscosES(labelFaltanteMotivo,labelFaltanteMedicamento);
-        controlVentana.esconderAsteriscosAntecedentes(labelFaltanteCardio,labelFaltanteAlergico,labelFaltanteHematologicas);
-        controlVentana.esconderAsteriscosExC(labelECBFaltante,labelFaltanteMaxima,labelFaltanteMinima,labelFaltanteLocalizacion,labelFaltanteCaracteristicas);
-        controlVentana.esconderAsteriscoDiagnostico(labelFaltantesDiagnostico);
-        radioNoAplicaFemenino.setSelected(true);
-        radioNoAplicaFemenino.setEnabled(false);
-        controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,radioPastillasAnticonceptivas,radioMenopausia);   
+        initComponents();  
     }
     
+    //Constructor de Registrar Consulta
     public RegistrarConsulta(Odontologo odontologo) {
         initComponents();
         this.odontologo = odontologo;
@@ -51,10 +46,96 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         radioNoAplicaFemenino.setSelected(true);
         radioNoAplicaFemenino.setEnabled(false);
         botonDeshacer.setVisible(false);
+        labelHistoriaMedica.setVisible(false);
+        txtHM.setVisible(false);
         controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,radioPastillasAnticonceptivas,radioMenopausia);   
         controlVentana.colocarFechaUsuario(labelFecha, labelUsuario, odontologo);
     }
-
+    
+    //Constructor de Modificar Consulta
+    public RegistrarConsulta(Paciente pac, Consulta con, Odontologo odontologo){
+        initComponents();
+        
+        //Inicializar parte de registro
+        this.odontologo = odontologo;
+        this.accion = 'M';
+        this.con = con;
+        this.controlModificar = new CModificarConsulta();
+        
+        controlVentana.iniciarVentana(this);
+        controlEntrada.fechaMaxima(new Date(), fechaUltimaCrisis);
+        controlVentana.esconderAsteriscosDP(labelFaltanteCedula,labelFaltanteNombre,labelFaltanteTelefono,labelFaltanteEdad);
+        controlVentana.esconderAsteriscosES(labelFaltanteMotivo,labelFaltanteMedicamento);
+        controlVentana.esconderAsteriscosAntecedentes(labelFaltanteCardio,labelFaltanteAlergico,labelFaltanteHematologicas);
+        controlVentana.esconderAsteriscosExC(labelECBFaltante,labelFaltanteMaxima,labelFaltanteMinima,labelFaltanteLocalizacion,labelFaltanteCaracteristicas);
+        controlVentana.esconderAsteriscoDiagnostico(labelFaltantesDiagnostico);
+        controlEntrada.pacienteRegistrado(pac, txtCedula, txtNombre, comboSexo, labelHistoriaMedica, txtHM, txtLugarNacimiento, 
+                                            botonDeshacer, false);
+        
+        radioNoAplicaFemenino.setSelected(true);
+        radioNoAplicaFemenino.setEnabled(false);
+        botonDeshacer.setVisible(false);
+        controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,radioPastillasAnticonceptivas,radioMenopausia);   
+        controlVentana.colocarFechaUsuario(labelFecha, labelUsuario, odontologo);
+        controlVentana.colocarTitulo(labelTitulo, "Modificar consulta");
+        botonGuardar.setText("Guardar cambios");
+        
+        //Cargar datos
+        controlVentana.colocarFechaUsuario(labelFecha, labelUsuario, odontologo);
+        controlVentana.iniciarVentana(this);
+        controlVer.llenarDiagnostico(con, txtPresuntivo, txtHistopatologico, txtDefinitivo, txtPlanTratamiento, txtObservaciones);
+        
+        controlVer.llenarDatosPersonalPaciente(pac,txtCedula,txtNombre,txtHM,comboSexo,txtLugarNacimiento);
+        
+        controlVer.llenarDatosPersonalesConsulta(con,txtTelf1,txtTelf2,txtOcupacion,txtEdad,radioEstudiante,txtReferencia,txtDomicilio);
+        
+        controlVer.llenarDatosExamenSubjetivo(con,txtMotivo,txtCurso,comboMedicamentos, 
+                                                txtCualMed,comboHospitalizado,txtPorQueHospitalizado, 
+                                                comboIntervenidoQuirurgicamente, radioFuma, txtCuantosCigarrillos, 
+                                                txtDesdeFuma, radioToma,txtCantidadToma);
+        
+        controlVer.llenarDatosExamenClinico(con, txtLabios,txtFrenillosLabiales,txtVestibuloBucal,txtMucosaPalatina,txtMucosaPisoBoca,txtFrenilloLingual, 
+                                                txtCaraDorsal,txtCaraVentral,txtBordesLaterales,txtEncias,txtDientes,radioIncluirTensionArterial,txtMaxima,txtMinima, 
+                                                radioIncluirPalpacion, radioPalpables,txtLocalizacion,txtCaracteristicas);
+        
+        controlVer.llenarDatosExamenRadiografico(con,radioAgregarExamenRadiografico, txtRxPanoramica, txtRxPeriapical, txtRxOclusal);
+        
+        controlVer.llenarDatosExamenLaboratorio(con,radioAgregarExamenLaboratorio,txtPerfilHematologico,txtPerfilCoagulacion,
+                                                txtGlicemia,comboVDRL,comboVIH);
+        
+        controlVer.llenarDatosAntecedenteRenalGastro(con,radioEnfermedadRenal,txtOrinaDia,txtColorOrina,radioCalculosRenales1, radioAcidezEstomacal1,
+                                                        radioUlcerPeptica1, radioDiarreasFrecuencia1);
+        
+        controlVer.llenarDatosAntecedenteFemenino(con, radioNoAplicaFemenino, radioRegular, radioIrregular, radioEmbarazada, 
+                                                    comboMesesEmbarazo, radioPastillasAnticonceptivas, radioMenopausia);
+        
+        controlVer.llenarDatosAntecedenteCardiovascular(con, radioNoAplicaCardiovasculares, radioSubirEscaleras, radioEdema, radioPalpitaciones, 
+                                                        radioDoloresPecho, radioInfarto, txtCuandoInfarto, radioEndocarditisBacteriana, 
+                                                        radioValvulopatia, radioHipertenso, radioHipertenso, radioTratamientoTension);
+        
+        controlVer.llenarDatosAntecedenteAlergico(con, radioNoAplicaAlergicos, radioAlergicoMedicamento,txtAlergicoMedicamento, 
+                                                    radioUrticaria,radioDificultadTragar, radioDificultadRespirar, radioSufreAsma,
+                                                    txtUltimaCrisisAsma,txtReaccionAnestesiaLocal);
+        
+        controlVer.llenarDatosAntecedenteNM(con, radioNoAplicaNM, radioAnemia, radioPerdidoPeso, radioDieta, 
+                                            radioSienteDecaimiento, radioFiebre, radioDiabetico, radioTratamientoDiabetico, 
+                                            radioOrinaNoche,txtOrinaNoche, radioMuchaSed, radioInsomnio, radioTiroides);
+        
+        controlVer.llenarDatosAntecedenteInfeccioso(con, radioNoAplicaInfecciosas, radioEnfermedadesVenereas,txtHaceCuantoVenereas,
+                                                    radioTransfusion,radioHepatitis,txtHaceCuantoHepatitis,comboTipoHepatitis, 
+                                                    radioOtraEnfermedadHepatica,txtCualOtraHepatica, radioTuberculosis);
+        
+        controlVer.llenarDatosAntecedenteNeurologico(con, radioNoAplicaNeurologicas, radioConvulsiones, txtCuantoTiempoConvulsiones, 
+                                                        radioEpilepsia, txtFechaUltimaCrisis, radioNeuralgiasNeuritis, 
+                                                        radioParalisisFacial, radioParestesia, radioSeAltera, radioCefaleas);
+        
+        controlVer.llenarDatosAntecedenteHematologico(con, radioNoAplicaHematologicas, radioHemorragiasImportantes,txtCausaHemorragia,txtDuracionHemorragia, 
+                                                        radioHematomas, radioSangranEncias, radioSangraNariz);
+        
+        controlVer.llenarAntecedenteFamiliar(con, radioFamiliares, radioCancer, radioEnfPulmonares, radioDiabetes, radioEnfCardiovasculares, radioEnfHepaticas, 
+                                                txtTipoCancer,txtTipoEnfPulmonares,comboTipoDiabetes, txtTipoEnfCardiovasculares, 
+                                                txtTipoEnfHepaticas, txtOtros1);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -104,12 +185,12 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         txtOcupacion = new javax.swing.JTextField();
         txtReferencia = new javax.swing.JTextField();
         txtEdad = new javax.swing.JTextField();
-        labelHMPaciente = new javax.swing.JLabel();
         labelFaltanteCedula = new javax.swing.JLabel();
         labelFaltanteNombre = new javax.swing.JLabel();
         labelFaltanteTelefono = new javax.swing.JLabel();
         labelFaltanteEdad = new javax.swing.JLabel();
         botonDeshacer = new javax.swing.JButton();
+        txtHM = new javax.swing.JTextField();
         pestExamenSub = new javax.swing.JPanel();
         labelDatosPersonales1 = new javax.swing.JLabel();
         labelMotivo = new javax.swing.JLabel();
@@ -141,10 +222,10 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         tabsAntecedentes = new javax.swing.JTabbedPane();
         panelRenalesGastrointestinales = new javax.swing.JPanel();
         labelRenalesGastrointestinales = new javax.swing.JLabel();
-        radioEnfermedadRenal1 = new javax.swing.JRadioButton();
+        radioEnfermedadRenal = new javax.swing.JRadioButton();
         labelCuantasVecesOrinaDia1 = new javax.swing.JLabel();
         labelColorOrina1 = new javax.swing.JLabel();
-        txtColorOrina1 = new javax.swing.JTextField();
+        txtColorOrina = new javax.swing.JTextField();
         radioCalculosRenales1 = new javax.swing.JRadioButton();
         radioAcidezEstomacal1 = new javax.swing.JRadioButton();
         radioUlcerPeptica1 = new javax.swing.JRadioButton();
@@ -239,6 +320,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         radioParestesia = new javax.swing.JRadioButton();
         radioSeAltera = new javax.swing.JRadioButton();
         radioCefaleas = new javax.swing.JRadioButton();
+        txtFechaUltimaCrisis = new javax.swing.JTextField();
         panelHematologicas = new javax.swing.JPanel();
         labelInfecciosas6 = new javax.swing.JLabel();
         radioNoAplicaHematologicas = new javax.swing.JRadioButton();
@@ -377,6 +459,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         jScrollPane16 = new javax.swing.JScrollPane();
         txtObservaciones = new javax.swing.JTextArea();
         botonGuardar = new javax.swing.JButton();
+        botonOdontograma = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -412,13 +495,13 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         panelTituloLayout.setHorizontalGroup(
             panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelTituloLayout.createSequentialGroup()
-                .addGap(58, 58, 58)
-                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(184, 184, 184)
+                .addContainerGap()
+                .addComponent(labelTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 693, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(panelTituloLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(labelUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelFecha, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 227, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 224, Short.MAX_VALUE)
                 .addComponent(botonSalir)
                 .addGap(23, 23, 23))
         );
@@ -654,8 +737,6 @@ public class RegistrarConsulta extends javax.swing.JFrame {
             }
         });
 
-        labelHMPaciente.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-
         labelFaltanteCedula.setFont(new java.awt.Font("Tahoma", 0, 20)); // NOI18N
         labelFaltanteCedula.setForeground(new java.awt.Color(255, 0, 0));
         labelFaltanteCedula.setText("*");
@@ -674,11 +755,17 @@ public class RegistrarConsulta extends javax.swing.JFrame {
 
         botonDeshacer.setBackground(new java.awt.Color(204, 204, 204));
         botonDeshacer.setFont(new java.awt.Font("Nirmala UI", 0, 18)); // NOI18N
-        botonDeshacer.setForeground(new java.awt.Color(0, 0, 0));
         botonDeshacer.setText("Deshacer");
         botonDeshacer.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonDeshacerActionPerformed(evt);
+            }
+        });
+
+        txtHM.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txtHM.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtHMFocusLost(evt);
             }
         });
 
@@ -741,10 +828,10 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(4, 4, 4)
                         .addComponent(labelFaltanteNombre)
-                        .addGap(18, 18, 18)
+                        .addGap(30, 30, 30)
                         .addComponent(labelHistoriaMedica)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(labelHMPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtHM, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, pestDatosPersonalesLayout.createSequentialGroup()
                         .addComponent(labelCedula)
                         .addGap(18, 18, 18)
@@ -753,7 +840,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                         .addComponent(labelFaltanteCedula)
                         .addGap(32, 32, 32)
                         .addComponent(botonDeshacer)))
-                .addContainerGap(342, Short.MAX_VALUE))
+                .addContainerGap(336, Short.MAX_VALUE))
         );
         pestDatosPersonalesLayout.setVerticalGroup(
             pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -771,8 +858,8 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(labelNombre)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelHistoriaMedica)
-                    .addComponent(labelHMPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(labelFaltanteNombre))
+                    .addComponent(labelFaltanteNombre)
+                    .addComponent(txtHM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelSexo)
@@ -808,7 +895,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(pestDatosPersonalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDomicilio)
                     .addComponent(txtDomicilio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(155, Short.MAX_VALUE))
+                .addContainerGap(161, Short.MAX_VALUE))
         );
 
         pestRegistrar.addTab("Datos personales", pestDatosPersonales);
@@ -982,7 +1069,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                                     .addComponent(labelPorQue)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtPorQueHospitalizado, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addContainerGap(120, Short.MAX_VALUE))
         );
         pestExamenSubLayout.setVerticalGroup(
             pestExamenSubLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1033,7 +1120,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(radioToma)
                     .addComponent(labelQueCantidad)
                     .addComponent(txtCantidadToma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(121, Short.MAX_VALUE))
+                .addContainerGap(133, Short.MAX_VALUE))
         );
 
         pestRegistrar.addTab("Examen subjetivo", pestExamenSub);
@@ -1051,12 +1138,12 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         labelRenalesGastrointestinales.setFont(new java.awt.Font("Century Gothic", 1, 20)); // NOI18N
         labelRenalesGastrointestinales.setText("Renales y gastrointestinales");
 
-        radioEnfermedadRenal1.setBackground(new java.awt.Color(255, 255, 255));
-        radioEnfermedadRenal1.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
-        radioEnfermedadRenal1.setText("Ha padecido alguna enfermedad renal");
-        radioEnfermedadRenal1.addActionListener(new java.awt.event.ActionListener() {
+        radioEnfermedadRenal.setBackground(new java.awt.Color(255, 255, 255));
+        radioEnfermedadRenal.setFont(new java.awt.Font("Nirmala UI Semilight", 0, 18)); // NOI18N
+        radioEnfermedadRenal.setText("Ha padecido alguna enfermedad renal");
+        radioEnfermedadRenal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radioEnfermedadRenal1ActionPerformed(evt);
+                radioEnfermedadRenalActionPerformed(evt);
             }
         });
 
@@ -1068,10 +1155,10 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         labelColorOrina1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
         labelColorOrina1.setText("¿De qué color?:");
 
-        txtColorOrina1.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
-        txtColorOrina1.addFocusListener(new java.awt.event.FocusAdapter() {
+        txtColorOrina.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+        txtColorOrina.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
-                txtColorOrina1FocusLost(evt);
+                txtColorOrinaFocusLost(evt);
             }
         });
 
@@ -1129,7 +1216,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(radioUlcerPeptica1)
                     .addComponent(radioAcidezEstomacal1)
                     .addComponent(radioCalculosRenales1)
-                    .addComponent(radioEnfermedadRenal1)
+                    .addComponent(radioEnfermedadRenal)
                     .addComponent(labelRenalesGastrointestinales)
                     .addGroup(panelRenalesGastrointestinalesLayout.createSequentialGroup()
                         .addComponent(labelCuantasVecesOrinaDia1)
@@ -1138,7 +1225,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                         .addGap(48, 48, 48)
                         .addComponent(labelColorOrina1)
                         .addGap(18, 18, 18)
-                        .addComponent(txtColorOrina1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtColorOrina, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(352, Short.MAX_VALUE))
         );
         panelRenalesGastrointestinalesLayout.setVerticalGroup(
@@ -1147,12 +1234,12 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(labelRenalesGastrointestinales)
                 .addGap(18, 18, 18)
-                .addComponent(radioEnfermedadRenal1)
+                .addComponent(radioEnfermedadRenal)
                 .addGap(18, 18, 18)
                 .addGroup(panelRenalesGastrointestinalesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCuantasVecesOrinaDia1)
                     .addComponent(labelColorOrina1)
-                    .addComponent(txtColorOrina1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtColorOrina, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtOrinaDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(radioCalculosRenales1)
@@ -1162,7 +1249,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addComponent(radioUlcerPeptica1)
                 .addGap(18, 18, 18)
                 .addComponent(radioDiarreasFrecuencia1)
-                .addContainerGap(83, Short.MAX_VALUE))
+                .addContainerGap(71, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Renales y gastrointestinales", panelRenalesGastrointestinales);
@@ -1290,7 +1377,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(panelFemeninoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioPastillasAnticonceptivas)
                     .addComponent(radioMenopausia))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Femenino", panelFemenino);
@@ -1630,7 +1717,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(panelAlergicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelCrisisAsma3)
                     .addComponent(txtReaccionAnestesiaLocal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(169, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Alérgicos", panelAlergicos);
@@ -1844,7 +1931,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(panelNutricionalesMetabolicosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioInsomnio)
                     .addComponent(radioTiroides))
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Nutricionales y Metabólicos", panelNutricionalesMetabolicos);
@@ -2093,6 +2180,8 @@ public class RegistrarConsulta extends javax.swing.JFrame {
             }
         });
 
+        txtFechaUltimaCrisis.setFont(new java.awt.Font("Century Gothic", 0, 18)); // NOI18N
+
         javax.swing.GroupLayout panelNeurologicasLayout = new javax.swing.GroupLayout(panelNeurologicas);
         panelNeurologicas.setLayout(panelNeurologicasLayout);
         panelNeurologicasLayout.setHorizontalGroup(
@@ -2111,7 +2200,9 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                             .addGroup(panelNeurologicasLayout.createSequentialGroup()
                                 .addComponent(labelFechaUltimaCrisis1)
                                 .addGap(18, 18, 18)
-                                .addComponent(fechaUltimaCrisis, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(fechaUltimaCrisis, javax.swing.GroupLayout.PREFERRED_SIZE, 215, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtFechaUltimaCrisis, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(panelNeurologicasLayout.createSequentialGroup()
                                 .addComponent(labelCuantoTiempoConvulsiones1)
                                 .addGap(18, 18, 18)
@@ -2126,7 +2217,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                         .addComponent(radioNeuralgiasNeuritis)
                         .addGap(18, 18, 18)
                         .addComponent(radioParalisisFacial)))
-                .addContainerGap(374, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         panelNeurologicasLayout.setVerticalGroup(
             panelNeurologicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2141,11 +2232,15 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(labelCuantoTiempoConvulsiones1)
                     .addComponent(txtCuantoTiempoConvulsiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(panelNeurologicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelNeurologicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(radioEpilepsia)
-                        .addComponent(labelFechaUltimaCrisis1))
-                    .addComponent(fechaUltimaCrisis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(panelNeurologicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(panelNeurologicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(fechaUltimaCrisis, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(panelNeurologicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(radioEpilepsia)
+                            .addComponent(labelFechaUltimaCrisis1)))
+                    .addGroup(panelNeurologicasLayout.createSequentialGroup()
+                        .addComponent(txtFechaUltimaCrisis, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)))
                 .addGap(18, 18, 18)
                 .addGroup(panelNeurologicasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(radioNeuralgiasNeuritis)
@@ -2156,7 +2251,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(radioSeAltera))
                 .addGap(18, 18, 18)
                 .addComponent(radioCefaleas)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Neurológicas", panelNeurologicas);
@@ -2279,7 +2374,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(radioSangranEncias))
                 .addGap(18, 18, 18)
                 .addComponent(radioSangraNariz)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Hematológicas", panelHematologicas);
@@ -2461,7 +2556,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                     .addComponent(txtTipoEnfHepaticas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelOtros1)
                     .addComponent(txtOtros1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         tabsAntecedentes.addTab("Familiares", panelFamiliares);
@@ -2475,7 +2570,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(pestAntecedentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tabsAntecedentes, javax.swing.GroupLayout.PREFERRED_SIZE, 1154, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelAntecedentes))
-                .addContainerGap(65, Short.MAX_VALUE))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         pestAntecedentesLayout.setVerticalGroup(
             pestAntecedentesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -2484,7 +2579,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addComponent(labelAntecedentes)
                 .addGap(18, 18, 18)
                 .addComponent(tabsAntecedentes, javax.swing.GroupLayout.PREFERRED_SIZE, 448, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(117, Short.MAX_VALUE))
+                .addContainerGap(121, Short.MAX_VALUE))
         );
 
         pestRegistrar.addTab("Antecedentes", pestAntecedentes);
@@ -2904,7 +2999,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addGroup(pestExamenClinicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(tabExamenesClinicos, javax.swing.GroupLayout.PREFERRED_SIZE, 1132, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(labelExamenClinico3))
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addContainerGap(90, Short.MAX_VALUE))
         );
         pestExamenClinicoLayout.setVerticalGroup(
             pestExamenClinicoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3134,7 +3229,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                         .addComponent(labelExamenCom)
                         .addGap(701, 701, 701))
                     .addComponent(tabsExamenesCom, javax.swing.GroupLayout.PREFERRED_SIZE, 1150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         pestExamenComLayout.setVerticalGroup(
             pestExamenComLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3143,7 +3238,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addComponent(labelExamenCom)
                 .addGap(30, 30, 30)
                 .addComponent(tabsExamenesCom, javax.swing.GroupLayout.PREFERRED_SIZE, 495, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pestRegistrar.addTab("Exámenes complementarios", pestExamenCom);
@@ -3310,10 +3405,21 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         botonGuardar.setBackground(new java.awt.Color(102, 153, 255));
         botonGuardar.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
         botonGuardar.setForeground(new java.awt.Color(255, 255, 255));
+        botonGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/save icon.png"))); // NOI18N
         botonGuardar.setText("Guardar consulta");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
+            }
+        });
+
+        botonOdontograma.setBackground(new java.awt.Color(255, 51, 51));
+        botonOdontograma.setFont(new java.awt.Font("Nirmala UI", 0, 20)); // NOI18N
+        botonOdontograma.setForeground(new java.awt.Color(255, 255, 255));
+        botonOdontograma.setText("Odontograma");
+        botonOdontograma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botonOdontogramaActionPerformed(evt);
             }
         });
 
@@ -3322,18 +3428,20 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         pestDiaTraLayout.setHorizontalGroup(
             pestDiaTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pestDiaTraLayout.createSequentialGroup()
-                .addGroup(pestDiaTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pestDiaTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(pestDiaTraLayout.createSequentialGroup()
-                        .addGap(29, 29, 29)
-                        .addComponent(labelExamenClinico2))
-                    .addGroup(pestDiaTraLayout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(tabsDiaTra, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botonOdontograma)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pestDiaTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pestDiaTraLayout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addComponent(labelExamenClinico2))
+                        .addGroup(pestDiaTraLayout.createSequentialGroup()
+                            .addGap(40, 40, 40)
+                            .addComponent(tabsDiaTra, javax.swing.GroupLayout.PREFERRED_SIZE, 1110, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(95, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pestDiaTraLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(botonGuardar)
-                .addGap(90, 90, 90))
         );
         pestDiaTraLayout.setVerticalGroup(
             pestDiaTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -3342,9 +3450,11 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 .addComponent(labelExamenClinico2)
                 .addGap(31, 31, 31)
                 .addComponent(tabsDiaTra, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(pestDiaTraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botonOdontograma, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         pestRegistrar.addTab("Diagnóstico y tratamiento", pestDiaTra);
@@ -3539,9 +3649,9 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radioTuberculosisActionPerformed
 
-    private void radioEnfermedadRenal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEnfermedadRenal1ActionPerformed
+    private void radioEnfermedadRenalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioEnfermedadRenalActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_radioEnfermedadRenal1ActionPerformed
+    }//GEN-LAST:event_radioEnfermedadRenalActionPerformed
 
     private void radioCalculosRenales1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioCalculosRenales1ActionPerformed
         // TODO add your handling code here:
@@ -3676,7 +3786,8 @@ public class RegistrarConsulta extends javax.swing.JFrame {
             if(odontologo.buscarPaciente(Integer.parseInt(txtCedula.getText()))){
                 reply = JOptionPane.showConfirmDialog(null, "Este paciente ya se encuentra registrado como "+(odontologo.buscarObjetoPaciente(Integer.parseInt(txtCedula.getText()))).getNombre(),"¿Desea continuar con este paciente?", JOptionPane.YES_NO_OPTION);
                     if(reply == JOptionPane.YES_OPTION){
-                        controlEntrada.pacienteRegistrado(odontologo.buscarObjetoPaciente(Integer.parseInt(txtCedula.getText())), txtCedula, txtNombre, comboSexo, labelHistoriaMedica, txtLugarNacimiento, botonDeshacer);
+                        controlEntrada.pacienteRegistrado(odontologo.buscarObjetoPaciente(Integer.parseInt(txtCedula.getText())), txtCedula, 
+                                                            txtNombre, comboSexo, labelHistoriaMedica, txtHM, txtLugarNacimiento, botonDeshacer, true);
                     }   
                     else txtCedula.setText(null);
             }
@@ -3684,6 +3795,8 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCedulaFocusLost
 
     private void botonSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonSalirActionPerformed
+        MenuPrincipal menu = new MenuPrincipal(odontologo);
+        menu.setVisible(true);
         dispose();
     }//GEN-LAST:event_botonSalirActionPerformed
 
@@ -3719,9 +3832,9 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         if(!controlEntrada.datoEsNumerico(txtOrinaDia)) txtOrinaDia.setText(null);
     }//GEN-LAST:event_txtOrinaDiaFocusLost
 
-    private void txtColorOrina1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtColorOrina1FocusLost
-        if(!controlEntrada.validarColorOrina(txtColorOrina1)) txtColorOrina1.setText(null);
-    }//GEN-LAST:event_txtColorOrina1FocusLost
+    private void txtColorOrinaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtColorOrinaFocusLost
+        if(!controlEntrada.validarColorOrina(txtColorOrina)) txtColorOrina.setText(null);
+    }//GEN-LAST:event_txtColorOrinaFocusLost
 
     private void radioNoAplicaFemeninoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioNoAplicaFemeninoActionPerformed
         controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,radioPastillasAnticonceptivas,radioMenopausia);
@@ -3783,11 +3896,26 @@ public class RegistrarConsulta extends javax.swing.JFrame {
         int codigo;
         
         
-        boolean fDP = controlEntrada.revisarFaltantesDP(txtCedula,txtNombre,txtTelf1,txtTelf2,txtEdad,labelFaltanteCedula,labelFaltanteNombre,labelFaltanteTelefono,labelFaltanteEdad);
+        boolean fDP = controlEntrada.revisarFaltantesDP(txtCedula,txtNombre,txtTelf1,txtTelf2,txtEdad,labelFaltanteCedula,labelFaltanteNombre,
+                                                            labelFaltanteTelefono,labelFaltanteEdad);
+        
         boolean fES = controlEntrada.revisarFaltantesES(txtMotivo,txtCualMed,comboMedicamentos,labelFaltanteMotivo,labelFaltanteMedicamento);
-        boolean fAntecedentes = controlEntrada.revisarFaltantesAntecedentes(txtCuandoInfarto,txtAlergicoMedicamento,txtCausaHemorragia,labelFaltanteCardio,labelFaltanteAlergico,labelFaltanteHematologicas,radioNoAplicaCardiovasculares,radioNoAplicaAlergicos,radioNoAplicaHematologicas,radioInfarto,radioAlergicoMedicamento,radioHemorragiasImportantes);
-        boolean fExC = controlEntrada.revisarFaltantesExC(txtLabios,txtFrenillosLabiales,txtVestibuloBucal,txtMucosaPalatina,txtMucosaPisoBoca,txtFrenilloLingual,txtCaraDorsal,txtCaraVentral,txtBordesLaterales,txtEncias,txtDientes,txtMaxima,txtMinima,txtLocalizacion,txtCaracteristicas,radioIncluirTensionArterial,radioIncluirPalpacion,radioPalpables,labelECBFaltante,labelFaltanteMaxima,labelFaltanteMinima,labelFaltanteCaracteristicas,labelFaltanteLocalizacion);
-        boolean fDiagnostico = controlEntrada.revisarFaltantesDiagnostico(txtPresuntivo,txtHistopatologico,txtDefinitivo,labelFaltantesDiagnostico);
+        
+        boolean fAntecedentes = controlEntrada.revisarFaltantesAntecedentes(txtCuandoInfarto,txtAlergicoMedicamento,txtCausaHemorragia,
+                                                                            labelFaltanteCardio,labelFaltanteAlergico,labelFaltanteHematologicas,
+                                                                            radioNoAplicaCardiovasculares,radioNoAplicaAlergicos,
+                                                                            radioNoAplicaHematologicas,radioInfarto,radioAlergicoMedicamento,
+                                                                            radioHemorragiasImportantes);
+        
+        boolean fExC = controlEntrada.revisarFaltantesExC(txtLabios,txtFrenillosLabiales,txtVestibuloBucal,txtMucosaPalatina,txtMucosaPisoBoca,
+                                                            txtFrenilloLingual,txtCaraDorsal,txtCaraVentral,txtBordesLaterales,txtEncias,
+                                                            txtDientes,txtMaxima,txtMinima,txtLocalizacion,txtCaracteristicas,
+                                                            radioIncluirTensionArterial,radioIncluirPalpacion,radioPalpables,labelECBFaltante,
+                                                            labelFaltanteMaxima,labelFaltanteMinima,labelFaltanteCaracteristicas,
+                                                            labelFaltanteLocalizacion);
+        
+        boolean fDiagnostico = controlEntrada.revisarFaltantesDiagnostico(txtPresuntivo,txtHistopatologico,txtDefinitivo,
+                                                                            labelFaltantesDiagnostico);
         if(fDP || fES || fExC || fDiagnostico) 
             JOptionPane.showMessageDialog(null,"Aún falta información esencial por llenar (*).","Error", JOptionPane.ERROR_MESSAGE);
         else{
@@ -3815,8 +3943,8 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                  consulta.getListaExamenes().add(exLab);
             }
             
-            antRG = controlEntrada.crearAntRN(radioEnfermedadRenal1, radioCalculosRenales1, radioAcidezEstomacal1, radioUlcerPeptica1, 
-                                        radioDiarreasFrecuencia1, txtOrinaDia, txtColorOrina1);
+            antRG = controlEntrada.crearAntRN(radioEnfermedadRenal, radioCalculosRenales1, radioAcidezEstomacal1, radioUlcerPeptica1, 
+                                        radioDiarreasFrecuencia1, txtOrinaDia, txtColorOrina);
             consulta.getListaAntecedentes().add(antRG);
             
             if(!radioNoAplicaFemenino.isSelected()){
@@ -3864,20 +3992,30 @@ public class RegistrarConsulta extends javax.swing.JFrame {
                 consulta.getListaAntecedentes().add(antFam);
             }
             
-            if(odontologo.buscarPaciente(Integer.parseInt(txtCedula.getText()))){
-                paciente = odontologo.buscarObjetoPaciente(Integer.parseInt(txtCedula.getText()));
-                codigo = paciente.getListaConsultas().size()+1;
-                consulta.setCodigo(codigo);
-                paciente.agregarConsulta(consulta);
+            if(accion=='R'){
+                if(odontologo.buscarPaciente(Integer.parseInt(txtCedula.getText()))){
+                    paciente = odontologo.buscarObjetoPaciente(Integer.parseInt(txtCedula.getText()));
+                    codigo = paciente.getListaConsultas().size()+1;
+                    consulta.setCodigo(codigo);
+                    paciente.agregarConsulta(consulta);
+                }
+                else{ 
+                    paciente = controlEntrada.crearPaciente(odontologo, txtCedula, txtNombre, txtLugarNacimiento, comboSexo);
+                    consulta.setCodigo(1);
+                    paciente.agregarConsulta(consulta);
+                    odontologo.getListaPacientes().add(paciente);
+                    Guardar.enJSON();
+                }
+                JOptionPane.showMessageDialog(null,"Se ha registrado la consulta exitosamente.","Guardado", JOptionPane.INFORMATION_MESSAGE);
             }
-            else{ 
-                paciente = controlEntrada.crearPaciente(odontologo, txtCedula, txtNombre, txtLugarNacimiento, comboSexo);
-                consulta.setCodigo(1);
-                paciente.agregarConsulta(consulta);
-                odontologo.getListaPacientes().add(paciente);
-                Guardar.enJSON();
+            else if(accion=='M'){
+                controlModificar.copiarConsulta(con,consulta);
+                JOptionPane.showMessageDialog(null,"Se han guardado los cambios a la consulta exitosamente.","Guardado", JOptionPane.INFORMATION_MESSAGE);
             }
             
+            MenuPrincipal menu = new MenuPrincipal(odontologo);
+            menu.setVisible(true);
+            dispose();
         }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -3890,7 +4028,8 @@ public class RegistrarConsulta extends javax.swing.JFrame {
             radioNoAplicaFemenino.setSelected(false);
             radioNoAplicaFemenino.setEnabled(true);
         }
-        controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,radioPastillasAnticonceptivas,radioMenopausia);   
+        controlEntrada.habilitarAntecedenteFemenino(radioNoAplicaFemenino,comboMesesEmbarazo,radioRegular,radioIrregular,radioEmbarazada,
+                                                        radioPastillasAnticonceptivas,radioMenopausia);   
 
     }//GEN-LAST:event_comboSexoActionPerformed
 
@@ -3901,6 +4040,15 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void txtHMFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtHMFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtHMFocusLost
+
+    private void botonOdontogramaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonOdontogramaActionPerformed
+        Odontograma odontograma = new Odontograma(odontologo,txtCedula.getText(),txtNombre.getText(),txtEdad.getText());
+        
+    }//GEN-LAST:event_botonOdontogramaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3946,6 +4094,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private javax.swing.JButton botonExamenCom;
     private javax.swing.JButton botonExamenSub;
     private javax.swing.JButton botonGuardar;
+    private javax.swing.JButton botonOdontograma;
     private javax.swing.JButton botonSalir;
     private javax.swing.JComboBox<String> comboHospitalizado;
     private javax.swing.JComboBox<String> comboIntervenidoQuirurgicamente;
@@ -4026,7 +4175,6 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private javax.swing.JLabel labelFrenillosLabiales;
     private javax.swing.JLabel labelGlicemia;
     private javax.swing.JLabel labelGuion;
-    private javax.swing.JLabel labelHMPaciente;
     private javax.swing.JLabel labelHaceCuantoHepatitis1;
     private javax.swing.JLabel labelHaceCuantoVenereas1;
     private javax.swing.JLabel labelHistopatologico;
@@ -4125,7 +4273,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private javax.swing.JRadioButton radioEnfCardiovasculares;
     private javax.swing.JRadioButton radioEnfHepaticas;
     private javax.swing.JRadioButton radioEnfPulmonares;
-    private javax.swing.JRadioButton radioEnfermedadRenal1;
+    private javax.swing.JRadioButton radioEnfermedadRenal;
     private javax.swing.JRadioButton radioEnfermedadesVenereas;
     private javax.swing.JRadioButton radioEpilepsia;
     private javax.swing.JRadioButton radioEstudiante;
@@ -4199,7 +4347,7 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private javax.swing.JTextField txtCaracteristicas;
     private javax.swing.JTextField txtCausaHemorragia;
     private javax.swing.JTextField txtCedula;
-    private javax.swing.JTextField txtColorOrina1;
+    private javax.swing.JTextField txtColorOrina;
     private javax.swing.JTextField txtCualMed;
     private javax.swing.JTextField txtCualOtraHepatica;
     private javax.swing.JTextField txtCuandoInfarto;
@@ -4213,9 +4361,11 @@ public class RegistrarConsulta extends javax.swing.JFrame {
     private javax.swing.JTextField txtDuracionHemorragia;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtEncias;
+    private javax.swing.JTextField txtFechaUltimaCrisis;
     private javax.swing.JTextField txtFrenilloLingual;
     private javax.swing.JTextField txtFrenillosLabiales;
     private javax.swing.JTextField txtGlicemia;
+    private javax.swing.JTextField txtHM;
     private javax.swing.JTextField txtHaceCuantoHepatitis;
     private javax.swing.JTextField txtHaceCuantoVenereas;
     private javax.swing.JTextArea txtHistopatologico;
